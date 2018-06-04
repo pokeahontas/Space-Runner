@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Ship1
+  - Ship2
   layers:
   - Default
   - TransparentFX
