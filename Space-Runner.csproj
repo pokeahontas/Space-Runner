@@ -302,6 +302,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\Physics.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\Users\Chris\AppData\Local\Unity\cache\packages\packages.unity.com\com.unity.package-manager-ui@1.8.8\Editor\Resources\Styles\Main_Dark.uss" />
