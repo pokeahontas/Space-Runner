@@ -34,6 +34,7 @@ public class Movement : MonoBehaviour
             {
                 if (GetComponent<Rigidbody2D>().gravityScale == 1)
                 {
+                    onGround = false;
                     Debug.Log("flipped gravity");
                     GetComponent<Rigidbody2D>().gravityScale = -1;
                     //GetComponent<SpriteRenderer>().flipY = true;
@@ -42,6 +43,7 @@ public class Movement : MonoBehaviour
                 }
                 else
                 {
+                    onGround = false;
                     Debug.Log("normal gravity");
                     GetComponent<Rigidbody2D>().gravityScale = 1;
                     //GetComponent<SpriteRenderer>().flipY = false;
@@ -61,11 +63,11 @@ public class Movement : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (GetComponent<Rigidbody2D>().gravityScale == 1)
+                if (GetComponent<Rigidbody2D>().gravityScale == -1)
                 {
                     onGround = false;
                     Debug.Log("flipped gravity");
-                    GetComponent<Rigidbody2D>().gravityScale = -1;
+                    GetComponent<Rigidbody2D>().gravityScale = 1;
                     //GetComponent<SpriteRenderer>().flipY = true;
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
                     //GetComponent<PolygonCollider2D>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
@@ -74,7 +76,7 @@ public class Movement : MonoBehaviour
                 {
                     onGround = false;
                     Debug.Log("normal gravity");
-                    GetComponent<Rigidbody2D>().gravityScale = 1;
+                    GetComponent<Rigidbody2D>().gravityScale = -1;
                     //GetComponent<SpriteRenderer>().flipY = false;
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
                 }
