@@ -152,11 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114778968820037918, guid: 480da305b0053464d87cce5f511feb28,
-        type: 2}
-      propertyPath: speedForce
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 480da305b0053464d87cce5f511feb28, type: 2}
   m_IsPrefabParent: 0
@@ -470,6 +465,7 @@ GameObject:
   - component: {fileID: 1230589078}
   - component: {fileID: 1230589079}
   - component: {fileID: 1230589077}
+  - component: {fileID: 1230589080}
   m_Layer: 0
   m_Name: Destroyer
   m_TagString: Untagged
@@ -528,6 +524,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ship1: {fileID: 2146026251}
   ship2: {fileID: 357756812}
+--- !u!50 &1230589080
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1230589076}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1422410630
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,11 +651,6 @@ Prefab:
     - target: {fileID: 4755185025920926, guid: bfb16d772327c11489ce691babd4ba1b, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114664820936179846, guid: bfb16d772327c11489ce691babd4ba1b,
-        type: 2}
-      propertyPath: speedForce
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfb16d772327c11489ce691babd4ba1b, type: 2}

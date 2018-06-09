@@ -9,6 +9,11 @@ public class Movement : MonoBehaviour
     public bool ship1;
     public bool ship2;
 
+    public float Speed;
+    public float MaxSpeed;
+    public float Acceleration;
+    public float Deceleration;
+
     public bool onGround;
 
     void Start()
@@ -18,19 +23,46 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
+
+        transform.Translate(Speed * Time.deltaTime, 0, 0);
+
+
         if (ship1)
         {
-            if (Input.GetKey(KeyCode.D))
+            if ((Input.GetKey(KeyCode.D)))
             {
-                GetComponent<Rigidbody2D>().AddForce(transform.right * speedForce);
+                if (Speed < MaxSpeed)
+                {
+                    Speed += Acceleration;
+                }
             }
-            if (Input.GetKey(KeyCode.A))
+            else
             {
-                GetComponent<Rigidbody2D>().AddForce(-transform.right * speedForce);
+                if (Speed > Deceleration)
+                {
+                    Speed = Speed - Deceleration;
+                }
+                else
+                {
+                   Speed = 0.0f;
+                }
+
             }
-            if (Input.GetKeyDown(KeyCode.W))
+        
+        /*
+        if (Input.GetKey(KeyCode.D))
+        {
+            GetComponent<Rigidbody2D>().AddForce(transform.right * speedForce);
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            GetComponent<Rigidbody2D>().AddForce(-transform.right * speedForce);
+        }
+        */
+        if (Input.GetKeyDown(KeyCode.W))
             {
                 if (GetComponent<Rigidbody2D>().gravityScale == 1)
                 {
@@ -51,8 +83,12 @@ public class Movement : MonoBehaviour
                 }
             }
         }
+
+        
+
         if (ship2)
         {
+            /*
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 GetComponent<Rigidbody2D>().AddForce(transform.right * speedForce);
@@ -61,7 +97,27 @@ public class Movement : MonoBehaviour
             {
                 GetComponent<Rigidbody2D>().AddForce(-transform.right * speedForce);
             }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            */
+            if ((Input.GetKey(KeyCode.RightArrow)))
+            {
+                if (Speed < MaxSpeed)
+                {
+                    Speed += Acceleration;
+                }
+            }
+            else
+            {
+                if (Speed > Deceleration)
+                {
+                    Speed = Speed - Deceleration;
+                }
+                else
+                {
+                    Speed = 0.0f;
+                }
+            }
+
+                if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (GetComponent<Rigidbody2D>().gravityScale == -1)
                 {
