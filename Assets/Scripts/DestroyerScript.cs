@@ -14,7 +14,13 @@ public class DestroyerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = new Vector3(Mathf.Min(ship1.transform.position.x, ship2.transform.position.x)-100, transform.position.y, transform.position.z);
+        if (ship1??false)
+        {
+            if (ship2??false)
+            {
+                transform.position = new Vector3(Mathf.Min(ship1.transform.position.x, ship2.transform.position.x) - 100, transform.position.y, transform.position.z);
+            }
+        }
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
