@@ -62,25 +62,23 @@ public class Movement : MonoBehaviour
             GetComponent<Rigidbody2D>().AddForce(-transform.right * speedForce);
         }
         */
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && GetComponent<Rigidbody2D>().gravityScale == 1)
             {
-                if (GetComponent<Rigidbody2D>().gravityScale == 1)
-                {
                     onGround = false;
                     Debug.Log("flipped gravity");
                     GetComponent<Rigidbody2D>().gravityScale = -1;
                     //GetComponent<SpriteRenderer>().flipY = true;
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
                     //GetComponent<PolygonCollider2D>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
-                }
-                else
-                {
+            }
+
+        if (Input.GetKeyDown(KeyCode.S) && GetComponent<Rigidbody2D>().gravityScale == -1)
+            {
                     onGround = false;
                     Debug.Log("normal gravity");
                     GetComponent<Rigidbody2D>().gravityScale = 1;
                     //GetComponent<SpriteRenderer>().flipY = false;
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
-                }
             }
         }
 
@@ -117,25 +115,23 @@ public class Movement : MonoBehaviour
                 }
             }
 
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+         if (Input.GetKeyDown(KeyCode.UpArrow) && GetComponent<Rigidbody2D>().gravityScale == 1)
+             {
+                    onGround = false;
+                    Debug.Log("normal gravity");
+                    GetComponent<Rigidbody2D>().gravityScale = -1;
+                    //GetComponent<SpriteRenderer>().flipY = false;
+                    GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
+            }
+
+            if (Input.GetKeyDown(KeyCode.DownArrow) && GetComponent<Rigidbody2D>().gravityScale == -1)
             {
-                if (GetComponent<Rigidbody2D>().gravityScale == -1)
-                {
                     onGround = false;
                     Debug.Log("flipped gravity");
                     GetComponent<Rigidbody2D>().gravityScale = 1;
                     //GetComponent<SpriteRenderer>().flipY = true;
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
                     //GetComponent<PolygonCollider2D>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
-                }
-                else
-                {
-                    onGround = false;
-                    Debug.Log("normal gravity");
-                    GetComponent<Rigidbody2D>().gravityScale = -1;
-                    //GetComponent<SpriteRenderer>().flipY = false;
-                    GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
-                }
             }
         }
         /*
