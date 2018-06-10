@@ -26,8 +26,8 @@ public class SpawnerScript : MonoBehaviour {
     {
         if (collision.tag == "Ship1" || collision.tag == "Ship2")
         {
-            Spawn(new Vector3(transform.position.x+50,transform.position.y, transform.position.z));
-            transform.position = new Vector3(transform.position.x + 50, transform.position.y, transform.position.z);
+            Spawn(new Vector3(transform.position.x+100,transform.position.y, transform.position.z));
+            transform.position = new Vector3(transform.position.x + 100, transform.position.y, transform.position.z);
         }
     }
 }
