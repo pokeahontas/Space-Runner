@@ -31,11 +31,11 @@ public class Movement : MonoBehaviour
 
         if (ship1)
         {
-            if ((Input.GetKey(KeyCode.D)))
+            if ((Input.GetAxis("Acceleration_J1") > 0))
             {
                 if (Speed < MaxSpeed)
                 {
-                    Speed += Acceleration;
+                    Speed += Acceleration * Input.GetAxis("Acceleration_J1");
                 }
             }
             else
@@ -62,7 +62,7 @@ public class Movement : MonoBehaviour
             GetComponent<Rigidbody2D>().AddForce(-transform.right * speedForce);
         }
         */
-        if (Input.GetKeyDown(KeyCode.W) && GetComponent<Rigidbody2D>().gravityScale == 1)
+        if (Input.GetAxis("Gravity_J1")<-0.1f && GetComponent<Rigidbody2D>().gravityScale == 1)
             {
                     onGround = false;
                     Debug.Log("flipped gravity");
@@ -72,7 +72,7 @@ public class Movement : MonoBehaviour
                     //GetComponent<PolygonCollider2D>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
             }
 
-        if (Input.GetKeyDown(KeyCode.S) && GetComponent<Rigidbody2D>().gravityScale == -1)
+        if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1)
             {
                     onGround = false;
                     Debug.Log("normal gravity");
@@ -96,11 +96,11 @@ public class Movement : MonoBehaviour
                 GetComponent<Rigidbody2D>().AddForce(-transform.right * speedForce);
             }
             */
-            if ((Input.GetKey(KeyCode.RightArrow)))
+            if ((Input.GetAxis("Acceleration_J2") > 0))
             {
                 if (Speed < MaxSpeed)
                 {
-                    Speed += Acceleration;
+                    Speed += Acceleration * Input.GetAxis("Acceleration_J2");
                 }
             }
             else
@@ -115,7 +115,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-         if (Input.GetKeyDown(KeyCode.UpArrow) && GetComponent<Rigidbody2D>().gravityScale == 1)
+         if (Input.GetAxis("Gravity_J2") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1)
              {
                     onGround = false;
                     Debug.Log("normal gravity");
@@ -124,7 +124,7 @@ public class Movement : MonoBehaviour
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) && GetComponent<Rigidbody2D>().gravityScale == -1)
+            if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1)
             {
                     onGround = false;
                     Debug.Log("flipped gravity");
