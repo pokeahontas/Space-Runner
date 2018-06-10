@@ -150,7 +150,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4946555325294758, guid: 480da305b0053464d87cce5f511feb28, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 480da305b0053464d87cce5f511feb28, type: 2}
@@ -165,7 +165,6 @@ GameObject:
   - component: {fileID: 146250324}
   - component: {fileID: 146250323}
   - component: {fileID: 146250322}
-  - component: {fileID: 146250321}
   - component: {fileID: 146250320}
   m_Layer: 0
   m_Name: Camera P2
@@ -186,13 +185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ship: {fileID: 357756812}
---- !u!81 &146250321
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 146250319}
-  m_Enabled: 1
 --- !u!124 &146250322
 Behaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +239,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &153142920
 GameObject:
@@ -672,7 +664,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4836005304148968, guid: f5398ac5a92de08469b15264818c7721, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5398ac5a92de08469b15264818c7721, type: 2}
@@ -938,7 +930,7 @@ Transform:
   m_LocalScale: {x: 1, y: 10, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1422410635
 MonoBehaviour:
@@ -954,6 +946,7 @@ MonoBehaviour:
   obj:
   - {fileID: 1654645072013942, guid: f5398ac5a92de08469b15264818c7721, type: 2}
   - {fileID: 1551335444430452, guid: c1258c0bb8432e1419f5d6f0953371bd, type: 2}
+  - {fileID: 1974511502030748, guid: 7ba919dc6188a4146bb9ca2496ab3951, type: 2}
 --- !u!1001 &1763909229
 Prefab:
   m_ObjectHideFlags: 0

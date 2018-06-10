@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Ship1
   - Ship2
+  - Speedboost
   layers:
   - Default
   - TransparentFX

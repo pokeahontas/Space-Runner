@@ -169,5 +169,16 @@ public class Movement : MonoBehaviour
         {
             onGround = true;
         }
+        
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Speedboost")
+        {
+            Debug.Log("Speedboost");
+
+            // TODO Boost Speed of spaceship
+        }
     }
 }
