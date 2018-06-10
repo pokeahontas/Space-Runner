@@ -28,6 +28,7 @@ public class Movement : MonoBehaviour
 
         transform.Translate(Speed * Time.deltaTime, 0, 0);
 
+        print(Speed);
 
         if (ship1)
         {
@@ -36,6 +37,10 @@ public class Movement : MonoBehaviour
                 if (Speed < MaxSpeed)
                 {
                     Speed += Acceleration * Input.GetAxis("Acceleration_J1");
+                }
+                if (Speed > MaxSpeed)
+                {
+                    Speed = MaxSpeed;
                 }
             }
             else
@@ -98,6 +103,10 @@ public class Movement : MonoBehaviour
                 if (Speed < MaxSpeed)
                 {
                     Speed += Acceleration * Input.GetAxis("Acceleration_J2");
+                }
+                if (Speed > MaxSpeed)
+                {
+                    Speed = MaxSpeed;
                 }
             }
             else
@@ -171,8 +180,19 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "Speedboost")
         {
             Debug.Log("Speedboost");
-
-            // TODO Boost Speed of spaceship
+            StartCoroutine(Faster());
         }
+    }
+
+    IEnumerator Faster()
+    {
+        float duration = 0.1f;
+        while (duration > 0f)
+        {
+            duration -= Time.deltaTime;
+            MaxSpeed = 70;
+            yield return new WaitForSeconds(0.2f);
+        }
+        MaxSpeed = 50;
     }
 }
