@@ -213,6 +213,7 @@ public class MovementKeyboard : MonoBehaviour
             Destroy(collision.gameObject);
             StartCoroutine(ChangeSpeedOverTime(20));
         }
+       
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -230,6 +231,12 @@ public class MovementKeyboard : MonoBehaviour
             Debug.Log("Laser picked up");
             hasLaser = true;
         }
+        else if (collision.gameObject.tag == "LaserBarrier")
+        {
+            Debug.Log("LaserBarrier");
+            StartCoroutine(ChangeSpeedOverTime(5));
+        }
+
     }
 
     IEnumerator ChangeSpeedOverTime(float speed)

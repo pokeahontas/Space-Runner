@@ -213,6 +213,11 @@ public class Movement : MonoBehaviour
             Debug.Log("Laser picked up");
             hasLaser = true;
         }
+        else if (collision.gameObject.tag == "LaserBarrier")
+        {
+            Debug.Log("LaserBarrier");
+            StartCoroutine(ChangeSpeedOverTime(5));
+        }
     }
 
     IEnumerator ChangeSpeedOverTime(float speed)

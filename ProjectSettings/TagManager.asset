@@ -11,6 +11,7 @@ TagManager:
   - Slow
   - Laser1
   - LaserCollectible
+  - LaserBarrier
   layers:
   - Default
   - TransparentFX

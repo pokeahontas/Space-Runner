@@ -108,7 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4616352958269980}
   m_Layer: 0
-  m_Name: GroundWithLaser
+  m_Name: GroundWithLaserCollectible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
