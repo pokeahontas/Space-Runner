@@ -513,10 +513,8 @@ MonoBehaviour:
   Acceleration: 1
   Deceleration: 1
   onGround: 1
-  shot1: {fileID: 1873631517197426, guid: 665e1b5975759054bb0c57d10e1cc431, type: 2}
-  shot2: {fileID: 1873631517197426, guid: 665e1b5975759054bb0c57d10e1cc431, type: 2}
-  shotSpawn1: {fileID: 1828573203}
-  shotSpawn2: {fileID: 1828573203}
+  shot: {fileID: 1834971489782230, guid: 665e1b5975759054bb0c57d10e1cc431, type: 2}
+  shotSpawn: {fileID: 1828573203}
 --- !u!4 &357756819 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4755185025920926, guid: bfb16d772327c11489ce691babd4ba1b,
@@ -1126,6 +1124,7 @@ MonoBehaviour:
   - {fileID: 1974511502030748, guid: 7ba919dc6188a4146bb9ca2496ab3951, type: 2}
   - {fileID: 1347829627808932, guid: 9643c24bb01b90a48ab77a61f6e992fa, type: 2}
   - {fileID: 1389429857237964, guid: e87cf2b4dab9adc468858c4217162fc4, type: 2}
+  - {fileID: 1734656397564882, guid: fa329b7707602b24abc129fd96246d79, type: 2}
 --- !u!1 &1440533483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,10 +1463,8 @@ MonoBehaviour:
   Acceleration: 1
   Deceleration: 1
   onGround: 1
-  shot1: {fileID: 1834971489782230, guid: 665e1b5975759054bb0c57d10e1cc431, type: 2}
-  shot2: {fileID: 1834971489782230, guid: 665e1b5975759054bb0c57d10e1cc431, type: 2}
-  shotSpawn1: {fileID: 1792527141}
-  shotSpawn2: {fileID: 1828573203}
+  shot: {fileID: 1834971489782230, guid: 665e1b5975759054bb0c57d10e1cc431, type: 2}
+  shotSpawn: {fileID: 1792527141}
 --- !u!4 &2146026258 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4946555325294758, guid: 480da305b0053464d87cce5f511feb28,

@@ -10,6 +10,7 @@ TagManager:
   - Speedboost
   - Slow
   - Laser1
+  - LaserCollectible
   layers:
   - Default
   - TransparentFX

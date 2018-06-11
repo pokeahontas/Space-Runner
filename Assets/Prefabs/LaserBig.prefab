@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114870154202136432}
   m_Layer: 0
   m_Name: LaserBig
-  m_TagString: Untagged
+  m_TagString: Laser1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,4 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3b2a65459d47145a8c05d84addcd90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 75

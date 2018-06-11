@@ -16,25 +16,20 @@ public class MovementKeyboard : MonoBehaviour
 
     public bool onGround;
 
-    public GameObject shot1;
-    public GameObject shot2;
-    public Transform shotSpawn1;
-    public Transform shotSpawn2;
-    private bool hasLaserP1;
-    private bool hasLaserP2;
+    public GameObject shot;
+    public Transform shotSpawn;
+    private bool hasLaser;
 
     void Start()
     {
         Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
-        hasLaserP1 = true;
-        hasLaserP2 = true;
+        hasLaser = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.Translate(Speed * Time.deltaTime, 0, 0);
-        Debug.Log(MaxSpeed);
 
         if (ship1)
         {
@@ -113,10 +108,10 @@ public class MovementKeyboard : MonoBehaviour
                 }
             }
 
-            if(Input.GetKeyDown(KeyCode.Q) && hasLaserP1)
+            if(Input.GetKeyDown(KeyCode.Q) && hasLaser)
             {
-                Instantiate(shot1, shotSpawn1.position, shotSpawn1.rotation);
-                hasLaserP1 = false;
+                Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+                hasLaser = false;
             }
 
         }
@@ -171,10 +166,10 @@ public class MovementKeyboard : MonoBehaviour
                     //GetComponent<PolygonCollider2D>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
                 }
 
-            if (Input.GetKey(KeyCode.P) && hasLaserP2)
+            if (Input.GetKey(KeyCode.P) && hasLaser)
             {
-                Instantiate(shot2, shotSpawn2.position, shotSpawn2.rotation);
-                hasLaserP2 = false;
+                Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+                hasLaser = false;
             }
         }
             /*
@@ -204,10 +199,7 @@ public class MovementKeyboard : MonoBehaviour
                         }
                     }
                     */
-
-        
-
-       
+                    
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -215,6 +207,11 @@ public class MovementKeyboard : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             onGround = true;
+        } else if(collision.gameObject.tag == "Laser1")
+        {
+            Debug.Log("Laserhit");
+            Destroy(collision.gameObject);
+            StartCoroutine(ChangeSpeedOverTime(20));
         }
     }
 
@@ -228,9 +225,10 @@ public class MovementKeyboard : MonoBehaviour
         {
             Debug.Log("Slow");
             StartCoroutine(ChangeSpeedOverTime(30));
-        } else if(collision.gameObject.tag == "Laser")
+        } else if(collision.gameObject.tag == "LaserCollectible")
         {
             Debug.Log("Laser picked up");
+            hasLaser = true;
         }
     }
 

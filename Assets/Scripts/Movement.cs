@@ -16,18 +16,14 @@ public class Movement : MonoBehaviour
 
     public bool onGround;
 
-    public GameObject shot1;
-    public GameObject shot2;
-    public Transform shotSpawn1;
-    public Transform shotSpawn2;
-    private bool hasLaserP1;
-    private bool hasLaserP2;
+    public GameObject shot;
+    public Transform shotSpawn;
+    private bool hasLaser;
 
     void Start()
     {
         Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
-        hasLaserP1 = true;
-        hasLaserP2 = true;
+        hasLaser = true;
     }
 
     // Update is called once per frame
@@ -91,10 +87,10 @@ public class Movement : MonoBehaviour
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
             }
 
-            if (Input.GetButton("Fire1") && hasLaserP1)
+            if (Input.GetButton("Fire1") && hasLaser)       //TODO has to be set correctly for controller
             {
-                Instantiate(shot1, shotSpawn1.position, shotSpawn1.rotation);
-                hasLaserP1 = false;
+                Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+                hasLaser = false;
             }
         }
 
@@ -150,10 +146,10 @@ public class Movement : MonoBehaviour
                     GetComponent<Rigidbody2D>().gravityScale = 1;
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
             }
-            if (Input.GetButton("Fire2") && hasLaserP2)
+            if (Input.GetButton("Fire2") && hasLaser)     //TODO has to be set correctly for controller
             {
-                Instantiate(shot2, shotSpawn2.position, shotSpawn2.rotation);
-                hasLaserP2 = false;
+                Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+                hasLaser = false;
             }
         }
         /*
@@ -191,7 +187,13 @@ public class Movement : MonoBehaviour
         {
             onGround = true;
         }
-        
+        else if (collision.gameObject.tag == "Laser1")
+        {
+            Debug.Log("Laserhit");
+            Destroy(collision.gameObject);
+            StartCoroutine(ChangeSpeedOverTime(20));
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -205,6 +207,11 @@ public class Movement : MonoBehaviour
         {
             Debug.Log("Slow");
             StartCoroutine(ChangeSpeedOverTime(30));
+        }
+        else if (collision.gameObject.tag == "LaserCollectible")
+        {
+            Debug.Log("Laser picked up");
+            hasLaser = true;
         }
     }
 
