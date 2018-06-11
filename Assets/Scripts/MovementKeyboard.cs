@@ -25,9 +25,8 @@ public class MovementKeyboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         transform.Translate(Speed * Time.deltaTime, 0, 0);
-
+        Debug.Log(MaxSpeed);
 
         if (ship1)
         {
@@ -36,6 +35,10 @@ public class MovementKeyboard : MonoBehaviour
                 if (Speed < MaxSpeed)
                 {
                     Speed += Acceleration;
+                }
+                if (Speed > MaxSpeed)
+                {
+                    Speed = MaxSpeed;
                 }
             }
             else
@@ -199,15 +202,15 @@ public class MovementKeyboard : MonoBehaviour
         if (collision.gameObject.tag == "Speedboost")
         {
             Debug.Log("Speedboost");
-            StartCoroutine(SetSpeedOverTime(70));
+            StartCoroutine(ChangeSpeedOverTime(70));
         } else if(collision.gameObject.tag == "Slow")
         {
             Debug.Log("Slow");
-            StartCoroutine(SetSpeedOverTime(30));
+            StartCoroutine(ChangeSpeedOverTime(30));
         }
     }
 
-    IEnumerator SetSpeedOverTime(float speed)
+    IEnumerator ChangeSpeedOverTime(float speed)
     {
         float duration = 0.1f;
         while (duration > 0f)

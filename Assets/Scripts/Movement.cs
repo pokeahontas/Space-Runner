@@ -180,16 +180,16 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "Speedboost")
         {
             Debug.Log("Speedboost");
-            StartCoroutine(SetSpeedOverTime(70));
+            StartCoroutine(ChangeSpeedOverTime(70));
         }
         else if (collision.gameObject.tag == "Slow")
         {
             Debug.Log("Slow");
-            StartCoroutine(SetSpeedOverTime(30));
+            StartCoroutine(ChangeSpeedOverTime(30));
         }
     }
 
-    IEnumerator SetSpeedOverTime(float speed)
+    IEnumerator ChangeSpeedOverTime(float speed)
     {
         float duration = 0.1f;
         while (duration > 0f)
