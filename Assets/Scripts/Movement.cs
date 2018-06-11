@@ -16,10 +16,18 @@ public class Movement : MonoBehaviour
 
     public bool onGround;
 
+    public GameObject shot1;
+    public GameObject shot2;
+    public Transform shotSpawn1;
+    public Transform shotSpawn2;
+    private bool hasLaserP1;
+    private bool hasLaserP2;
+
     void Start()
     {
         Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
-
+        hasLaserP1 = true;
+        hasLaserP2 = true;
     }
 
     // Update is called once per frame
@@ -82,6 +90,12 @@ public class Movement : MonoBehaviour
                     GetComponent<Rigidbody2D>().gravityScale = 1;
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
             }
+
+            if (Input.GetButton("Fire1") && hasLaserP1)
+            {
+                Instantiate(shot1, shotSpawn1.position, shotSpawn1.rotation);
+                hasLaserP1 = false;
+            }
         }
 
         
@@ -135,6 +149,11 @@ public class Movement : MonoBehaviour
                     Debug.Log("flipped gravity");
                     GetComponent<Rigidbody2D>().gravityScale = 1;
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
+            }
+            if (Input.GetButton("Fire2") && hasLaserP2)
+            {
+                Instantiate(shot2, shotSpawn2.position, shotSpawn2.rotation);
+                hasLaserP2 = false;
             }
         }
         /*

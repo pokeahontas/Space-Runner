@@ -16,10 +16,18 @@ public class MovementKeyboard : MonoBehaviour
 
     public bool onGround;
 
+    public GameObject shot1;
+    public GameObject shot2;
+    public Transform shotSpawn1;
+    public Transform shotSpawn2;
+    private bool hasLaserP1;
+    private bool hasLaserP2;
+
     void Start()
     {
         Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
-
+        hasLaserP1 = true;
+        hasLaserP2 = true;
     }
 
     // Update is called once per frame
@@ -105,7 +113,13 @@ public class MovementKeyboard : MonoBehaviour
                 }
             }
 
+            if(Input.GetKeyDown(KeyCode.Q) && hasLaserP1)
+            {
+                Instantiate(shot1, shotSpawn1.position, shotSpawn1.rotation);
+                hasLaserP1 = false;
+            }
 
+        }
 
             if (ship2)
             {
@@ -156,7 +170,13 @@ public class MovementKeyboard : MonoBehaviour
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
                     //GetComponent<PolygonCollider2D>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
                 }
+
+            if (Input.GetKey(KeyCode.P) && hasLaserP2)
+            {
+                Instantiate(shot2, shotSpawn2.position, shotSpawn2.rotation);
+                hasLaserP2 = false;
             }
+        }
             /*
                     if(Input.GetButton("Accelerate"))
                     {
@@ -184,7 +204,8 @@ public class MovementKeyboard : MonoBehaviour
                         }
                     }
                     */
-        }
+
+        
 
        
     }
@@ -207,6 +228,9 @@ public class MovementKeyboard : MonoBehaviour
         {
             Debug.Log("Slow");
             StartCoroutine(ChangeSpeedOverTime(30));
+        } else if(collision.gameObject.tag == "Laser")
+        {
+            Debug.Log("Laser picked up");
         }
     }
 

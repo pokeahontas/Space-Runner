@@ -9,6 +9,7 @@ TagManager:
   - Ship2
   - Speedboost
   - Slow
+  - Laser1
   layers:
   - Default
   - TransparentFX
