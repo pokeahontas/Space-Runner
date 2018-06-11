@@ -162,6 +162,11 @@ Prefab:
       propertyPath: m_Simulated
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114778968820037918, guid: 480da305b0053464d87cce5f511feb28,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 480da305b0053464d87cce5f511feb28, type: 2}
   m_IsPrefabParent: 0
@@ -489,6 +494,25 @@ GameObject:
   m_PrefabParentObject: {fileID: 1785495275612462, guid: bfb16d772327c11489ce691babd4ba1b,
     type: 2}
   m_PrefabInternal: {fileID: 1763909229}
+--- !u!114 &357756813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 357756812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15bde267e7e4d1144af31bca46d14ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedForce: 50
+  ship1: 0
+  ship2: 1
+  Speed: 0
+  MaxSpeed: 50
+  Acceleration: 1
+  Deceleration: 1
+  onGround: 1
 --- !u!1 &441364375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1226,11 @@ Prefab:
       propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114664820936179846, guid: bfb16d772327c11489ce691babd4ba1b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfb16d772327c11489ce691babd4ba1b, type: 2}
   m_IsPrefabParent: 0
@@ -1349,3 +1378,22 @@ GameObject:
   m_PrefabParentObject: {fileID: 1809997606761672, guid: 480da305b0053464d87cce5f511feb28,
     type: 2}
   m_PrefabInternal: {fileID: 2646444}
+--- !u!114 &2146026252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2146026251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15bde267e7e4d1144af31bca46d14ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedForce: 50
+  ship1: 1
+  ship2: 0
+  Speed: 0
+  MaxSpeed: 50
+  Acceleration: 1
+  Deceleration: 1
+  onGround: 1
