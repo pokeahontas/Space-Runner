@@ -193,4 +193,29 @@ public class MovementKeyboard : MonoBehaviour
             onGround = true;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Speedboost")
+        {
+            Debug.Log("Speedboost");
+            StartCoroutine(SetSpeedOverTime(70));
+        } else if(collision.gameObject.tag == "Slow")
+        {
+            Debug.Log("Slow");
+            StartCoroutine(SetSpeedOverTime(30));
+        }
+    }
+
+    IEnumerator SetSpeedOverTime(float speed)
+    {
+        float duration = 0.1f;
+        while (duration > 0f)
+        {
+            duration -= Time.deltaTime;
+            MaxSpeed = speed;
+            yield return new WaitForSeconds(0.2f);
+        }
+        MaxSpeed = 50;
+    }
 }

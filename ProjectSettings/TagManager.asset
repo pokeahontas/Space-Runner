@@ -8,6 +8,7 @@ TagManager:
   - Ship1
   - Ship2
   - Speedboost
+  - Slow
   layers:
   - Default
   - TransparentFX
