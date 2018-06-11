@@ -12,6 +12,7 @@ TagManager:
   - Laser1
   - LaserCollectible
   - LaserBarrier
+  - Goal
   layers:
   - Default
   - TransparentFX

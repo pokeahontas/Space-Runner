@@ -7,7 +7,8 @@ public class DelayedStart : MonoBehaviour {
 
     private int time = 3;
     public Text t;
-
+    public GameObject ship1;
+    public GameObject ship2;
 
 	// Use this for initialization
 	void Start () {
@@ -29,5 +30,7 @@ public class DelayedStart : MonoBehaviour {
 
         t.text = "Go!";
         Time.timeScale = 1;
+        ship1.GetComponent<Movement>().start = true;
+        ship2.GetComponent<Movement>().start = true;
     }
 }

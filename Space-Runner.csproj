@@ -305,8 +305,12 @@
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\DelayedStart.cs" />
     <Compile Include="Assets\Scripts\DestroyerScript.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\laserScript.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\MovementKeyboard.cs" />
     <Compile Include="Assets\Scripts\Physics.cs" />
+    <Compile Include="Assets\Scripts\Shoot.cs" />
     <Compile Include="Assets\Scripts\SpawnerScript.cs" />
   </ItemGroup>
   <ItemGroup>

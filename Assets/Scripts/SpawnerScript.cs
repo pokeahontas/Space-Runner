@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnerScript : MonoBehaviour {
 
     public GameObject[] obj;
+    public GameObject goal;
 
 
 	// Use this for initialization
@@ -21,13 +22,27 @@ public class SpawnerScript : MonoBehaviour {
     {
         Instantiate(obj[Random.Range(0, obj.Length)], position, Quaternion.identity);
     }
+    void SpawnGoal(Vector3 position)
+    {
+        Instantiate(goal, position, Quaternion.identity);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Ship1" || collision.tag == "Ship2")
         {
-            Spawn(new Vector3(transform.position.x+100,transform.position.y, transform.position.z));
-            transform.position = new Vector3(transform.position.x + 100, transform.position.y, transform.position.z);
+            print(transform.position.x);
+            if (transform.position.x < 2000)
+            {
+                Spawn(new Vector3(transform.position.x + 100, transform.position.y, transform.position.z));
+                transform.position = new Vector3(transform.position.x + 100, transform.position.y, transform.position.z);
+            }
+            else
+            {
+                SpawnGoal(new Vector3(transform.position.x + 100, transform.position.y, transform.position.z));
+                transform.position = new Vector3(transform.position.x + 500, transform.position.y, transform.position.z);
+            }
+            
         }
     }
 }

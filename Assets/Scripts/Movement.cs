@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -19,11 +20,13 @@ public class Movement : MonoBehaviour
     public GameObject shot;
     public Transform shotSpawn;
     private bool hasLaser;
+    public bool start;
 
     void Start()
     {
         Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
-        hasLaser = true;
+        hasLaser = false;
+        start = false;
     }
 
     // Update is called once per frame
@@ -36,7 +39,7 @@ public class Movement : MonoBehaviour
 
         if (ship1)
         {
-            if ((Input.GetAxis("Acceleration_J1") > 0))
+            if ((Input.GetAxis("Acceleration_J1") > 0) && start)
             {
                 if (Speed < MaxSpeed)
                 {
@@ -59,19 +62,8 @@ public class Movement : MonoBehaviour
                 }
 
             }
-        
-        /*
-        if (Input.GetKey(KeyCode.D))
-        {
-            GetComponent<Rigidbody2D>().AddForce(transform.right * speedForce);
-        }
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            GetComponent<Rigidbody2D>().AddForce(-transform.right * speedForce);
-        }
-        */
-        if (Input.GetAxis("Gravity_J1")<-0.1f && GetComponent<Rigidbody2D>().gravityScale == 1)
+        if (Input.GetAxis("Gravity_J1")<-0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start)
             {
                     onGround = false;
                     Debug.Log("flipped gravity");
@@ -79,7 +71,7 @@ public class Movement : MonoBehaviour
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
             }
 
-        if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1)
+        if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start)
             {
                     onGround = false;
                     Debug.Log("normal gravity");
@@ -87,7 +79,7 @@ public class Movement : MonoBehaviour
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
             }
 
-            if (Input.GetButton("Fire1") && hasLaser)       //TODO has to be set correctly for controller
+            if (Input.GetButton("Fire1") && hasLaser)       
             {
                 Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
                 hasLaser = false;
@@ -98,17 +90,7 @@ public class Movement : MonoBehaviour
 
         if (ship2)
         {
-            /*
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                GetComponent<Rigidbody2D>().AddForce(transform.right * speedForce);
-            }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                GetComponent<Rigidbody2D>().AddForce(-transform.right * speedForce);
-            }
-            */
-            if ((Input.GetAxis("Acceleration_J2") > 0))
+            if ((Input.GetAxis("Acceleration_J2") > 0) && start)
             {
                 if (Speed < MaxSpeed)
                 {
@@ -131,7 +113,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-         if (Input.GetAxis("Gravity_J2") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1)
+         if (Input.GetAxis("Gravity_J2") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start)
              {
                     onGround = false;
                     Debug.Log("normal gravity");
@@ -139,46 +121,19 @@ public class Movement : MonoBehaviour
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
             }
 
-            if (Input.GetAxis("Gravity_J2") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1)
+            if (Input.GetAxis("Gravity_J2") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start)
             {
                     onGround = false;
                     Debug.Log("flipped gravity");
                     GetComponent<Rigidbody2D>().gravityScale = 1;
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
             }
-            if (Input.GetButton("Fire2") && hasLaser)     //TODO has to be set correctly for controller
+            if (Input.GetButton("Fire2") && hasLaser)    
             {
                 Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
                 hasLaser = false;
             }
         }
-        /*
-                if(Input.GetButton("Accelerate"))
-                {
-                    GetComponent<Rigidbody2D>().AddForce(transform.right * speedForce);
-                }
-                if (Input.GetButton("Brakes"))
-                {
-                    GetComponent<Rigidbody2D>().AddForce(-transform.right * speedForce);
-                }
-                //if (Input.GetButtonDown("Gravity"))
-                if (Input.GetKeyDown("space"))
-                {
-                    if (GetComponent<Rigidbody2D>().gravityScale == 1) {
-                        Debug.Log("flipped gravity");
-                        GetComponent<Rigidbody2D>().gravityScale = -1;
-                        //GetComponent<SpriteRenderer>().flipY = true;
-                        GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
-                        //GetComponent<PolygonCollider2D>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
-                    } else
-                    {
-                        Debug.Log("normal gravity");
-                        GetComponent<Rigidbody2D>().gravityScale = 1;
-                        //GetComponent<SpriteRenderer>().flipY = false;
-                        GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
-                    }
-                }
-                */
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -190,7 +145,6 @@ public class Movement : MonoBehaviour
         else if (collision.gameObject.tag == "Laser1")
         {
             Debug.Log("Laserhit");
-            Destroy(collision.gameObject);
             StartCoroutine(ChangeSpeedOverTime(20));
         }
 
@@ -206,17 +160,29 @@ public class Movement : MonoBehaviour
         else if (collision.gameObject.tag == "Slow")
         {
             Debug.Log("Slow");
-            StartCoroutine(ChangeSpeedOverTime(30));
+            StartCoroutine(ChangeSpeedOverTime(25));
         }
         else if (collision.gameObject.tag == "LaserCollectible")
         {
             Debug.Log("Laser picked up");
             hasLaser = true;
+            StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject));
         }
         else if (collision.gameObject.tag == "LaserBarrier")
         {
             Debug.Log("LaserBarrier");
             StartCoroutine(ChangeSpeedOverTime(5));
+        }
+        else if (collision.gameObject.tag == "Goal")
+        {
+            if (ship1)
+            {
+                SceneManager.LoadScene("P1Won");
+            }
+            if (ship2)
+            {
+                SceneManager.LoadScene("P2Won");
+            }
         }
     }
 
@@ -230,5 +196,23 @@ public class Movement : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         MaxSpeed = 50;
+    }
+
+    IEnumerator DoBlinks(float duration, float blinkTime, GameObject go)
+    {
+        
+        while (duration > 0f)
+        {
+            duration -= Time.deltaTime;
+
+            //toggle renderer
+            go.GetComponent<Renderer>().enabled = !go.GetComponent<Renderer>().enabled;
+
+            //wait for a bit
+            yield return new WaitForSeconds(blinkTime);
+        }
+
+        //make sure renderer is enabled when we exit
+        go.GetComponent<Renderer>().enabled = true;
     }
 }
