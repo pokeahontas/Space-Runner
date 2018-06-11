@@ -18,7 +18,7 @@ public class DestroyerScript : MonoBehaviour {
         {
             if (ship2??false)
             {
-                transform.position = new Vector3(Mathf.Min(ship1.transform.position.x, ship2.transform.position.x) - 100, transform.position.y, transform.position.z);
+                transform.position = new Vector3(Mathf.Min(ship1.transform.position.x, ship2.transform.position.x) - 300, transform.position.y, transform.position.z);
             }
         }
 	}
