@@ -7,11 +7,13 @@ public class Physics : MonoBehaviour {
     public bool ship1;
     public bool ship2;
 
+    public bool hasCollide = false;
+
     //public GameObject otherShip;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
 	}
 	
@@ -30,22 +32,41 @@ public class Physics : MonoBehaviour {
             //Collision with other ship from above
             if (collision.gameObject.tag == "Ship2" )
             {
+                print("collision");
                 if (collision.gameObject.GetComponent<Movement>().onGround)
                 {
                     if (!this.gameObject.GetComponent<Movement>().onGround)
                     {
-                        StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject,true));
+                        if (hasCollide == false)
+                        {
+                            hasCollide = true;
+                            StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject, true));
+                        }
                     }
                     else
                     {
-                        
+                        if (collision.gameObject.transform.position.x > this.gameObject.transform.position.x)
+                        {
+                            if (hasCollide == false)
+                            {
+                                collision.gameObject.GetComponent<Physics>().hasCollide = true;
+                                hasCollide = true;
+                                StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject, true));
+                            }
+                        }
                     }
                 }
             }
+            /*
             if (collision.gameObject.tag == "Back2")
             {
-                StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject, true));
+                if (hasCollide == false)
+                {
+                    hasCollide = true;
+                    StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject, true));
+                }
             }
+            */
 
         }
         else
@@ -53,22 +74,41 @@ public class Physics : MonoBehaviour {
             //Collision with other ship from above
             if (collision.gameObject.tag == "Ship1" )
             {
+                print("collision");
                 if (collision.gameObject.GetComponent<Movement>().onGround)
                 {
                     if (!this.gameObject.GetComponent<Movement>().onGround)
                     {
-                        StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject,true));
+                        if (hasCollide == false)
+                        {
+                            hasCollide = true;
+                            StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject, true));
+                        }
                     }
                     else
                     {
-                       
+                        if (collision.gameObject.transform.position.x > this.gameObject.transform.position.x)
+                        {
+                            if (hasCollide == false)
+                            {
+                                collision.gameObject.GetComponent<Physics>().hasCollide = true;
+                                hasCollide = true;
+                                StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject, true));
+                            }
+                        }
                     }
                 }
             }
+            /*
             if (collision.gameObject.tag == "Back1")
             {
-                StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject, true));
+                if (hasCollide == false)
+                {
+                    hasCollide = true;
+                    StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject, true));
+                }
             }
+            */
         }
     }
 
@@ -90,11 +130,13 @@ public class Physics : MonoBehaviour {
 
         if (minusHP)
         {
-            go.GetComponent<Movement>().leben -= 1;
+            go.GetComponent<Movement>().leben--;
         }
 
         //make sure renderer is enabled when we exit
         go.GetComponent<Renderer>().enabled = true;
+        hasCollide = false;
+        go.GetComponent<Physics>().hasCollide = false;
 
         //set the destroyed ship only a little back of the other one
         //really needed?
