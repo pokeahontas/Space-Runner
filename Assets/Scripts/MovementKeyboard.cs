@@ -108,7 +108,7 @@ public class MovementKeyboard : MonoBehaviour
                 }
             }
 
-            if(Input.GetKeyDown(KeyCode.Q) && hasLaser)
+            if (Input.GetKeyDown(KeyCode.Q) && hasLaser)
             {
                 Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
                 hasLaser = false;
@@ -116,55 +116,59 @@ public class MovementKeyboard : MonoBehaviour
 
         }
 
-            if (ship2)
+        if (ship2)
+        {
+            /*
+            if (Input.GetKey(KeyCode.RightArrow))
             {
-                /*
-                if (Input.GetKey(KeyCode.RightArrow))
+                GetComponent<Rigidbody2D>().AddForce(transform.right * speedForce);
+            }
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                GetComponent<Rigidbody2D>().AddForce(-transform.right * speedForce);
+            }
+            */
+            if ((Input.GetKey(KeyCode.RightArrow)))
+            {
+                if (Speed < MaxSpeed)
                 {
-                    GetComponent<Rigidbody2D>().AddForce(transform.right * speedForce);
+                    Speed += Acceleration;
                 }
-                if (Input.GetKey(KeyCode.LeftArrow))
+                if (Speed > MaxSpeed)
                 {
-                    GetComponent<Rigidbody2D>().AddForce(-transform.right * speedForce);
+                    Speed = MaxSpeed;
                 }
-                */
-                if ((Input.GetKey(KeyCode.RightArrow)))
+            }
+            else
+            {
+                if (Speed > Deceleration)
                 {
-                    if (Speed < MaxSpeed)
-                    {
-                        Speed += Acceleration;
-                    }
+                    Speed = Speed - Deceleration;
                 }
                 else
                 {
-                    if (Speed > Deceleration)
-                    {
-                        Speed = Speed - Deceleration;
-                    }
-                    else
-                    {
-                        Speed = 0.0f;
-                    }
+                    Speed = 0.0f;
                 }
+            }
 
-                if (Input.GetKeyDown(KeyCode.UpArrow) && GetComponent<Rigidbody2D>().gravityScale == 1)
-                {
-                    onGround = false;
-                    Debug.Log("normal gravity");
-                    GetComponent<Rigidbody2D>().gravityScale = -1;
-                    //GetComponent<SpriteRenderer>().flipY = false;
-                    GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
-                }
+            if (Input.GetKeyDown(KeyCode.UpArrow) && GetComponent<Rigidbody2D>().gravityScale == 1)
+            {
+                onGround = false;
+                Debug.Log("normal gravity");
+                GetComponent<Rigidbody2D>().gravityScale = -1;
+                //GetComponent<SpriteRenderer>().flipY = false;
+                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
+            }
 
-                if (Input.GetKeyDown(KeyCode.DownArrow) && GetComponent<Rigidbody2D>().gravityScale == -1)
-                {
-                    onGround = false;
-                    Debug.Log("flipped gravity");
-                    GetComponent<Rigidbody2D>().gravityScale = 1;
-                    //GetComponent<SpriteRenderer>().flipY = true;
-                    GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
-                    //GetComponent<PolygonCollider2D>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
-                }
+            if (Input.GetKeyDown(KeyCode.DownArrow) && GetComponent<Rigidbody2D>().gravityScale == -1)
+            {
+                onGround = false;
+                Debug.Log("flipped gravity");
+                GetComponent<Rigidbody2D>().gravityScale = 1;
+                //GetComponent<SpriteRenderer>().flipY = true;
+                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
+                //GetComponent<PolygonCollider2D>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
+            }
 
             if (Input.GetKey(KeyCode.P) && hasLaser)
             {
@@ -172,34 +176,34 @@ public class MovementKeyboard : MonoBehaviour
                 hasLaser = false;
             }
         }
-            /*
-                    if(Input.GetButton("Accelerate"))
+        /*
+                if(Input.GetButton("Accelerate"))
+                {
+                    GetComponent<Rigidbody2D>().AddForce(transform.right * speedForce);
+                }
+                if (Input.GetButton("Brakes"))
+                {
+                    GetComponent<Rigidbody2D>().AddForce(-transform.right * speedForce);
+                }
+                //if (Input.GetButtonDown("Gravity"))
+                if (Input.GetKeyDown("space"))
+                {
+                    if (GetComponent<Rigidbody2D>().gravityScale == 1) {
+                        Debug.Log("flipped gravity");
+                        GetComponent<Rigidbody2D>().gravityScale = -1;
+                        //GetComponent<SpriteRenderer>().flipY = true;
+                        GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
+                        //GetComponent<PolygonCollider2D>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
+                    } else
                     {
-                        GetComponent<Rigidbody2D>().AddForce(transform.right * speedForce);
+                        Debug.Log("normal gravity");
+                        GetComponent<Rigidbody2D>().gravityScale = 1;
+                        //GetComponent<SpriteRenderer>().flipY = false;
+                        GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
                     }
-                    if (Input.GetButton("Brakes"))
-                    {
-                        GetComponent<Rigidbody2D>().AddForce(-transform.right * speedForce);
-                    }
-                    //if (Input.GetButtonDown("Gravity"))
-                    if (Input.GetKeyDown("space"))
-                    {
-                        if (GetComponent<Rigidbody2D>().gravityScale == 1) {
-                            Debug.Log("flipped gravity");
-                            GetComponent<Rigidbody2D>().gravityScale = -1;
-                            //GetComponent<SpriteRenderer>().flipY = true;
-                            GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
-                            //GetComponent<PolygonCollider2D>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
-                        } else
-                        {
-                            Debug.Log("normal gravity");
-                            GetComponent<Rigidbody2D>().gravityScale = 1;
-                            //GetComponent<SpriteRenderer>().flipY = false;
-                            GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
-                        }
-                    }
-                    */
-                    
+                }
+                */
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -207,13 +211,14 @@ public class MovementKeyboard : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             onGround = true;
-        } else if(collision.gameObject.tag == "Laser1")
+        }
+        else if (collision.gameObject.tag == "Laser1")
         {
             Debug.Log("Laserhit");
             Destroy(collision.gameObject);
             StartCoroutine(ChangeSpeedOverTime(20));
         }
-       
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -222,11 +227,13 @@ public class MovementKeyboard : MonoBehaviour
         {
             Debug.Log("Speedboost");
             StartCoroutine(ChangeSpeedOverTime(70));
-        } else if(collision.gameObject.tag == "Slow")
+        }
+        else if (collision.gameObject.tag == "Slow")
         {
             Debug.Log("Slow");
             StartCoroutine(ChangeSpeedOverTime(30));
-        } else if(collision.gameObject.tag == "LaserCollectible")
+        }
+        else if (collision.gameObject.tag == "LaserCollectible")
         {
             Debug.Log("Laser picked up");
             hasLaser = true;
@@ -235,6 +242,20 @@ public class MovementKeyboard : MonoBehaviour
         {
             Debug.Log("LaserBarrier");
             StartCoroutine(ChangeSpeedOverTime(5));
+        }
+        else if (collision.gameObject.tag == "Portal")
+        {
+            Debug.Log("Portal");
+            Vector3 pos;
+            if (ship1)
+            {
+                pos = GameObject.FindGameObjectWithTag("Ship2").transform.position;
+                transform.position = new Vector3(pos.x - 8f, pos.y, pos.z);
+            }
+            else
+            {
+                pos = GameObject.FindGameObjectWithTag("Ship1").transform.position;
+            }
         }
 
     }
