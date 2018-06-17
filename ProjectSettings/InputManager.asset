@@ -42,9 +42,9 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 10
+    positiveButton: 
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: joystick button 10
     gravity: 0
     dead: 0.001
     sensitivity: 1
@@ -67,7 +67,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 0
+    axis: 9
     joyNum: 2
   - serializedVersion: 3
     m_Name: Submit

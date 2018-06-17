@@ -7,6 +7,8 @@ public class Physics : MonoBehaviour {
     public bool ship1;
     public bool ship2;
 
+    //public GameObject otherShip;
+
 
 	// Use this for initialization
 	void Start () {
@@ -25,15 +27,14 @@ public class Physics : MonoBehaviour {
 
         if (ship1)
         {   
-            //Collision with other ship
+            //Collision with other ship from above
             if (collision.gameObject.tag == "Ship2" )
             {
                 if (collision.gameObject.GetComponent<Movement>().onGround)
                 {
                     if (!this.gameObject.GetComponent<Movement>().onGround)
                     {
-                        StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject));
-                        //Destroy(collision.gameObject);
+                        StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject,true));
                     }
                     else
                     {
@@ -41,18 +42,22 @@ public class Physics : MonoBehaviour {
                     }
                 }
             }
+            if (collision.gameObject.tag == "Back2")
+            {
+                StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject, true));
+            }
+
         }
         else
         {
-            //Collision with other ship
+            //Collision with other ship from above
             if (collision.gameObject.tag == "Ship1" )
             {
                 if (collision.gameObject.GetComponent<Movement>().onGround)
                 {
                     if (!this.gameObject.GetComponent<Movement>().onGround)
                     {
-                        StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject));
-                        //Destroy(collision.gameObject);
+                        StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject,true));
                     }
                     else
                     {
@@ -60,10 +65,14 @@ public class Physics : MonoBehaviour {
                     }
                 }
             }
+            if (collision.gameObject.tag == "Back1")
+            {
+                StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject, true));
+            }
         }
     }
 
-    IEnumerator DoBlinks(float duration, float blinkTime, GameObject go)
+    IEnumerator DoBlinks(float duration, float blinkTime, GameObject go, bool minusHP)
     {
         go.GetComponent<Movement>().Speed = 0;
         while (duration > 0f)
@@ -77,6 +86,11 @@ public class Physics : MonoBehaviour {
 
             //wait for a bit
             yield return new WaitForSeconds(blinkTime);
+        }
+
+        if (minusHP)
+        {
+            go.GetComponent<Movement>().leben -= 1;
         }
 
         //make sure renderer is enabled when we exit

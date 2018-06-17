@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -22,17 +23,24 @@ public class Movement : MonoBehaviour
     private bool hasLaser;
     public bool start;
 
+    public int leben;
+
+    public Text hp;
+
     void Start()
     {
         Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
         hasLaser = false;
         start = false;
+        leben = 3;
+        hp.text = "HP: " + leben;
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        hp.text = "HP: " + leben;
         transform.Translate(Speed * Time.deltaTime, 0, 0);
 
         //print(Speed);
@@ -41,26 +49,11 @@ public class Movement : MonoBehaviour
         {
             if ((Input.GetAxis("Acceleration_J1") > 0) && start)
             {
-                if (Speed < MaxSpeed)
-                {
-                    Speed += Acceleration * Input.GetAxis("Acceleration_J1");
-                }
-                if (Speed > MaxSpeed)
-                {
-                    Speed = MaxSpeed;
-                }
+                Accelerate("Acceleration_J1");
             }
             else
             {
-                if (Speed > Deceleration)
-                {
-                    Speed = Speed - Deceleration;
-                }
-                else
-                {
-                    Speed = 0.0f;
-                }
-
+                DeAccelerate();
             }
 
             if (Input.GetAxis("Gravity_J1") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start)
@@ -87,30 +80,15 @@ public class Movement : MonoBehaviour
         }
 
 
-
         if (ship2)
         {
             if ((Input.GetAxis("Acceleration_J2") > 0) && start)
             {
-                if (Speed < MaxSpeed)
-                {
-                    Speed += Acceleration * Input.GetAxis("Acceleration_J2");
-                }
-                if (Speed > MaxSpeed)
-                {
-                    Speed = MaxSpeed;
-                }
+                Accelerate("Acceleration_J2");
             }
             else
             {
-                if (Speed > Deceleration)
-                {
-                    Speed = Speed - Deceleration;
-                }
-                else
-                {
-                    Speed = 0.0f;
-                }
+                DeAccelerate();
             }
 
             if (Input.GetAxis("Gravity_J2") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start)
@@ -133,6 +111,30 @@ public class Movement : MonoBehaviour
                 Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
                 hasLaser = false;
             }
+        }
+    }
+
+    void Accelerate(string s)
+    {
+        if (Speed < MaxSpeed)
+        {
+            Speed += Acceleration * Input.GetAxis(s);
+        }
+        if (Speed > MaxSpeed)
+        {
+            Speed = MaxSpeed;
+        }
+    }
+
+    void DeAccelerate()
+    {
+        if (Speed > Deceleration)
+        {
+            Speed = Speed - Deceleration;
+        }
+        else
+        {
+            Speed = 0.0f;
         }
     }
 
@@ -191,11 +193,12 @@ public class Movement : MonoBehaviour
             if (ship1)
             {
                 pos = GameObject.FindGameObjectWithTag("Ship2").transform.position;
-                transform.position = new Vector3(pos.x - 8f, pos.y, pos.z);
+                transform.position = new Vector3(pos.x - 50f, pos.y, pos.z);
             }
             else
             {
                 pos = GameObject.FindGameObjectWithTag("Ship1").transform.position;
+                transform.position = new Vector3(pos.x - 50f, pos.y, pos.z);
             }
         }
     }
@@ -209,7 +212,7 @@ public class Movement : MonoBehaviour
             MaxSpeed = speed;
             yield return new WaitForSeconds(0.2f);
         }
-        MaxSpeed = 50;
+        MaxSpeed = 30;
     }
 
     IEnumerator DoBlinks(float duration, float blinkTime, GameObject go)
