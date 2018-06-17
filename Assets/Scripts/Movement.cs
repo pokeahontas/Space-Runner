@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
     public bool ship2;
 
     public float Speed;
-    public float MaxSpeed;
+    private float MaxSpeed;
     public float Acceleration;
     public float Deceleration;
 
@@ -29,11 +29,12 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
+        //Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
         hasLaser = false;
         start = false;
         leben = 3;
         hp.text = "HP: " + leben;
+        MaxSpeed = 40.0f;
     }
 
     // Update is called once per frame
@@ -202,27 +203,33 @@ public class Movement : MonoBehaviour
             Vector3 pos;
             if (ship1)
             {
+                StartCoroutine(ChangeSpeedOverTime(60));
                 pos = GameObject.FindGameObjectWithTag("Ship2").transform.position;
                 transform.position = new Vector3(pos.x - 15f, pos.y, pos.z);
+                
             }
             else
             {
+                StartCoroutine(ChangeSpeedOverTime(60));
                 pos = GameObject.FindGameObjectWithTag("Ship1").transform.position;
-                transform.position = new Vector3(pos.x - 15f, pos.y, pos.z); 
+                transform.position = new Vector3(pos.x - 15f, pos.y, pos.z);
+                
             }
+            Destroy(collision.gameObject);
         }
     }
 
-    IEnumerator ChangeSpeedOverTime(float speed)
+    IEnumerator ChangeSpeedOverTime(float newSpeed)
     {
         float duration = 0.1f;
+       
         while (duration > 0f)
         {
             duration -= Time.deltaTime;
-            MaxSpeed = speed;
+            MaxSpeed = newSpeed;
             yield return new WaitForSeconds(0.2f);
         }
-        MaxSpeed = 30;
+        MaxSpeed = 40;
     }
 
     IEnumerator DoBlinks(float duration, float blinkTime, GameObject go)
@@ -242,4 +249,5 @@ public class Movement : MonoBehaviour
         //make sure renderer is enabled when we exit
         go.GetComponent<Renderer>().enabled = true;
     }
+    
 }

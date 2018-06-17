@@ -115,6 +115,12 @@ public class Physics : MonoBehaviour {
     IEnumerator DoBlinks(float duration, float blinkTime, GameObject go, bool minusHP)
     {
         go.GetComponent<Movement>().Speed = 0;
+
+        if (minusHP)
+        {
+            go.GetComponent<Movement>().leben--;
+        }
+
         while (duration > 0f)
         {
             duration -= Time.deltaTime;
@@ -128,10 +134,7 @@ public class Physics : MonoBehaviour {
             yield return new WaitForSeconds(blinkTime);
         }
 
-        if (minusHP)
-        {
-            go.GetComponent<Movement>().leben--;
-        }
+
 
         //make sure renderer is enabled when we exit
         go.GetComponent<Renderer>().enabled = true;
