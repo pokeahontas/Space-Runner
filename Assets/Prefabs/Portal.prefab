@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4930884757023196}
   - component: {fileID: 212140333805717538}
   - component: {fileID: 70539187794037824}
+  - component: {fileID: 114462106507705466}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Portal
@@ -87,6 +88,18 @@ CapsuleCollider2D:
   m_Offset: {x: -0.11, y: -0.05}
   m_Size: {x: 1.26, y: 3.05}
   m_Direction: 0
+--- !u!114 &114462106507705466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1115404514765902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0fa01e62d13b541ac28dfb631bd609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 3
 --- !u!198 &198053453980000008
 ParticleSystem:
   m_ObjectHideFlags: 1

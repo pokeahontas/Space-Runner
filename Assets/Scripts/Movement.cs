@@ -40,6 +40,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
 
+        
         hp.text = "HP: " + leben;
         transform.Translate(Speed * Time.deltaTime, 0, 0);
 
@@ -47,6 +48,10 @@ public class Movement : MonoBehaviour
 
         if (ship1)
         {
+            if (leben <= 0)
+            {
+                SceneManager.LoadScene("P2Won");
+            }
             if ((Input.GetAxis("Acceleration_J1") > 0) && start)
             {
                 Accelerate("Acceleration_J1");
@@ -82,6 +87,11 @@ public class Movement : MonoBehaviour
 
         if (ship2)
         {
+            if (leben <= 0)
+            {
+                SceneManager.LoadScene("P1Won");
+            }
+
             if ((Input.GetAxis("Acceleration_J2") > 0) && start)
             {
                 Accelerate("Acceleration_J2");
@@ -193,12 +203,12 @@ public class Movement : MonoBehaviour
             if (ship1)
             {
                 pos = GameObject.FindGameObjectWithTag("Ship2").transform.position;
-                transform.position = new Vector3(pos.x - 50f, pos.y, pos.z);
+                transform.position = new Vector3(pos.x - 15f, pos.y, pos.z);
             }
             else
             {
                 pos = GameObject.FindGameObjectWithTag("Ship1").transform.position;
-                transform.position = new Vector3(pos.x - 50f, pos.y, pos.z);
+                transform.position = new Vector3(pos.x - 15f, pos.y, pos.z); 
             }
         }
     }

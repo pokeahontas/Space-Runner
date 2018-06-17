@@ -193,7 +193,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 146250319}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: -0, z: -10}
+  m_LocalPosition: {x: 0, y: -0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2101828181}
@@ -276,7 +276,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 153142920}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2145594407}
@@ -369,7 +369,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4755185025920926, guid: bfb16d772327c11489ce691babd4ba1b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -13
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 4755185025920926, guid: bfb16d772327c11489ce691babd4ba1b, type: 2}
       propertyPath: m_LocalPosition.y
@@ -759,7 +759,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4946555325294758, guid: 480da305b0053464d87cce5f511feb28, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -13
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 4946555325294758, guid: 480da305b0053464d87cce5f511feb28, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1211,6 +1211,9 @@ MonoBehaviour:
   - {fileID: 1551335444430452, guid: c1258c0bb8432e1419f5d6f0953371bd, type: 2}
   - {fileID: 1654645072013942, guid: f5398ac5a92de08469b15264818c7721, type: 2}
   goal: {fileID: 1321789375524980, guid: 859377be31d7fd84b93b3f4fc1c07054, type: 2}
+  portal: {fileID: 1115404514765902, guid: 3b05c4a696b060b40a68e8bd0ee4a010, type: 2}
+  ship1: {fileID: 2146026251}
+  ship2: {fileID: 357756812}
 --- !u!1 &1440533483
 GameObject:
   m_ObjectHideFlags: 0

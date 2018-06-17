@@ -15,7 +15,7 @@ public class CameraFollow : MonoBehaviour {
         //transform.position = new Vector3(target.position.x + 8f, target.position.y + 3f, -10f);
         if (ship??false)
         {
-            this.transform.position = new Vector3(ship.transform.position.x + 15f, this.transform.position.y, this.transform.position.z);
+            this.transform.position = new Vector3(ship.transform.position.x + 10f, this.transform.position.y, this.transform.position.z);
         }
         
     }
