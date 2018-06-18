@@ -23,7 +23,12 @@ public class Movement : MonoBehaviour
     private bool hasLaser;
     public bool start;
 
+    public float boostAmount;
+    public Image boostBar;
+
     public int leben;
+    public Sprite[] heartSprites;
+    public Image heartsImage;
 
     public Text hp;
 
@@ -33,16 +38,19 @@ public class Movement : MonoBehaviour
         hasLaser = false;
         start = false;
         leben = 3;
-        hp.text = "HP: " + leben;
+        heartsImage.sprite = heartSprites[2];
+        //hp.text = "HP: " + leben;
         MaxSpeed = 40.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        
+        if(leben > 0) { 
+        heartsImage.sprite = heartSprites[leben-1];
+            }
         hp.text = "HP: " + leben;
+        boostBar.fillAmount = boostAmount;
         transform.Translate(Speed * Time.deltaTime, 0, 0);
 
         //print(Speed);
@@ -83,6 +91,12 @@ public class Movement : MonoBehaviour
                 Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
                 hasLaser = false;
             }
+            if (Input.GetButton("Boost1") && boostAmount >= 1) // TODO Input setzen
+            {
+                StartCoroutine(ChangeSpeedOverTime(70));
+                boostAmount = 0;
+                StartCoroutine(IncreaseValueOverTime());
+            }
         }
 
 
@@ -121,6 +135,12 @@ public class Movement : MonoBehaviour
             {
                 Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
                 hasLaser = false;
+            }
+            if (Input.GetButton("Boost2") && boostAmount >= 1) // TODO Input setzen
+            {
+                StartCoroutine(ChangeSpeedOverTime(70));
+                boostAmount = 0;
+                StartCoroutine(IncreaseValueOverTime());
             }
         }
     }
@@ -249,5 +269,14 @@ public class Movement : MonoBehaviour
         //make sure renderer is enabled when we exit
         go.GetComponent<Renderer>().enabled = true;
     }
-    
+
+    IEnumerator IncreaseValueOverTime()
+    {
+        while (boostAmount < 1f)
+        {
+            boostAmount += 0.05f;
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
 }

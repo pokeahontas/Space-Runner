@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovementKeyboard : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class MovementKeyboard : MonoBehaviour
     public Transform shotSpawn;
     private bool hasLaser;
 
+    public float boostAmount;
+    public Image boostBar;
+
     void Start()
     {
         Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
@@ -29,6 +33,8 @@ public class MovementKeyboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(boostAmount);
+        boostBar.fillAmount = boostAmount;
         transform.Translate(Speed * Time.deltaTime, 0, 0);
 
         if (ship1)
@@ -113,6 +119,12 @@ public class MovementKeyboard : MonoBehaviour
                 Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
                 hasLaser = false;
             }
+            if (Input.GetKeyDown(KeyCode.E) && boostAmount >= 1)
+            {
+                StartCoroutine(ChangeSpeedOverTime(70));
+                boostAmount = 0;
+                StartCoroutine(IncreaseValueOverTime());
+            } 
 
         }
 
@@ -270,5 +282,13 @@ public class MovementKeyboard : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         MaxSpeed = 50;
+    }
+    IEnumerator IncreaseValueOverTime()
+    {
+        while (boostAmount < 1f)
+        {
+            boostAmount += 0.05f;
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }
