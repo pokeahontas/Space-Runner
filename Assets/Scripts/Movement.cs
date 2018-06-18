@@ -7,14 +7,11 @@ using UnityEngine.UI;
 public class Movement : MonoBehaviour
 {
 
-    public float speedForce;
     public bool ship1;
     public bool ship2;
 
     public float Speed;
     private float MaxSpeed;
-    public float Acceleration;
-    public float Deceleration;
 
     public bool onGround;
 
@@ -23,7 +20,7 @@ public class Movement : MonoBehaviour
     private bool hasLaser;
     public bool start;
 
-    public float boostAmount;
+    private float boostAmount;
     public Image boostBar;
 
     public int leben;
@@ -41,6 +38,7 @@ public class Movement : MonoBehaviour
         heartsImage.sprite = heartSprites[2];
         //hp.text = "HP: " + leben;
         MaxSpeed = 40.0f;
+        boostAmount = 1.0f;
     }
 
     // Update is called once per frame
@@ -50,7 +48,7 @@ public class Movement : MonoBehaviour
         heartsImage.sprite = heartSprites[leben-1];
             }
         hp.text = "HP: " + leben;
-        boostBar.fillAmount = boostAmount;
+        this.boostBar.fillAmount = boostAmount;
         transform.Translate(Speed * Time.deltaTime, 0, 0);
 
         //print(Speed);
@@ -85,15 +83,16 @@ public class Movement : MonoBehaviour
                 GetComponent<Rigidbody2D>().gravityScale = 1;
                 GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
             }
-
+            /*
             if (Input.GetButton("Fire1") && hasLaser)
             {
                 Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
                 hasLaser = false;
             }
-            if (Input.GetButton("Boost1") && boostAmount >= 1) // TODO Input setzen
+            */
+            if (Input.GetButton("Boost1") && boostAmount >= 1)
             {
-                StartCoroutine(ChangeSpeedOverTime(70));
+                StartCoroutine(Speedboost(0.05f));
                 boostAmount = 0;
                 StartCoroutine(IncreaseValueOverTime());
             }
@@ -131,14 +130,16 @@ public class Movement : MonoBehaviour
                 GetComponent<Rigidbody2D>().gravityScale = 1;
                 GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
             }
+            /*
             if (Input.GetButton("Fire2") && hasLaser)
             {
                 Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
                 hasLaser = false;
             }
-            if (Input.GetButton("Boost2") && boostAmount >= 1) // TODO Input setzen
+            */
+            if (Input.GetButton("Boost2") && boostAmount >= 1) 
             {
-                StartCoroutine(ChangeSpeedOverTime(70));
+                StartCoroutine(Speedboost(0.05f));
                 boostAmount = 0;
                 StartCoroutine(IncreaseValueOverTime());
             }
@@ -149,7 +150,7 @@ public class Movement : MonoBehaviour
     {
         if (Speed < MaxSpeed)
         {
-            Speed += Acceleration * Input.GetAxis(s);
+            Speed += 1.0f * Input.GetAxis(s);
         }
         if (Speed > MaxSpeed)
         {
@@ -159,9 +160,9 @@ public class Movement : MonoBehaviour
 
     void DeAccelerate()
     {
-        if (Speed > Deceleration)
+        if (Speed > 1.0f)
         {
-            Speed = Speed - Deceleration;
+            Speed = Speed - 1.0f;
         }
         else
         {
@@ -178,7 +179,7 @@ public class Movement : MonoBehaviour
         else if (collision.gameObject.tag == "Laser1")
         {
             Debug.Log("Laserhit");
-            StartCoroutine(ChangeSpeedOverTime(20));
+            StartCoroutine(ChangeSpeedOverTime(20, 0.1f));
         }
 
     }
@@ -188,12 +189,12 @@ public class Movement : MonoBehaviour
         if (collision.gameObject.tag == "Speedboost")
         {
             Debug.Log("Speedboost");
-            StartCoroutine(ChangeSpeedOverTime(70));
+            StartCoroutine(ChangeSpeedOverTime(70, 0.1f));
         }
         else if (collision.gameObject.tag == "Slow")
         {
             Debug.Log("Slow");
-            StartCoroutine(ChangeSpeedOverTime(25));
+            StartCoroutine(ChangeSpeedOverTime(25, 0.1f));
         }
         else if (collision.gameObject.tag == "LaserCollectible")
         {
@@ -204,7 +205,7 @@ public class Movement : MonoBehaviour
         else if (collision.gameObject.tag == "LaserBarrier")
         {
             Debug.Log("LaserBarrier");
-            StartCoroutine(ChangeSpeedOverTime(5));
+            StartCoroutine(ChangeSpeedOverTime(5, 0.1f));
         }
         else if (collision.gameObject.tag == "Goal")
         {
@@ -223,14 +224,14 @@ public class Movement : MonoBehaviour
             Vector3 pos;
             if (ship1)
             {
-                StartCoroutine(ChangeSpeedOverTime(60));
+                StartCoroutine(ChangeSpeedOverTime(60, 0.1f));
                 pos = GameObject.FindGameObjectWithTag("Ship2").transform.position;
                 transform.position = new Vector3(pos.x - 15f, pos.y, pos.z);
                 
             }
             else
             {
-                StartCoroutine(ChangeSpeedOverTime(60));
+                StartCoroutine(ChangeSpeedOverTime(60,0.1f));
                 pos = GameObject.FindGameObjectWithTag("Ship1").transform.position;
                 transform.position = new Vector3(pos.x - 15f, pos.y, pos.z);
                 
@@ -239,14 +240,25 @@ public class Movement : MonoBehaviour
         }
     }
 
-    IEnumerator ChangeSpeedOverTime(float newSpeed)
+    IEnumerator ChangeSpeedOverTime(float newSpeed, float duration)
     {
-        float duration = 0.1f;
-       
+             
         while (duration > 0f)
         {
             duration -= Time.deltaTime;
             MaxSpeed = newSpeed;
+            yield return new WaitForSeconds(0.2f);
+        }
+        MaxSpeed = 40;
+    }
+
+    IEnumerator Speedboost(float duration)
+    {
+
+        while (duration > 0f)
+        {
+            duration -= Time.deltaTime;
+            MaxSpeed = MaxSpeed+30;
             yield return new WaitForSeconds(0.2f);
         }
         MaxSpeed = 40;
@@ -277,6 +289,7 @@ public class Movement : MonoBehaviour
             boostAmount += 0.05f;
             yield return new WaitForSeconds(0.5f);
         }
+        boostAmount = 1.0f;
     }
 
 }

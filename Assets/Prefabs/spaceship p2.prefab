@@ -230,6 +230,8 @@ MonoBehaviour:
   onGround: 1
   shot: {fileID: 1834971489782230, guid: 665e1b5975759054bb0c57d10e1cc431, type: 2}
   shotSpawn: {fileID: 4439762586593384}
+  boostAmount: 0
+  boostBar: {fileID: 0}
 --- !u!114 &114401577852141042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -259,14 +261,20 @@ MonoBehaviour:
   ship1: 0
   ship2: 1
   Speed: 0
-  MaxSpeed: 50
   Acceleration: 1
   Deceleration: 1
   onGround: 1
   shot: {fileID: 1834971489782230, guid: 665e1b5975759054bb0c57d10e1cc431, type: 2}
   shotSpawn: {fileID: 4439762586593384}
   start: 0
+  boostAmount: 1
+  boostBar: {fileID: 0}
   leben: 3
+  heartSprites:
+  - {fileID: 21300000, guid: 831e7c1ec225c1141a527a9573d645f5, type: 3}
+  - {fileID: 21300000, guid: 309491ac934b5644688e2cc34ecc2fdc, type: 3}
+  - {fileID: 21300000, guid: 41727d3437f1c2348a8a7df241e5c0f3, type: 3}
+  heartsImage: {fileID: 0}
   hp: {fileID: 0}
 --- !u!212 &212206156225195594
 SpriteRenderer:
