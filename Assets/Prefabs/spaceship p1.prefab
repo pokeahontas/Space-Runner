@@ -243,17 +243,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5d7398596f6cf458af0806cd924a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedForce: 50
   ship1: 1
   ship2: 0
   Speed: 0
-  Acceleration: 1
-  Deceleration: 1
   onGround: 1
   shot: {fileID: 1834971489782230, guid: 665e1b5975759054bb0c57d10e1cc431, type: 2}
   shotSpawn: {fileID: 4473130402902022}
   start: 0
-  boostAmount: 1
   boostBar: {fileID: 0}
   leben: 3
   heartSprites:

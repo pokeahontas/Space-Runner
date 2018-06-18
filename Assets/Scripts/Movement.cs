@@ -47,8 +47,8 @@ public class Movement : MonoBehaviour
         if(leben > 0) { 
         heartsImage.sprite = heartSprites[leben-1];
             }
-        hp.text = "HP: " + leben;
-        this.boostBar.fillAmount = boostAmount;
+        //hp.text = "HP: " + leben;
+        boostBar.fillAmount = this.boostAmount;
         transform.Translate(Speed * Time.deltaTime, 0, 0);
 
         //print(Speed);
@@ -90,11 +90,12 @@ public class Movement : MonoBehaviour
                 hasLaser = false;
             }
             */
-            if (Input.GetButton("Boost1") && boostAmount >= 1)
+            if (Input.GetButton("Boost1") && boostAmount >= 1 && ship1)
             {
                 StartCoroutine(Speedboost(0.05f));
                 boostAmount = 0;
                 StartCoroutine(IncreaseValueOverTime());
+                print("boost1 "+ship1);
             }
         }
 
@@ -137,7 +138,7 @@ public class Movement : MonoBehaviour
                 hasLaser = false;
             }
             */
-            if (Input.GetButton("Boost2") && boostAmount >= 1) 
+            if (Input.GetButton("Boost2") && boostAmount >= 1 && ship2) 
             {
                 StartCoroutine(Speedboost(0.05f));
                 boostAmount = 0;
@@ -284,6 +285,7 @@ public class Movement : MonoBehaviour
 
     IEnumerator IncreaseValueOverTime()
     {
+        
         while (boostAmount < 1f)
         {
             boostAmount += 0.05f;
