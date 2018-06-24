@@ -182,6 +182,10 @@ public class Movement : MonoBehaviour
             Debug.Log("Laserhit");
             StartCoroutine(ChangeSpeedOverTime(20, 0.1f));
         }
+        else if (collision.gameObject.tag == "Top2")
+        {
+            Debug.Log("Top2");
+        }
 
     }
 
@@ -228,16 +232,24 @@ public class Movement : MonoBehaviour
                 StartCoroutine(ChangeBoostOverTime(30, 0.1f));
                 pos = GameObject.FindGameObjectWithTag("Ship2").transform.position;
                 transform.position = new Vector3(pos.x - 15f, pos.y, pos.z);
-                
+
             }
             else
             {
-                StartCoroutine(ChangeBoostOverTime(30,0.1f));
+                StartCoroutine(ChangeBoostOverTime(30, 0.1f));
                 pos = GameObject.FindGameObjectWithTag("Ship1").transform.position;
                 transform.position = new Vector3(pos.x - 15f, pos.y, pos.z);
-                
+
             }
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "Back2")
+        {
+            print("Back2");
+        }
+        else if (collision.gameObject.tag == "Top2")
+        {
+            print("Top2");
         }
     }
 

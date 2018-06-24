@@ -16,6 +16,8 @@ TagManager:
   - Portal
   - Back1
   - Back2
+  - Top1
+  - Top2
   layers:
   - Default
   - TransparentFX

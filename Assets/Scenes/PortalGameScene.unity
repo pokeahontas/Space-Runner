@@ -1003,6 +1003,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114301518492757590, guid: 480da305b0053464d87cce5f511feb28,
+        type: 2}
+      propertyPath: boostBar
+      value: 
+      objectReference: {fileID: 416328203}
     - target: {fileID: 114778968820037918, guid: 480da305b0053464d87cce5f511feb28,
         type: 2}
       propertyPath: boostBar
@@ -1018,11 +1023,6 @@ Prefab:
       propertyPath: hp
       value: 
       objectReference: {fileID: 1974776108}
-    - target: {fileID: 114301518492757590, guid: 480da305b0053464d87cce5f511feb28,
-        type: 2}
-      propertyPath: boostBar
-      value: 
-      objectReference: {fileID: 416328203}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 480da305b0053464d87cce5f511feb28, type: 2}
   m_IsPrefabParent: 0
