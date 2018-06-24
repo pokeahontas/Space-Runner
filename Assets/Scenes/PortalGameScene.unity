@@ -1023,6 +1023,11 @@ Prefab:
       propertyPath: hp
       value: 
       objectReference: {fileID: 1974776108}
+    - target: {fileID: 70081710697488852, guid: 480da305b0053464d87cce5f511feb28,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 480da305b0053464d87cce5f511feb28, type: 2}
   m_IsPrefabParent: 0

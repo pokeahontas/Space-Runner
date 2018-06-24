@@ -27,6 +27,8 @@ public class Movement : MonoBehaviour
     public Sprite[] heartSprites;
     public Image heartsImage;
 
+    public bool hasCollide = false;
+
     public Text hp;
 
     void Start()
@@ -39,6 +41,7 @@ public class Movement : MonoBehaviour
         //hp.text = "HP: " + leben;
         MaxSpeed = 40.0f;
         boostAmount = 1.0f;
+        hasCollide = false;
     }
 
     // Update is called once per frame
@@ -182,10 +185,6 @@ public class Movement : MonoBehaviour
             Debug.Log("Laserhit");
             StartCoroutine(ChangeSpeedOverTime(20, 0.1f));
         }
-        else if (collision.gameObject.tag == "Top2")
-        {
-            Debug.Log("Top2");
-        }
 
     }
 
@@ -243,13 +242,57 @@ public class Movement : MonoBehaviour
             }
             Destroy(collision.gameObject);
         }
+        else if (collision.gameObject.tag == "Back1")
+        {
+            print("Back1");
+            if (ship2)
+            {
+                if (hasCollide == false)
+                {
+                    print("Back1Inner");
+                    hasCollide = true;
+                    StartCoroutine(BackDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
+                }
+            }
+        }
         else if (collision.gameObject.tag == "Back2")
         {
             print("Back2");
+            if (ship1)
+            {
+                if (hasCollide == false)
+                {
+                    print("Back2Inner");
+                    hasCollide = true;
+                    StartCoroutine(BackDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
+                }
+            }
+        }
+        else if (collision.gameObject.tag == "Top1")
+        {
+            print("Top1");
+            if (ship2)
+            {
+                if (hasCollide == false)
+                {
+                    print("Top1Inner");
+                    hasCollide = true;
+                    StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
+                }
+            }
         }
         else if (collision.gameObject.tag == "Top2")
         {
             print("Top2");
+            if (ship1)
+            {
+                if (hasCollide == false)
+                {
+                    print("Top2Inner"); 
+                    hasCollide = true;
+                    StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
+                }
+            }
         }
     }
 
@@ -314,6 +357,64 @@ public class Movement : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
         boostAmount = 1.0f;
+    }
+
+    IEnumerator BackDamage(float duration, float blinkTime, GameObject go, bool minusHP)
+    {
+        go.GetComponent<Movement>().hasCollide = true;
+        go.GetComponent<Movement>().Speed = 0;
+        go.transform.GetChild(1).GetComponent<BoxCollider2D>().enabled = false;
+        go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = false;
+
+        if (minusHP)
+        {
+            go.GetComponent<Movement>().leben--;
+        }
+
+        while (duration > 0f)
+        {
+            duration -= Time.deltaTime;
+            //toggle renderer
+            go.GetComponent<Renderer>().enabled = !go.GetComponent<Renderer>().enabled;
+            //wait for a bit
+            yield return new WaitForSeconds(blinkTime);
+        }
+
+        //make sure renderer is enabled when we exit
+        go.GetComponent<Renderer>().enabled = true;
+        hasCollide = false;
+        go.GetComponent<Movement>().hasCollide = false;
+        go.transform.GetChild(1).GetComponent<BoxCollider2D>().enabled = true;
+        go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    IEnumerator TopDamage(float duration, float blinkTime, GameObject go, bool minusHP)
+    {
+        go.GetComponent<Movement>().hasCollide = true;
+        go.GetComponent<Movement>().Speed = 0;
+        go.transform.GetChild(1).GetComponent<BoxCollider2D>().enabled = false;
+        go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = false;
+
+        if (minusHP)
+        {
+            go.GetComponent<Movement>().leben--;
+        }
+
+        while (duration > 0f)
+        {
+            duration -= Time.deltaTime;
+            //toggle renderer
+            go.GetComponent<Renderer>().enabled = !go.GetComponent<Renderer>().enabled;
+            //wait for a bit
+            yield return new WaitForSeconds(blinkTime);
+        }
+
+        //make sure renderer is enabled when we exit
+        go.GetComponent<Renderer>().enabled = true;
+        go.transform.GetChild(1).GetComponent<BoxCollider2D>().enabled = true;
+        go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = true;
+        hasCollide = false;
+        go.GetComponent<Movement>().hasCollide = false;
     }
 
 }

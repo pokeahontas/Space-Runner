@@ -23,7 +23,7 @@ public class Physics : MonoBehaviour {
 	}
 
 
-
+    /*
     void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -57,16 +57,6 @@ public class Physics : MonoBehaviour {
                     }
                 }
             }
-            /*
-            if (collision.gameObject.tag == "Back2")
-            {
-                if (hasCollide == false)
-                {
-                    hasCollide = true;
-                    StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject, true));
-                }
-            }
-            */
 
         }
         else
@@ -109,9 +99,10 @@ public class Physics : MonoBehaviour {
                 }
             }
             */
-        }
-    }
-
+//        }
+//    }
+    
+    
     IEnumerator DoBlinks(float duration, float blinkTime, GameObject go, bool minusHP)
     {
         go.GetComponent<Movement>().Speed = 0;
