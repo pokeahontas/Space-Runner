@@ -367,7 +367,7 @@ public class Movement : MonoBehaviour
         go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = false;
 
         if (minusHP)
-        {
+        { 
             go.GetComponent<Movement>().leben--;
         }
 
@@ -392,7 +392,7 @@ public class Movement : MonoBehaviour
     {
         go.GetComponent<Movement>().hasCollide = true;
         go.GetComponent<Movement>().Speed = 0;
-        go.transform.GetChild(1).GetComponent<BoxCollider2D>().enabled = false;
+        go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = false;
         go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = false;
 
         if (minusHP)
@@ -411,7 +411,7 @@ public class Movement : MonoBehaviour
 
         //make sure renderer is enabled when we exit
         go.GetComponent<Renderer>().enabled = true;
-        go.transform.GetChild(1).GetComponent<BoxCollider2D>().enabled = true;
+        go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = true;
         go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = true;
         hasCollide = false;
         go.GetComponent<Movement>().hasCollide = false;
