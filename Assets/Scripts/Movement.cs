@@ -29,6 +29,8 @@ public class Movement : MonoBehaviour
 
     public bool hasCollide = false;
 
+    public ParticleSystem streamParticles;
+
     public Text hp;
 
     void Start()
@@ -42,6 +44,8 @@ public class Movement : MonoBehaviour
         MaxSpeed = 40.0f;
         boostAmount = 1.0f;
         hasCollide = false;
+        streamParticles.Stop();
+
     }
 
     // Update is called once per frame
@@ -310,23 +314,27 @@ public class Movement : MonoBehaviour
 
     IEnumerator ChangeBoostOverTime(float plusSpeed, float duration)
     {
+        streamParticles.Play();
         MaxSpeed += plusSpeed;
         while (duration > 0f)
         {
             duration -= Time.deltaTime;
             yield return new WaitForSeconds(0.2f);
         }
+        streamParticles.Stop();
         MaxSpeed -= plusSpeed;
     }
 
     IEnumerator Speedboost(float duration)
     {
+        streamParticles.Play();
         MaxSpeed +=  30;
         while (duration > 0f)
         {
             duration -= Time.deltaTime;
             yield return new WaitForSeconds(0.2f);
         }
+        streamParticles.Stop();
         MaxSpeed -= 30;
     }
 

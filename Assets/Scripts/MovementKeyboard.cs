@@ -24,16 +24,19 @@ public class MovementKeyboard : MonoBehaviour
     public float boostAmount;
     public Image boostBar;
 
+    public ParticleSystem streamParticles;
+
     void Start()
     {
         Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
         hasLaser = false;
+        streamParticles.Stop();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(boostAmount);
+        //Debug.Log(boostAmount);
         boostBar.fillAmount = boostAmount;
         transform.Translate(Speed * Time.deltaTime, 0, 0);
 
@@ -275,6 +278,7 @@ public class MovementKeyboard : MonoBehaviour
     IEnumerator ChangeSpeedOverTime(float speed)
     {
         float duration = 0.1f;
+        streamParticles.Play();
         while (duration > 0f)
         {
             duration -= Time.deltaTime;
@@ -282,6 +286,7 @@ public class MovementKeyboard : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         MaxSpeed = 50;
+        streamParticles.Stop();
     }
     IEnumerator IncreaseValueOverTime()
     {
