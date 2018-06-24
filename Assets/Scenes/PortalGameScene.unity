@@ -414,7 +414,8 @@ Prefab:
       propertyPath: hp
       value: 
       objectReference: {fileID: 407469869}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 61525878765522696, guid: bfb16d772327c11489ce691babd4ba1b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: bfb16d772327c11489ce691babd4ba1b, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &258224976
@@ -1028,7 +1029,8 @@ Prefab:
       propertyPath: m_Offset.x
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 61969501765080318, guid: 480da305b0053464d87cce5f511feb28, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 480da305b0053464d87cce5f511feb28, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1060450555
