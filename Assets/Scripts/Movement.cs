@@ -225,14 +225,14 @@ public class Movement : MonoBehaviour
             Vector3 pos;
             if (ship1)
             {
-                StartCoroutine(ChangeSpeedOverTime(60, 0.1f));
+                StartCoroutine(ChangeBoostOverTime(30, 0.1f));
                 pos = GameObject.FindGameObjectWithTag("Ship2").transform.position;
                 transform.position = new Vector3(pos.x - 15f, pos.y, pos.z);
                 
             }
             else
             {
-                StartCoroutine(ChangeSpeedOverTime(60,0.1f));
+                StartCoroutine(ChangeBoostOverTime(30,0.1f));
                 pos = GameObject.FindGameObjectWithTag("Ship1").transform.position;
                 transform.position = new Vector3(pos.x - 15f, pos.y, pos.z);
                 
@@ -243,26 +243,36 @@ public class Movement : MonoBehaviour
 
     IEnumerator ChangeSpeedOverTime(float newSpeed, float duration)
     {
-             
+        float oldSpeed = MaxSpeed;
+        while (duration > 0f)
+        {
+            MaxSpeed = newSpeed;
+            duration -= Time.deltaTime;
+            yield return new WaitForSeconds(0.2f);
+        }
+        MaxSpeed -= (newSpeed - oldSpeed);
+    }
+
+    IEnumerator ChangeBoostOverTime(float plusSpeed, float duration)
+    {
+        MaxSpeed += plusSpeed;
         while (duration > 0f)
         {
             duration -= Time.deltaTime;
-            MaxSpeed = newSpeed;
             yield return new WaitForSeconds(0.2f);
         }
-        MaxSpeed = 40;
+        MaxSpeed -= plusSpeed;
     }
 
     IEnumerator Speedboost(float duration)
     {
-
+        MaxSpeed +=  30;
         while (duration > 0f)
         {
             duration -= Time.deltaTime;
-            MaxSpeed = MaxSpeed+30;
             yield return new WaitForSeconds(0.2f);
         }
-        MaxSpeed = 40;
+        MaxSpeed -= 30;
     }
 
     IEnumerator DoBlinks(float duration, float blinkTime, GameObject go)
