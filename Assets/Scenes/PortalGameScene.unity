@@ -419,6 +419,26 @@ Prefab:
       propertyPath: streamParticles
       value: 
       objectReference: {fileID: 1980652966}
+    - target: {fileID: 114664820936179846, guid: bfb16d772327c11489ce691babd4ba1b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114264593913421010, guid: bfb16d772327c11489ce691babd4ba1b,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114264593913421010, guid: bfb16d772327c11489ce691babd4ba1b,
+        type: 2}
+      propertyPath: boostBar
+      value: 
+      objectReference: {fileID: 967096995}
+    - target: {fileID: 114264593913421010, guid: bfb16d772327c11489ce691babd4ba1b,
+        type: 2}
+      propertyPath: streamParticles
+      value: 
+      objectReference: {fileID: 1980652966}
     m_RemovedComponents:
     - {fileID: 61525878765522696, guid: bfb16d772327c11489ce691babd4ba1b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: bfb16d772327c11489ce691babd4ba1b, type: 2}

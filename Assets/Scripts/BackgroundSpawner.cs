@@ -19,11 +19,11 @@ public class BackgroundSpawner : MonoBehaviour
         {
             if (whichOne)
             {
-                background1.localPosition = new Vector3(background1.localPosition.x + 81.92f, 2.6f, 0f);
+                background1.localPosition = new Vector3(background1.localPosition.x + 81.92f, 0f, 0f);
             }
             else
             {
-                background2.localPosition = new Vector3(background2.localPosition.x + 81.92f, 2.6f, 0f);
+                background2.localPosition = new Vector3(background2.localPosition.x + 81.92f, 0f, 0f);
             }
             currentPos1 += 40.96f;
 
@@ -33,11 +33,11 @@ public class BackgroundSpawner : MonoBehaviour
         {
             if (whichOne)
             {
-                background2.localPosition = new Vector3(background2.localPosition.x - 81.92f, 2.6f, 0f);
+                background2.localPosition = new Vector3(background2.localPosition.x - 81.92f, 0f, 0f);
             }
             else
             {
-                background1.localPosition = new Vector3(background1.localPosition.x - 81.92f, 2.6f, 0f);
+                background1.localPosition = new Vector3(background1.localPosition.x - 81.92f, 0f, 0f);
             }
             currentPos1 -= 40.96f;
 
