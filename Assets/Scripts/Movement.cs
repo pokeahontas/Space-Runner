@@ -369,6 +369,7 @@ public class Movement : MonoBehaviour
 
     IEnumerator BackDamage(float duration, float blinkTime, GameObject go, bool minusHP)
     {
+        go.transform.localScale -= new Vector3(0.3f, 0, 0);
         go.GetComponent<Movement>().hasCollide = true;
         go.GetComponent<Movement>().Speed = 0;
         go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = false;
@@ -389,6 +390,7 @@ public class Movement : MonoBehaviour
         }
 
         //make sure renderer is enabled when we exit
+        go.transform.localScale += new Vector3(0.3f, 0, 0);
         go.GetComponent<Renderer>().enabled = true;
         hasCollide = false;
         go.GetComponent<Movement>().hasCollide = false;
@@ -398,6 +400,7 @@ public class Movement : MonoBehaviour
 
     IEnumerator TopDamage(float duration, float blinkTime, GameObject go, bool minusHP)
     {
+        go.transform.localScale -= new Vector3(0, 0.3f, 0);
         go.GetComponent<Movement>().hasCollide = true;
         go.GetComponent<Movement>().Speed = 0;
         go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = false;
@@ -418,6 +421,7 @@ public class Movement : MonoBehaviour
         }
 
         //make sure renderer is enabled when we exit
+        go.transform.localScale += new Vector3(0, 0.3f, 0);
         go.GetComponent<Renderer>().enabled = true;
         go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = true;
         go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = true;

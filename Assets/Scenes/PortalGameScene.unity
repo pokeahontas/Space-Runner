@@ -5696,6 +5696,10 @@ Prefab:
       propertyPath: streamParticles
       value: 
       objectReference: {fileID: 865094164}
+    - target: {fileID: 4946555325294758, guid: 480da305b0053464d87cce5f511feb28, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.79
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61969501765080318, guid: 480da305b0053464d87cce5f511feb28, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 480da305b0053464d87cce5f511feb28, type: 2}
