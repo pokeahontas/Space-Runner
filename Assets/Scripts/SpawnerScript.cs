@@ -25,20 +25,22 @@ public class SpawnerScript : MonoBehaviour {
 
     void SpawnPortal()
     {
+        /*
         Vector3 position;
 
         //Random portal at ship1 or ship2
         int i = Random.Range(1, 3);
         if (i == 1)
         {
-            position = new Vector3(ship1.transform.position.x+Random.Range(15.0f, 30.0f), Random.Range(3.0f, -3.0f), ship1.transform.position.z);
+            position = new Vector3(ship1.transform.position.x+Random.Range(25.0f, 40.0f), Random.Range(3.0f, -3.0f), ship1.transform.position.z);
         }
         else
         {
-            position = new Vector3(ship2.transform.position.x + Random.Range(15.0f, 30.0f), Random.Range(3.0f, -3.0f), ship2.transform.position.z);
+            position = new Vector3(ship2.transform.position.x + Random.Range(25.0f, 40.0f), Random.Range(3.0f, -3.0f), ship2.transform.position.z);
         }
         
         Instantiate(portal, position, Quaternion.identity);
+        */
     }
 
     void SpawnMap(Vector3 position)

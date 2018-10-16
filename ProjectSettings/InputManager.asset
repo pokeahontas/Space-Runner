@@ -44,14 +44,14 @@ InputManager:
     negativeButton: 
     positiveButton: 
     altNegativeButton: 
-    altPositiveButton: joystick button 10
+    altPositiveButton: joystick 1 button 10
     gravity: 0
-    dead: 0.001
+    dead: 0.1
     sensitivity: 1
     snap: 0
     invert: 0
     type: 2
-    axis: 9
+    axis: 2
     joyNum: 1
   - serializedVersion: 3
     m_Name: Acceleration_J2
@@ -60,14 +60,14 @@ InputManager:
     negativeButton: 
     positiveButton: 
     altNegativeButton: 
-    altPositiveButton: joystick button 10
+    altPositiveButton: joystick 2 button 10
     gravity: 0
-    dead: 0.001
+    dead: 0.1
     sensitivity: 1
     snap: 0
     invert: 0
     type: 2
-    axis: 9
+    axis: 2
     joyNum: 2
   - serializedVersion: 3
     m_Name: Submit

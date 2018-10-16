@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Movement : MonoBehaviour
 {
 
+    private Animator anim;
     public bool ship1;
     public bool ship2;
 
@@ -41,10 +42,11 @@ public class Movement : MonoBehaviour
         leben = 3;
         heartsImage.sprite = heartSprites[2];
         //hp.text = "HP: " + leben;
-        MaxSpeed = 40.0f;
+        MaxSpeed = 5.0f;
         boostAmount = 1.0f;
         hasCollide = false;
         streamParticles.Stop();
+        anim = GetComponent<Animator>();
 
     }
 
@@ -68,11 +70,13 @@ public class Movement : MonoBehaviour
             }
             if ((Input.GetAxis("Acceleration_J1") > 0) && start)
             {
+                anim.SetBool("isRunning", true);
                 Accelerate("Acceleration_J1");
             }
             else
             {
                 DeAccelerate();
+                anim.SetBool("isRunning", false);
             }
 
             if (Input.GetAxis("Gravity_J1") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start)
@@ -80,7 +84,8 @@ public class Movement : MonoBehaviour
                 onGround = false;
                 Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
-                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
+                //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, -0.5f, 1f);
+                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
             }
 
             if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start)
@@ -88,7 +93,8 @@ public class Movement : MonoBehaviour
                 onGround = false;
                 Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
-                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
+                //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, 0.5f, 1f);
+                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
             }
             /*
             if (Input.GetButton("Fire1") && hasLaser)
@@ -116,10 +122,12 @@ public class Movement : MonoBehaviour
 
             if ((Input.GetAxis("Acceleration_J2") > 0) && start)
             {
+                anim.SetBool("isRunning", true);
                 Accelerate("Acceleration_J2");
             }
             else
             {
+                anim.SetBool("isRunning", false);
                 DeAccelerate();
             }
 
@@ -128,7 +136,8 @@ public class Movement : MonoBehaviour
                 onGround = false;
                 Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
-                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, 0.7f, 1f);
+                //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, 0.5f, 1f);
+                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
             }
 
             if (Input.GetAxis("Gravity_J2") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start)
@@ -136,7 +145,8 @@ public class Movement : MonoBehaviour
                 onGround = false;
                 Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
-                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.7f, -0.7f, 1f);
+                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, -0.5f, 1f);
+                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
             }
             /*
             if (Input.GetButton("Fire2") && hasLaser)
