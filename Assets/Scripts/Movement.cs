@@ -34,6 +34,10 @@ public class Movement : MonoBehaviour
 
     public Text hp;
 
+    public GameObject spike;
+    private bool hasPike1;
+    private bool hasPike2;
+
     void Start()
     {
         //Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
@@ -47,6 +51,9 @@ public class Movement : MonoBehaviour
         hasCollide = false;
         streamParticles.Stop();
         anim = GetComponent<Animator>();
+
+        hasPike1 = false;
+        hasPike2 = false;
 
     }
 
@@ -103,12 +110,19 @@ public class Movement : MonoBehaviour
                 hasLaser = false;
             }
             */
+            /*
             if (Input.GetButton("Boost1") && boostAmount >= 1 && ship1)
             {
                 StartCoroutine(Speedboost(0.05f));
                 boostAmount = 0;
                 StartCoroutine(IncreaseValueOverTime());
                 print("boost1 "+ship1);
+            }
+            */
+            if (Input.GetButton("Boost1"))
+            {
+                //StartCoroutine(Speedboost(0.05f));
+                StartCoroutine(SetSpike(0.5f,0.05f, 1));
             }
         }
 
@@ -127,7 +141,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                anim.SetBool("isRunning", false);
+                //anim.SetBool("isRunning", false);
                 DeAccelerate();
             }
 
@@ -155,11 +169,17 @@ public class Movement : MonoBehaviour
                 hasLaser = false;
             }
             */
+            /*
             if (Input.GetButton("Boost2") && boostAmount >= 1 && ship2) 
             {
                 StartCoroutine(Speedboost(0.05f));
                 boostAmount = 0;
                 StartCoroutine(IncreaseValueOverTime());
+            }
+            */
+            if (Input.GetButton("Boost2"))
+            {
+                StartCoroutine(SetSpike(0.5f, 0.05f, 2));
             }
         }
     }
@@ -282,6 +302,19 @@ public class Movement : MonoBehaviour
                 }
             }
         }
+        else if(collision.gameObject.tag == "Top1" && hasPike1)
+        {
+            print("ship2 hit pike");
+            if (ship2)
+            {
+                if (hasCollide == false)
+                {
+                    print("ship2 hit pike");
+                    hasCollide = true;
+                    StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
+                }
+            }
+        }
         else if (collision.gameObject.tag == "Top1")
         {
             print("Top1");
@@ -292,6 +325,19 @@ public class Movement : MonoBehaviour
                     print("Top1Inner");
                     hasCollide = true;
                     StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
+                }
+            }
+        }
+        else if (collision.gameObject.tag == "Top2" && hasPike2)
+        {
+            print("ship1 hit pike");
+            if (ship1)
+            {
+                if (hasCollide == false)
+                {
+                    print("ship1 hit pike");
+                    hasCollide = true;
+                    StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
                 }
             }
         }
@@ -307,6 +353,11 @@ public class Movement : MonoBehaviour
                     StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
                 }
             }
+        }
+        else if (collision.gameObject.tag == "ColliderLeft")
+        {
+            Debug.Log("ColliderLeft!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            transform.position = new Vector3(transform.position.x + 18.5f, transform.position.y, transform.position.z);
         }
     }
 
@@ -346,6 +397,36 @@ public class Movement : MonoBehaviour
         }
         streamParticles.Stop();
         MaxSpeed -= 30;
+    }
+
+    IEnumerator SetSpike(float newSpeed, float duration, float player)
+    {
+        spike.SetActive(true);
+        if(player==1)
+        {
+            hasPike1 = true;
+        } else
+        {
+            hasPike2 = true;
+        }
+        
+        float oldSpeed = MaxSpeed;
+        while (duration > 0f)
+        {
+            MaxSpeed = newSpeed;
+            duration -= Time.deltaTime;
+            yield return new WaitForSeconds(0.2f);
+        }
+        MaxSpeed -= (newSpeed - oldSpeed);
+        spike.SetActive(false);
+        if (player == 1)
+        {
+            hasPike1 = false;
+        }
+        else
+        {
+            hasPike2 = false;
+        }
     }
 
     IEnumerator DoBlinks(float duration, float blinkTime, GameObject go)
