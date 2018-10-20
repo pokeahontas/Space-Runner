@@ -122,7 +122,12 @@ public class Movement : MonoBehaviour
             if (Input.GetButton("Boost1"))
             {
                 //StartCoroutine(Speedboost(0.05f));
+                anim.SetBool("defense", true);
                 StartCoroutine(SetSpike(0.5f,0.05f, 1));
+            }
+            else
+            {
+                anim.SetBool("defense", false);
             }
         }
 
@@ -177,9 +182,15 @@ public class Movement : MonoBehaviour
                 StartCoroutine(IncreaseValueOverTime());
             }
             */
+
             if (Input.GetButton("Boost2"))
             {
+                anim.SetBool("defense", true);
                 StartCoroutine(SetSpike(0.5f, 0.05f, 2));
+            }
+            else
+            {
+                anim.SetBool("defense", false);
             }
         }
     }
@@ -401,7 +412,8 @@ public class Movement : MonoBehaviour
 
     IEnumerator SetSpike(float newSpeed, float duration, float player)
     {
-        spike.SetActive(true);
+        
+        //spike.SetActive(true);
         if(player==1)
         {
             hasPike1 = true;
@@ -418,7 +430,7 @@ public class Movement : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         MaxSpeed -= (newSpeed - oldSpeed);
-        spike.SetActive(false);
+        //spike.SetActive(false);
         if (player == 1)
         {
             hasPike1 = false;
@@ -427,6 +439,10 @@ public class Movement : MonoBehaviour
         {
             hasPike2 = false;
         }
+        
+        
+        //anim.SetBool("defense", false);
+        
     }
 
     IEnumerator DoBlinks(float duration, float blinkTime, GameObject go)
