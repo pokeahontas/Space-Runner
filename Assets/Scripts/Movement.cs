@@ -123,11 +123,15 @@ public class Movement : MonoBehaviour
             {
                 //StartCoroutine(Speedboost(0.05f));
                 anim.SetBool("defense", true);
-                StartCoroutine(SetSpike(0.5f,0.05f, 1));
+                //StartCoroutine(SetSpike(0.5f,0.05f, 1));
+                MaxSpeed = 0.0f;
+                hasPike1 = true;
             }
             else
             {
                 anim.SetBool("defense", false);
+                MaxSpeed = 5;
+                hasPike1 = false;
             }
         }
 
@@ -186,11 +190,15 @@ public class Movement : MonoBehaviour
             if (Input.GetButton("Boost2"))
             {
                 anim.SetBool("defense", true);
-                StartCoroutine(SetSpike(0.5f, 0.05f, 2));
+                //StartCoroutine(SetSpike(0.5f, 0.05f, 2));
+                MaxSpeed = 0.0f;
+                hasPike2 = true;
             }
             else
             {
                 anim.SetBool("defense", false);
+                MaxSpeed = 5;
+                hasPike2 = false;
             }
         }
     }
@@ -367,7 +375,6 @@ public class Movement : MonoBehaviour
         }
         else if (collision.gameObject.tag == "ColliderLeft")
         {
-            Debug.Log("ColliderLeft!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             transform.position = new Vector3(transform.position.x + 18.5f, transform.position.y, transform.position.z);
         }
     }
@@ -410,40 +417,40 @@ public class Movement : MonoBehaviour
         MaxSpeed -= 30;
     }
 
-    IEnumerator SetSpike(float newSpeed, float duration, float player)
-    {
+    //IEnumerator SetSpike(float newSpeed, float duration, float player)
+    //{
         
-        //spike.SetActive(true);
-        if(player==1)
-        {
-            hasPike1 = true;
-        } else
-        {
-            hasPike2 = true;
-        }
+    //    //spike.SetActive(true);
+    //    if(player==1)
+    //    {
+    //        hasPike1 = true;
+    //    } else
+    //    {
+    //        hasPike2 = true;
+    //    }
         
-        float oldSpeed = MaxSpeed;
-        while (duration > 0f)
-        {
-            MaxSpeed = newSpeed;
-            duration -= Time.deltaTime;
-            yield return new WaitForSeconds(0.2f);
-        }
-        MaxSpeed -= (newSpeed - oldSpeed);
-        //spike.SetActive(false);
-        if (player == 1)
-        {
-            hasPike1 = false;
-        }
-        else
-        {
-            hasPike2 = false;
-        }
+    //    float oldSpeed = MaxSpeed;
+    //    while (duration > 0f)
+    //    {
+    //        MaxSpeed = newSpeed;
+    //        duration -= Time.deltaTime;
+    //        yield return new WaitForSeconds(0.2f);
+    //    }
+    //    MaxSpeed -= (newSpeed - oldSpeed);
+    //    //spike.SetActive(false);
+    //    if (player == 1)
+    //    {
+    //        hasPike1 = false;
+    //    }
+    //    else
+    //    {
+    //        hasPike2 = false;
+    //    }
         
         
-        //anim.SetBool("defense", false);
+    //    //anim.SetBool("defense", false);
         
-    }
+    //}
 
     IEnumerator DoBlinks(float duration, float blinkTime, GameObject go)
     {
