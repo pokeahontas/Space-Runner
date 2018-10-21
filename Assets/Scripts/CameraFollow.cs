@@ -8,6 +8,8 @@ public class CameraFollow : MonoBehaviour
     public GameObject ship1;
     public GameObject ship2;
 
+	
+	
     public float cameraSpeed;
 
     void Start()
