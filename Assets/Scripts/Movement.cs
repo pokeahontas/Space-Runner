@@ -122,14 +122,14 @@ public class Movement : MonoBehaviour
             if (Input.GetButton("Boost1"))
             {
                 //StartCoroutine(Speedboost(0.05f));
-                anim.SetBool("defense", true);
+                anim.SetBool("defenseON", true);
                 //StartCoroutine(SetSpike(0.5f,0.05f, 1));
                 MaxSpeed = 0.0f;
                 hasPike1 = true;
             }
             else
             {
-                anim.SetBool("defense", false);
+                anim.SetBool("defenseON", false);
                 MaxSpeed = 5;
                 hasPike1 = false;
             }
@@ -189,14 +189,14 @@ public class Movement : MonoBehaviour
 
             if (Input.GetButton("Boost2"))
             {
-                anim.SetBool("defense", true);
+                anim.SetBool("defenseON", true);
                 //StartCoroutine(SetSpike(0.5f, 0.05f, 2));
                 MaxSpeed = 0.0f;
                 hasPike2 = true;
             }
             else
             {
-                anim.SetBool("defense", false);
+                anim.SetBool("defenseON", false);
                 MaxSpeed = 5;
                 hasPike2 = false;
             }
