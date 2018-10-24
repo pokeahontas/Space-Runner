@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class Movement : MonoBehaviour
 {
 
-    public GameObject score;
+    public GameObject scoreP1;
+    public GameObject scoreP2;
+
     private Animator anim;
     public bool ship1;
     public bool ship2;
@@ -36,8 +38,8 @@ public class Movement : MonoBehaviour
     public Text hp;
 
     public GameObject spike;
-    private bool hasPike1;
-    private bool hasPike2;
+    public bool hasPike1;
+    public bool hasPike2;
 
     void Start()
     {
@@ -73,10 +75,14 @@ public class Movement : MonoBehaviour
 
         if (ship1)
         {
+            /*
             if (leben <= 0)
             {
                 SceneManager.LoadScene("P2Won");
             }
+            */
+            
+
             if ((Input.GetAxis("Acceleration_J1") > 0) && start)
             {
                 anim.SetBool("isRunning", true);
@@ -140,10 +146,12 @@ public class Movement : MonoBehaviour
 
         if (ship2)
         {
+            /*
             if (leben <= 0)
             {
                 SceneManager.LoadScene("P1Won");
             }
+            */
 
             if ((Input.GetAxis("Acceleration_J2") > 0) && start)
             {
@@ -245,7 +253,97 @@ public class Movement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Speedboost")
+        if (collision.gameObject.tag == "Top1" && collision.gameObject.GetComponentInParent<Movement>().hasPike1)
+        {
+            print("ship2 hit pike");
+            if (ship2)
+            {
+                if (hasCollide == false)
+                {
+                    print("ship2 hit pike");
+                    hasCollide = true;
+                    scoreP2.GetComponent<Score>().dec(5);
+                    StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
+                }
+            }
+        }
+        else if (collision.gameObject.tag == "Top1")
+        {
+            print("Top1");
+            if (ship2)
+            {
+                if (hasCollide == false)
+                {
+                    print("Top1Inner");
+                    hasCollide = true;
+                    int temp = scoreP1.GetComponent<Score>().score;
+                    if (temp < 5)
+                    {
+                        scoreP2.GetComponent<Score>().inc(temp);
+                        scoreP1.GetComponent<Score>().dec(temp);
+                    }
+                    else
+                    {
+                        scoreP2.GetComponent<Score>().inc(5);
+                        scoreP1.GetComponent<Score>().dec(5);
+                    }
+                    StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
+                }
+            }
+        }
+        else if (collision.gameObject.tag == "Top2" && collision.gameObject.GetComponentInParent<Movement>().hasPike2)
+        {
+            print("ship1 hit pike");
+            if (ship1)
+            {
+                if (hasCollide == false)
+                {
+                    print("ship1 hit pike");
+                    hasCollide = true;
+                    scoreP1.GetComponent<Score>().dec(5);
+                    StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
+                }
+            }
+        }
+        else if (collision.gameObject.tag == "Top2")
+        {
+            print("Top2");
+            if (ship1)
+            {
+                if (hasCollide == false)
+                {
+                    print("Top2Inner");
+                    hasCollide = true;
+                    int temp = (int)scoreP2.GetComponent<Score>().score;
+                    if (temp < 5)
+                    {
+                        scoreP1.GetComponent<Score>().inc(temp);
+                        scoreP2.GetComponent<Score>().dec(temp);
+                    }
+                    else
+                    {
+                        scoreP1.GetComponent<Score>().inc(5);
+                        scoreP2.GetComponent<Score>().dec(5);
+                    }
+                    StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
+                }
+            }
+        }
+        else if (collision.gameObject.tag == "collectible")
+        {
+            if (ship1)
+            {
+                scoreP1.GetComponent<Score>().inc(1);
+            }
+            else
+            {
+                scoreP2.GetComponent<Score>().inc(1);
+            }
+            Destroy(collision.gameObject);
+        }
+
+        /*
+        else if (collision.gameObject.tag == "Speedboost")
         {
             Debug.Log("Speedboost");
             StartCoroutine(ChangeSpeedOverTime(70, 0.1f));
@@ -323,67 +421,11 @@ public class Movement : MonoBehaviour
                 }
             }
         }
-        else if(collision.gameObject.tag == "Top1" && hasPike1)
-        {
-            print("ship2 hit pike");
-            if (ship2)
-            {
-                if (hasCollide == false)
-                {
-                    print("ship2 hit pike");
-                    hasCollide = true;
-                    StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
-                }
-            }
-        }
-        else if (collision.gameObject.tag == "Top1")
-        {
-            print("Top1");
-            if (ship2)
-            {
-                if (hasCollide == false)
-                {
-                    print("Top1Inner");
-                    hasCollide = true;
-                    StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
-                }
-            }
-        }
-        else if (collision.gameObject.tag == "Top2" && hasPike2)
-        {
-            print("ship1 hit pike");
-            if (ship1)
-            {
-                if (hasCollide == false)
-                {
-                    print("ship1 hit pike");
-                    hasCollide = true;
-                    StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
-                }
-            }
-        }
-        else if (collision.gameObject.tag == "Top2")
-        {
-            print("Top2");
-            if (ship1)
-            {
-                if (hasCollide == false)
-                {
-                    print("Top2Inner"); 
-                    hasCollide = true;
-                    StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
-                }
-            }
-        }
         else if (collision.gameObject.tag == "ColliderLeft")
         {
             transform.position = new Vector3(transform.position.x + 18.5f, transform.position.y, transform.position.z);
         }
-        else if (collision.gameObject.tag == "collectible")
-        {
-            score.GetComponent<Score>().inc(1);
-            Destroy(collision.gameObject);
-        }
+        */
     }
 
     IEnumerator ChangeSpeedOverTime(float newSpeed, float duration)

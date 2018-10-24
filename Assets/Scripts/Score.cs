@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Score : MonoBehaviour {
 
@@ -8,7 +9,10 @@ public class Score : MonoBehaviour {
     public Transform[] field;
     GameObject[] activeObj;
 
-    int score = 0;
+    public bool ship1;
+    public bool ship2;
+
+    public int score = 0;
 	// Use this for initialization
 	void Start () {
         activeObj = new GameObject[field.Length];
@@ -43,7 +47,16 @@ public class Score : MonoBehaviour {
         {
             score -= value;
         }
+        else
+        {
+            score = 0;
+        }
         setVal(score);
+    }
+
+    public int getScore()
+    {
+        return score;
     }
 
     void clear()
@@ -63,6 +76,17 @@ public class Score : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (score >= 15)
+        {
+            if (ship1)
+            {
+                SceneManager.LoadScene("P1Won");
+            }
+            else
+            {
+                SceneManager.LoadScene("P2Won");
+            }
+            
+        }
+    }
 }

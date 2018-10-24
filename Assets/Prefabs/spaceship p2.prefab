@@ -422,6 +422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5d7398596f6cf458af0806cd924a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreP1: {fileID: 0}
+  scoreP2: {fileID: 0}
   ship1: 0
   ship2: 1
   Speed: 0
