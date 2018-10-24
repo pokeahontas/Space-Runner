@@ -150,7 +150,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                //anim.SetBool("isRunning", false);
+                anim.SetBool("isRunning", false);
                 DeAccelerate();
             }
 
