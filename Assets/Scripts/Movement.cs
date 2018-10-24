@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Movement : MonoBehaviour
 {
 
+    public GameObject score;
     private Animator anim;
     public bool ship1;
     public bool ship2;
@@ -54,6 +55,7 @@ public class Movement : MonoBehaviour
 
         hasPike1 = false;
         hasPike2 = false;
+        
 
     }
 
@@ -376,6 +378,11 @@ public class Movement : MonoBehaviour
         else if (collision.gameObject.tag == "ColliderLeft")
         {
             transform.position = new Vector3(transform.position.x + 18.5f, transform.position.y, transform.position.z);
+        }
+        else if (collision.gameObject.tag == "collectible")
+        {
+            score.GetComponent<Score>().inc(1);
+            Destroy(collision.gameObject);
         }
     }
 

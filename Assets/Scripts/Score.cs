@@ -26,6 +26,34 @@ public class Score : MonoBehaviour {
         }
     }
 
+    public void inc(int value)
+    {
+        clear();
+        if (score<99)
+        {
+            score += value;
+        }
+        setVal(score);
+    }
+
+    public void dec(int value)
+    {
+        clear();
+        if (score > 0 && score-value >= 0)
+        {
+            score -= value;
+        }
+        setVal(score);
+    }
+
+    void clear()
+    {
+        for (int i=0;i<field.Length;i++)
+        {
+            Destroy(activeObj[i]);
+        }
+    }
+
     void Print(int activeObj, int score, int field)
     {
         this.activeObj[activeObj] = Instantiate(this.number[score], this.field[field].position, this.field[field].rotation);
