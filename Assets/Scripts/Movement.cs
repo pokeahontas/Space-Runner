@@ -94,7 +94,7 @@ public class Movement : MonoBehaviour
                 anim.SetBool("isRunning", false);
             }
 
-            if (Input.GetAxis("Gravity_J1") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start)
+            if (Input.GetAxis("Gravity_J1") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike1)
             {
                 onGround = false;
                 Debug.Log("flipped gravity");
@@ -103,7 +103,7 @@ public class Movement : MonoBehaviour
                 GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
             }
 
-            if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start)
+            if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike1)
             {
                 onGround = false;
                 Debug.Log("normal gravity");
@@ -164,7 +164,7 @@ public class Movement : MonoBehaviour
                 DeAccelerate();
             }
 
-            if (Input.GetAxis("Gravity_J2") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start)
+            if (Input.GetAxis("Gravity_J2") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike2)
             {
                 onGround = false;
                 Debug.Log("normal gravity");
@@ -173,7 +173,7 @@ public class Movement : MonoBehaviour
                 GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
             }
 
-            if (Input.GetAxis("Gravity_J2") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start)
+            if (Input.GetAxis("Gravity_J2") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike2)
             {
                 onGround = false;
                 Debug.Log("flipped gravity");
