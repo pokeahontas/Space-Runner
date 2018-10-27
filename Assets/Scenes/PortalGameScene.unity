@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c65cc9cb032f04ab92e6ebdf8ebe1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ship1: {fileID: 0}
+  ship1: {fileID: 34427446}
   ship2: {fileID: 357756812}
   cameraSpeed: 1
 --- !u!1001 &175533597
@@ -697,6 +697,7 @@ MonoBehaviour:
   - {fileID: 175533598}
   ship1: 1
   ship2: 0
+  score: 0
 --- !u!1 &350538567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,6 +2212,7 @@ MonoBehaviour:
   - {fileID: 12906461}
   ship1: 0
   ship2: 1
+  score: 0
 --- !u!1 &1438150294
 GameObject:
   m_ObjectHideFlags: 0

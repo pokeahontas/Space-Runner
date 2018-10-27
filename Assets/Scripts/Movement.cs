@@ -63,6 +63,72 @@ public class Movement : MonoBehaviour
 
     }
 
+    void FixedUpdate()
+    {
+        if(ship1)
+        {
+            if (Input.GetAxis("Direction_J1") < -0.1f && facingRight)
+            {
+                facingRight = false;
+                if (GetComponent<Rigidbody2D>().gravityScale == 1)
+                {
+                    //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1f, 1f, 1f);
+                    StartCoroutine(LerpOverTime(0.3f, new Vector3(-1f, 1f, 1f)));
+                }
+                else
+                {
+                    //GetComponent<SpriteRenderer>().transform.localScale =  new Vector3(-1f, -1f, 1f);
+                    StartCoroutine(LerpOverTime(0.3f, new Vector3(-1f, -1f, 1f)));
+                }
+            }
+            if (Input.GetAxis("Direction_J1") > 0.1f && !facingRight)
+            {
+                facingRight = true;
+                if (GetComponent<Rigidbody2D>().gravityScale == 1)
+                {
+                    //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
+                    StartCoroutine(LerpOverTime(0.3f, new Vector3(1f, 1f, 1f)));
+                }
+                else
+                {
+                    //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
+                    StartCoroutine(LerpOverTime(0.3f, new Vector3(1f, -1f, 1f)));
+                }
+            }
+        }
+        if(ship2)
+        {
+            if (Input.GetAxis("Direction_J2") < -0.1f && facingRight)
+            {
+                facingRight = false;
+                if (GetComponent<Rigidbody2D>().gravityScale == 1)
+                {
+                    //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1f, 1f, 1f);
+                    StartCoroutine(LerpOverTime(0.3f, new Vector3(-1f, 1f, 1f)));
+                }
+                else
+                {
+                    //GetComponent<SpriteRenderer>().transform.localScale =  new Vector3(-1f, -1f, 1f);
+                    StartCoroutine(LerpOverTime(0.3f, new Vector3(-1f, -1f, 1f)));
+                }
+            }
+            if (Input.GetAxis("Direction_J2") > 0.1f && !facingRight)
+            {
+                facingRight = true;
+                if (GetComponent<Rigidbody2D>().gravityScale == 1)
+                {
+                    //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
+                    StartCoroutine(LerpOverTime(0.3f, new Vector3(1f, 1f, 1f)));
+                }
+                else
+                {
+                    //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
+                    StartCoroutine(LerpOverTime(0.3f, new Vector3(1f, -1f, 1f)));
+                }
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -118,34 +184,7 @@ public class Movement : MonoBehaviour
                 //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, 0.5f, 1f);
                 GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
             }
-            if(Input.GetAxis("Direction_J1") < -0.1f && facingRight)
-            {
-                facingRight = false;
-                if(GetComponent<Rigidbody2D>().gravityScale == 1)
-                {
-                    GetComponent<SpriteRenderer>().transform.localScale = 
-                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(-1f, 1f, 1f), 2.0f * Time.deltaTime);
-                }
-                else
-                {
-                    GetComponent<SpriteRenderer>().transform.localScale = 
-                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(-1f, -1f, 1f), 2.0f * Time.deltaTime);
-                }
-            }
-            if (Input.GetAxis("Direction_J1") > 0.1f && !facingRight)
-            {
-                facingRight = true;
-                if (GetComponent<Rigidbody2D>().gravityScale == 1)
-                {
-                    GetComponent<SpriteRenderer>().transform.localScale = 
-                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(1f, 1f, 1f), 2.0f * Time.deltaTime);
-                }
-                else
-                {
-                    GetComponent<SpriteRenderer>().transform.localScale = 
-                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(1f, -1f, 1f), 2.0f * Time.deltaTime);
-                }
-            }
+            
             /*
             if (Input.GetButton("Fire1") && hasLaser)
             {
@@ -217,34 +256,7 @@ public class Movement : MonoBehaviour
                 GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
             }
 
-            if (Input.GetAxis("Direction_J2") < -0.1f && facingRight)
-            {
-                facingRight = false;
-                if (GetComponent<Rigidbody2D>().gravityScale == 1)
-                {
-                    GetComponent<SpriteRenderer>().transform.localScale =
-                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(-1f, 1f, 1f), 2.0f * Time.deltaTime);
-                }
-                else
-                {
-                    GetComponent<SpriteRenderer>().transform.localScale =
-                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(-1f, -1f, 1f), 2.0f * Time.deltaTime);
-                }
-            }
-            if (Input.GetAxis("Direction_J2") > 0.1f && !facingRight)
-            {
-                facingRight = true;
-                if (GetComponent<Rigidbody2D>().gravityScale == 1)
-                {
-                    GetComponent<SpriteRenderer>().transform.localScale =
-                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(1f, 1f, 1f), 2.0f * Time.deltaTime);
-                }
-                else
-                {
-                    GetComponent<SpriteRenderer>().transform.localScale =
-                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(1f, -1f, 1f), 2.0f * Time.deltaTime);
-                }
-            }
+            
             /*
             if (Input.GetButton("Fire2") && hasLaser)
             {
@@ -530,40 +542,33 @@ public class Movement : MonoBehaviour
         MaxSpeed -= 30;
     }
 
-    //IEnumerator SetSpike(float newSpeed, float duration, float player)
-    //{
+    IEnumerator LerpOverTime(float duration, Vector3 targetScale)
+    {
+        Vector3 actualScale = GetComponent<SpriteRenderer>().transform.localScale;             // scale of the object at the begining of the animation
         
-    //    //spike.SetActive(true);
-    //    if(player==1)
-    //    {
-    //        hasPike1 = true;
-    //    } else
-    //    {
-    //        hasPike2 = true;
-    //    }
-        
-    //    float oldSpeed = MaxSpeed;
-    //    while (duration > 0f)
-    //    {
-    //        MaxSpeed = newSpeed;
-    //        duration -= Time.deltaTime;
-    //        yield return new WaitForSeconds(0.2f);
-    //    }
-    //    MaxSpeed -= (newSpeed - oldSpeed);
-    //    //spike.SetActive(false);
-    //    if (player == 1)
-    //    {
-    //        hasPike1 = false;
-    //    }
-    //    else
-    //    {
-    //        hasPike2 = false;
-    //    }
-        
-        
-    //    //anim.SetBool("defense", false);
-        
-    //}
+        //Vector3 targetScale = new Vector3(0.5f, 0.5f, 0.5f);     // scale of the object at the end of the animation
+        print(GetComponent<SpriteRenderer>().transform.localScale);
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / duration)
+        {
+            //print("t: "+t);
+            //print("Delta: "+Time.deltaTime);
+            //print("localScale: "+GetComponent<SpriteRenderer>().transform.localScale);
+            
+            if(t > 0.35f && t < 0.65f)
+            {
+                t = 0.65f; 
+            }
+
+            GetComponent<SpriteRenderer>().transform.localScale = Vector3.Lerp(actualScale, targetScale, t);
+            
+            yield return null;
+        }
+
+        if(actualScale.x != targetScale.x)
+        {
+            GetComponent<SpriteRenderer>().transform.localScale = targetScale;
+        }
+    }
 
     IEnumerator DoBlinks(float duration, float blinkTime, GameObject go)
     {
