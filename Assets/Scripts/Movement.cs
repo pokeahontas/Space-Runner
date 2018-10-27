@@ -40,6 +40,7 @@ public class Movement : MonoBehaviour
     public GameObject spike;
     public bool hasPike1;
     public bool hasPike2;
+    public bool facingRight;
 
     void Start()
     {
@@ -57,6 +58,7 @@ public class Movement : MonoBehaviour
 
         hasPike1 = false;
         hasPike2 = false;
+        facingRight = true;
         
 
     }
@@ -69,8 +71,13 @@ public class Movement : MonoBehaviour
             }
         //hp.text = "HP: " + leben;
         boostBar.fillAmount = this.boostAmount;
-        transform.Translate(Speed * Time.deltaTime, 0, 0);
-
+        if (facingRight)
+        {
+            transform.Translate(Speed * Time.deltaTime, 0, 0);
+        } else
+        {
+            transform.Translate(-Speed * Time.deltaTime, 0, 0);
+        }
         //print(Speed);
 
         if (ship1)
@@ -110,6 +117,34 @@ public class Movement : MonoBehaviour
                 GetComponent<Rigidbody2D>().gravityScale = 1;
                 //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, 0.5f, 1f);
                 GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+            if(Input.GetAxis("Direction_J1") < -0.1f && facingRight)
+            {
+                facingRight = false;
+                if(GetComponent<Rigidbody2D>().gravityScale == 1)
+                {
+                    GetComponent<SpriteRenderer>().transform.localScale = 
+                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(-1f, 1f, 1f), 2.0f * Time.deltaTime);
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().transform.localScale = 
+                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(-1f, -1f, 1f), 2.0f * Time.deltaTime);
+                }
+            }
+            if (Input.GetAxis("Direction_J1") > 0.1f && !facingRight)
+            {
+                facingRight = true;
+                if (GetComponent<Rigidbody2D>().gravityScale == 1)
+                {
+                    GetComponent<SpriteRenderer>().transform.localScale = 
+                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(1f, 1f, 1f), 2.0f * Time.deltaTime);
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().transform.localScale = 
+                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(1f, -1f, 1f), 2.0f * Time.deltaTime);
+                }
             }
             /*
             if (Input.GetButton("Fire1") && hasLaser)
@@ -180,6 +215,35 @@ public class Movement : MonoBehaviour
                 GetComponent<Rigidbody2D>().gravityScale = 1;
                 GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, -0.5f, 1f);
                 GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
+            }
+
+            if (Input.GetAxis("Direction_J2") < -0.1f && facingRight)
+            {
+                facingRight = false;
+                if (GetComponent<Rigidbody2D>().gravityScale == 1)
+                {
+                    GetComponent<SpriteRenderer>().transform.localScale =
+                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(-1f, 1f, 1f), 2.0f * Time.deltaTime);
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().transform.localScale =
+                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(-1f, -1f, 1f), 2.0f * Time.deltaTime);
+                }
+            }
+            if (Input.GetAxis("Direction_J2") > 0.1f && !facingRight)
+            {
+                facingRight = true;
+                if (GetComponent<Rigidbody2D>().gravityScale == 1)
+                {
+                    GetComponent<SpriteRenderer>().transform.localScale =
+                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(1f, 1f, 1f), 2.0f * Time.deltaTime);
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().transform.localScale =
+                        Vector3.Lerp(GetComponent<SpriteRenderer>().transform.localScale, new Vector3(1f, -1f, 1f), 2.0f * Time.deltaTime);
+                }
             }
             /*
             if (Input.GetButton("Fire2") && hasLaser)
