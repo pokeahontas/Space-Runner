@@ -43,6 +43,9 @@ public class Movement : MonoBehaviour
     public bool facingRight;
     public bool hasTurnedAround;
 
+    public GameObject colliderLeft;
+    public GameObject goRight;
+
     void Start()
     {
         //Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
@@ -67,12 +70,17 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
+        //if(transform.position.x < colliderLeft.transform.position.x + 2.0f)
+        //{
+        //    colliderLeft.GetComponent<BoxCollider2D>().enabled = false;
+        //} 
+        //else
+        //{
+        //    colliderLeft.GetComponent<BoxCollider2D>().enabled = true;
+        //}
+
         if(ship1)
         {
-            print("FACINGRIGHT: " + facingRight);
-            print("Grav: "+GetComponent<Rigidbody2D>().gravityScale);
-            print("localScale: " + GetComponent<SpriteRenderer>().transform.localScale);
-
             if (Input.GetAxis("Direction_J1") < -0.1f && facingRight && onGround && !hasPike1)
             {
                 facingRight = false;
@@ -529,11 +537,12 @@ public class Movement : MonoBehaviour
                 }
             }
         }
+        */
         else if (collision.gameObject.tag == "ColliderLeft")
         {
-            transform.position = new Vector3(transform.position.x + 18.5f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(goRight.transform.position.x - 1.0f, transform.position.y, transform.position.z);   
         }
-        */
+        
     }
 
     IEnumerator ChangeSpeedOverTime(float newSpeed, float duration)
