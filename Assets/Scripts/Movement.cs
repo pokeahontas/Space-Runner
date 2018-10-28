@@ -540,7 +540,28 @@ public class Movement : MonoBehaviour
         */
         else if (collision.gameObject.tag == "ColliderLeft")
         {
-            transform.position = new Vector3(goRight.transform.position.x - 1.0f, transform.position.y, transform.position.z);   
+
+            Vector3 spawnPos = new Vector3(goRight.transform.position.x - 1.0f, transform.position.y, transform.position.z);
+            Vector3 beforeSpawnPos = new Vector3(goRight.transform.position.x - 4.0f, transform.position.y, transform.position.z);
+            RaycastHit2D rayCastHit = Physics2D.Linecast(beforeSpawnPos, spawnPos);
+
+            if(rayCastHit.collider != null)
+            {
+                if(rayCastHit.distance < 3)
+                {
+                    transform.position = new Vector3(goRight.transform.position.x - 1.0f, goRight.transform.position.y, transform.position.z);
+                } 
+                else
+                {
+                    transform.position = new Vector3(goRight.transform.position.x - 1.0f, transform.position.y, transform.position.z);
+                }
+            } 
+            else
+            {
+                transform.position = new Vector3(goRight.transform.position.x - 1.0f, transform.position.y, transform.position.z);
+            }
+
+            //transform.position = new Vector3(goRight.transform.position.x - 1.0f, transform.position.y, transform.position.z);   
         }
         
     }
