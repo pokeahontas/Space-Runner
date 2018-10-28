@@ -41,6 +41,7 @@ public class Movement : MonoBehaviour
     public bool hasPike1;
     public bool hasPike2;
     public bool facingRight;
+    public bool hasTurnedAround;
 
     void Start()
     {
@@ -59,6 +60,7 @@ public class Movement : MonoBehaviour
         hasPike1 = false;
         hasPike2 = false;
         facingRight = true;
+        hasTurnedAround = true;
         
 
     }
@@ -67,63 +69,67 @@ public class Movement : MonoBehaviour
     {
         if(ship1)
         {
-            if (Input.GetAxis("Direction_J1") < -0.1f && facingRight)
+            print("FACINGRIGHT: " + facingRight);
+            print("Grav: "+GetComponent<Rigidbody2D>().gravityScale);
+            print("localScale: " + GetComponent<SpriteRenderer>().transform.localScale);
+
+            if (Input.GetAxis("Direction_J1") < -0.1f && facingRight && onGround && !hasPike1)
             {
                 facingRight = false;
                 if (GetComponent<Rigidbody2D>().gravityScale == 1)
                 {
                     //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1f, 1f, 1f);
-                    StartCoroutine(LerpOverTime(0.3f, new Vector3(-1f, 1f, 1f)));
+                    StartCoroutine(LerpOverTime(0.1f, new Vector3(-1f, 1f, 1f)));
                 }
                 else
                 {
                     //GetComponent<SpriteRenderer>().transform.localScale =  new Vector3(-1f, -1f, 1f);
-                    StartCoroutine(LerpOverTime(0.3f, new Vector3(-1f, -1f, 1f)));
+                    StartCoroutine(LerpOverTime(0.1f, new Vector3(-1f, -1f, 1f)));
                 }
             }
-            if (Input.GetAxis("Direction_J1") > 0.1f && !facingRight)
+            if (Input.GetAxis("Direction_J1") > 0.1f && !facingRight && onGround && !hasPike1)
             {
                 facingRight = true;
                 if (GetComponent<Rigidbody2D>().gravityScale == 1)
                 {
                     //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
-                    StartCoroutine(LerpOverTime(0.3f, new Vector3(1f, 1f, 1f)));
+                    StartCoroutine(LerpOverTime(0.1f, new Vector3(1f, 1f, 1f)));
                 }
                 else
                 {
                     //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
-                    StartCoroutine(LerpOverTime(0.3f, new Vector3(1f, -1f, 1f)));
+                    StartCoroutine(LerpOverTime(0.1f, new Vector3(1f, -1f, 1f)));
                 }
             }
         }
         if(ship2)
         {
-            if (Input.GetAxis("Direction_J2") < -0.1f && facingRight)
+            if (Input.GetAxis("Direction_J2") < -0.1f && facingRight && onGround && !hasPike2)
             {
                 facingRight = false;
                 if (GetComponent<Rigidbody2D>().gravityScale == 1)
                 {
                     //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1f, 1f, 1f);
-                    StartCoroutine(LerpOverTime(0.3f, new Vector3(-1f, 1f, 1f)));
+                    StartCoroutine(LerpOverTime(0.1f, new Vector3(-1f, -1f, 1f)));
                 }
                 else
                 {
                     //GetComponent<SpriteRenderer>().transform.localScale =  new Vector3(-1f, -1f, 1f);
-                    StartCoroutine(LerpOverTime(0.3f, new Vector3(-1f, -1f, 1f)));
+                    StartCoroutine(LerpOverTime(0.1f, new Vector3(-1f, 1f, 1f)));
                 }
             }
-            if (Input.GetAxis("Direction_J2") > 0.1f && !facingRight)
+            if (Input.GetAxis("Direction_J2") > 0.1f && !facingRight && onGround && !hasPike2)
             {
                 facingRight = true;
                 if (GetComponent<Rigidbody2D>().gravityScale == 1)
                 {
                     //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
-                    StartCoroutine(LerpOverTime(0.3f, new Vector3(1f, 1f, 1f)));
+                    StartCoroutine(LerpOverTime(0.1f, new Vector3(1f, -1f, 1f)));
                 }
                 else
                 {
                     //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
-                    StartCoroutine(LerpOverTime(0.3f, new Vector3(1f, -1f, 1f)));
+                    StartCoroutine(LerpOverTime(0.1f, new Vector3(1f, 1f, 1f)));
                 }
             }
         }
@@ -167,22 +173,35 @@ public class Movement : MonoBehaviour
                 anim.SetBool("isRunning", false);
             }
 
-            if (Input.GetAxis("Gravity_J1") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike1)
+            if (Input.GetAxis("Gravity_J1") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike1 && hasTurnedAround)
             {
                 onGround = false;
                 Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
                 //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, -0.5f, 1f);
-                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
+                if (facingRight)
+                {
+                    GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
+                } 
+                else
+                {
+                    GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1f, -1f, 1f);
+                }
             }
 
-            if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike1)
+            if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike1 && hasTurnedAround)
             {
                 onGround = false;
                 Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
                 //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, 0.5f, 1f);
-                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
+                if (facingRight) {
+                    GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1f, 1f, 1f);
+                }
             }
             
             /*
@@ -238,22 +257,35 @@ public class Movement : MonoBehaviour
                 DeAccelerate();
             }
 
-            if (Input.GetAxis("Gravity_J2") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike2)
+            if (Input.GetAxis("Gravity_J2") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike2 && hasTurnedAround)
             {
                 onGround = false;
                 Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
                 //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, 0.5f, 1f);
-                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
+                if (facingRight)
+                {
+                    GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
+                } 
+                else
+                {
+                    GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1f, 1f, 1f);
+                }
             }
 
-            if (Input.GetAxis("Gravity_J2") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike2)
+            if (Input.GetAxis("Gravity_J2") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike2 && hasTurnedAround)
             {
                 onGround = false;
                 Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
-                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, -0.5f, 1f);
-                GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
+                //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, -0.5f, 1f);
+                if (facingRight) {
+                    GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1f, -1f, 1f);
+                }
             }
 
             
@@ -545,7 +577,7 @@ public class Movement : MonoBehaviour
     IEnumerator LerpOverTime(float duration, Vector3 targetScale)
     {
         Vector3 actualScale = GetComponent<SpriteRenderer>().transform.localScale;             // scale of the object at the begining of the animation
-        
+        hasTurnedAround = false;
         //Vector3 targetScale = new Vector3(0.5f, 0.5f, 0.5f);     // scale of the object at the end of the animation
         print(GetComponent<SpriteRenderer>().transform.localScale);
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / duration)
@@ -564,10 +596,13 @@ public class Movement : MonoBehaviour
             yield return null;
         }
 
+
         if(actualScale.x != targetScale.x)
         {
             GetComponent<SpriteRenderer>().transform.localScale = targetScale;
         }
+
+        hasTurnedAround = true;
     }
 
     IEnumerator DoBlinks(float duration, float blinkTime, GameObject go)
