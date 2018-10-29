@@ -122,7 +122,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1199481448120740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.32, y: -0.19, z: -0}
+  m_LocalPosition: {x: 0, y: 0.3, z: -0}
   m_LocalScale: {x: 1.2, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4755185025920926}
@@ -186,7 +186,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1785495275612462}
-  m_LocalRotation: {x: -1, y: 0, z: -0.00000028088027, w: 0}
+  m_LocalRotation: {x: -1, y: -0, z: -0.00000028088027, w: 0}
   m_LocalPosition: {x: -4, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -248,9 +248,9 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 1}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.66, y: 0.92}
-    newSize: {x: 4.77, y: 1.81}
+    newSize: {x: 0.92, y: 0.69}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -327,18 +327,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.33, y: -0.46}
+  m_Offset: {x: -0.006133795, y: -0.0016360283}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 1}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.66, y: 0.92}
-    newSize: {x: 4.77, y: 1.81}
+    newSize: {x: 0.92, y: 0.69}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.66, y: 0.92}
+  m_Size: {x: 0.6655555, y: 0.9255562}
   m_EdgeRadius: 0
 --- !u!70 &70664134486886634
 CapsuleCollider2D:
@@ -424,6 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreP1: {fileID: 0}
   scoreP2: {fileID: 0}
+  portal: {fileID: 1115404514765902, guid: 3b05c4a696b060b40a68e8bd0ee4a010, type: 2}
   ship1: 0
   ship2: 1
   Speed: 0
@@ -442,6 +443,12 @@ MonoBehaviour:
   streamParticles: {fileID: 198554193641844118}
   hp: {fileID: 0}
   spike: {fileID: 1592247002610298}
+  hasPike1: 0
+  hasPike2: 0
+  facingRight: 1
+  hasTurnedAround: 0
+  colliderLeft: {fileID: 0}
+  goRight: {fileID: 0}
 --- !u!198 &198554193641844118
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -5072,7 +5079,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.77, y: 1.81}
+  m_Size: {x: 0.92, y: 0.69}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

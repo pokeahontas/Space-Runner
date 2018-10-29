@@ -83,7 +83,7 @@ public class Movement : MonoBehaviour
 
         if(ship1)
         {
-            if (Input.GetAxis("Direction_J1") < -0.1f && facingRight && onGround && !hasPike1)
+            if (Input.GetAxis("Direction_J1") < -0.1f && facingRight && onGround && !hasPike1 && !anim.GetBool("damage"))
             {
                 facingRight = false;
                 if (GetComponent<Rigidbody2D>().gravityScale == 1)
@@ -95,7 +95,7 @@ public class Movement : MonoBehaviour
                     StartCoroutine(LerpOverTime(0.1f, new Vector3(-1f, -1f, 1f))); //GetComponent<SpriteRenderer>().transform.localScale =  new Vector3(-1f, -1f, 1f);
                 }
             }
-            if (Input.GetAxis("Direction_J1") > 0.1f && !facingRight && onGround && !hasPike1)
+            if (Input.GetAxis("Direction_J1") > 0.1f && !facingRight && onGround && !hasPike1 && !anim.GetBool("damage"))
             {
                 facingRight = true;
                 if (GetComponent<Rigidbody2D>().gravityScale == 1)
@@ -110,7 +110,7 @@ public class Movement : MonoBehaviour
         }
         if(ship2)
         {
-            if (Input.GetAxis("Direction_J2") < -0.1f && facingRight && onGround && !hasPike2)
+            if (Input.GetAxis("Direction_J2") < -0.1f && facingRight && onGround && !hasPike2 && !anim.GetBool("damage"))
             {
                 facingRight = false;
                 if (GetComponent<Rigidbody2D>().gravityScale == 1)
@@ -124,7 +124,7 @@ public class Movement : MonoBehaviour
                     StartCoroutine(LerpOverTime(0.1f, new Vector3(-1f, 1f, 1f)));
                 }
             }
-            if (Input.GetAxis("Direction_J2") > 0.1f && !facingRight && onGround && !hasPike2)
+            if (Input.GetAxis("Direction_J2") > 0.1f && !facingRight && onGround && !hasPike2 && !anim.GetBool("damage"))
             {
                 facingRight = true;
                 if (GetComponent<Rigidbody2D>().gravityScale == 1)
@@ -168,7 +168,7 @@ public class Movement : MonoBehaviour
             */
             
 
-            if ((Input.GetAxis("Acceleration_J1") > 0) && start)
+            if ((Input.GetAxis("Acceleration_J1") > 0) && start && !anim.GetBool("damage"))
             {
                 anim.SetBool("isRunning", true);
                 Accelerate("Acceleration_J1");
@@ -179,7 +179,7 @@ public class Movement : MonoBehaviour
                 anim.SetBool("isRunning", false);
             }
 
-            if (Input.GetAxis("Gravity_J1") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike1 && hasTurnedAround)
+            if (Input.GetAxis("Gravity_J1") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike1 && hasTurnedAround && !anim.GetBool("damage"))
             {
                 onGround = false;
                 Debug.Log("flipped gravity");
@@ -195,7 +195,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike1 && hasTurnedAround)
+            if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike1 && hasTurnedAround && !anim.GetBool("damage"))
             {
                 onGround = false;
                 Debug.Log("normal gravity");
@@ -226,7 +226,7 @@ public class Movement : MonoBehaviour
                 print("boost1 "+ship1);
             }
             */
-            if (Input.GetButton("Boost1"))
+            if (Input.GetButton("Boost1") && !anim.GetBool("damage"))
             {
                 //StartCoroutine(Speedboost(0.05f));
                 anim.SetBool("defenseON", true);
@@ -252,7 +252,7 @@ public class Movement : MonoBehaviour
             }
             */
 
-            if ((Input.GetAxis("Acceleration_J2") > 0) && start)
+            if ((Input.GetAxis("Acceleration_J2") > 0) && start && !anim.GetBool("damage"))
             {
                 anim.SetBool("isRunning", true);
                 Accelerate("Acceleration_J2");
@@ -263,7 +263,7 @@ public class Movement : MonoBehaviour
                 DeAccelerate();
             }
 
-            if (Input.GetAxis("Gravity_J2") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike2 && hasTurnedAround)
+            if (Input.GetAxis("Gravity_J2") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))
             {
                 onGround = false;
                 Debug.Log("normal gravity");
@@ -279,7 +279,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            if (Input.GetAxis("Gravity_J2") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike2 && hasTurnedAround)
+            if (Input.GetAxis("Gravity_J2") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))
             {
                 onGround = false;
                 Debug.Log("flipped gravity");
@@ -311,7 +311,7 @@ public class Movement : MonoBehaviour
             }
             */
 
-            if (Input.GetButton("Boost2"))
+            if (Input.GetButton("Boost2") && !anim.GetBool("damage"))
             {
                 anim.SetBool("defenseON", true);
                 //StartCoroutine(SetSpike(0.5f, 0.05f, 2));
