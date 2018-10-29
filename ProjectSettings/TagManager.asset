@@ -21,6 +21,8 @@ TagManager:
   - ColliderLeft
   - ColliderRight
   - collectible
+  - ColliderUp
+  - ColliderDown
   layers:
   - Default
   - TransparentFX

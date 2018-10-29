@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour
     public GameObject scoreP1;
     public GameObject scoreP2;
 
+    public GameObject portal;
+
     private Animator anim;
     public bool ship1;
     public bool ship2;
@@ -86,13 +88,11 @@ public class Movement : MonoBehaviour
                 facingRight = false;
                 if (GetComponent<Rigidbody2D>().gravityScale == 1)
                 {
-                    //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1f, 1f, 1f);
-                    StartCoroutine(LerpOverTime(0.1f, new Vector3(-1f, 1f, 1f)));
+                    StartCoroutine(LerpOverTime(0.1f, new Vector3(-1f, 1f, 1f))); //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1f, 1f, 1f);
                 }
                 else
                 {
-                    //GetComponent<SpriteRenderer>().transform.localScale =  new Vector3(-1f, -1f, 1f);
-                    StartCoroutine(LerpOverTime(0.1f, new Vector3(-1f, -1f, 1f)));
+                    StartCoroutine(LerpOverTime(0.1f, new Vector3(-1f, -1f, 1f))); //GetComponent<SpriteRenderer>().transform.localScale =  new Vector3(-1f, -1f, 1f);
                 }
             }
             if (Input.GetAxis("Direction_J1") > 0.1f && !facingRight && onGround && !hasPike1)
@@ -100,13 +100,11 @@ public class Movement : MonoBehaviour
                 facingRight = true;
                 if (GetComponent<Rigidbody2D>().gravityScale == 1)
                 {
-                    //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
-                    StartCoroutine(LerpOverTime(0.1f, new Vector3(1f, 1f, 1f)));
+                    StartCoroutine(LerpOverTime(0.1f, new Vector3(1f, 1f, 1f))); //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
                 }
                 else
-                {
-                    //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
-                    StartCoroutine(LerpOverTime(0.1f, new Vector3(1f, -1f, 1f)));
+                { 
+                    StartCoroutine(LerpOverTime(0.1f, new Vector3(1f, -1f, 1f))); //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
                 }
             }
         }
@@ -458,6 +456,17 @@ public class Movement : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
+        else if (collision.gameObject.tag == "ColliderLeft")
+        {
+            newSpawn(false);
+            
+        }
+
+        else if (collision.gameObject.tag == "ColliderUp" || collision.gameObject.tag == "ColliderDown")
+        {
+            newSpawn(true);
+        }
+
         /*
         else if (collision.gameObject.tag == "Speedboost")
         {
@@ -538,32 +547,39 @@ public class Movement : MonoBehaviour
             }
         }
         */
-        else if (collision.gameObject.tag == "ColliderLeft")
+
+
+    }
+
+    void newSpawn(bool dmg)
+    {
+        Vector3 spawnPos = new Vector3(goRight.transform.position.x-4.0f, goRight.transform.position.y, transform.position.z);
+        Vector3 beforeSpawnPos = new Vector3(goRight.transform.position.x-4.0f + 2.0f, goRight.transform.position.y, transform.position.z);
+        //Vector3 beforeSpawnPos = new Vector3(goRight.transform.position.x - 4.0f, transform.position.y, transform.position.z);
+        RaycastHit2D rayCastHit = Physics2D.Linecast(beforeSpawnPos, spawnPos);
+
+        if (rayCastHit.collider != null)
         {
-
-            Vector3 spawnPos = new Vector3(goRight.transform.position.x - 1.0f, transform.position.y, transform.position.z);
-            Vector3 beforeSpawnPos = new Vector3(goRight.transform.position.x - 4.0f, transform.position.y, transform.position.z);
-            RaycastHit2D rayCastHit = Physics2D.Linecast(beforeSpawnPos, spawnPos);
-
-            if(rayCastHit.collider != null)
+            if (rayCastHit.distance < 2)
             {
-                if(rayCastHit.distance < 3)
-                {
-                    transform.position = new Vector3(goRight.transform.position.x - 1.0f, goRight.transform.position.y, transform.position.z);
-                } 
-                else
-                {
-                    transform.position = new Vector3(goRight.transform.position.x - 1.0f, transform.position.y, transform.position.z);
-                }
-            } 
+                transform.position = new Vector3(goRight.transform.position.x + 1.0f, goRight.transform.position.y, transform.position.z);
+            }
             else
             {
-                transform.position = new Vector3(goRight.transform.position.x - 1.0f, transform.position.y, transform.position.z);
+                transform.position = new Vector3(goRight.transform.position.x + 1.0f, goRight.transform.position.y, transform.position.z);
             }
-
-            //transform.position = new Vector3(goRight.transform.position.x - 1.0f, transform.position.y, transform.position.z);   
         }
-        
+        else
+        {
+            //transform.position = new Vector3(goRight.transform.position.x - 1.0f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(goRight.transform.position.x + 1.0f, goRight.transform.position.y, transform.position.z);
+        }
+        SpawnPortal(transform.position);
+
+        if (dmg)
+        {
+            StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
+        }
     }
 
     IEnumerator ChangeSpeedOverTime(float newSpeed, float duration)
@@ -697,7 +713,11 @@ public class Movement : MonoBehaviour
 
     IEnumerator TopDamage(float duration, float blinkTime, GameObject go, bool minusHP)
     {
-        go.transform.localScale -= new Vector3(0, 0.3f, 0);
+        go.transform.position = new Vector3(go.transform.position.x - 1.0f, go.transform.position.y, go.transform.position.z);
+        go.GetComponent<Movement>().anim.SetBool("damage", true);
+        
+        //go.transform.localScale -= new Vector3(0, 0.3f, 0);
+        
         go.GetComponent<Movement>().hasCollide = true;
         go.GetComponent<Movement>().Speed = 0;
         go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = false;
@@ -712,18 +732,26 @@ public class Movement : MonoBehaviour
         {
             duration -= Time.deltaTime;
             //toggle renderer
-            go.GetComponent<Renderer>().enabled = !go.GetComponent<Renderer>().enabled;
+            //go.GetComponent<Renderer>().enabled = !go.GetComponent<Renderer>().enabled;
             //wait for a bit
             yield return new WaitForSeconds(blinkTime);
         }
 
         //make sure renderer is enabled when we exit
-        go.transform.localScale += new Vector3(0, 0.3f, 0);
-        go.GetComponent<Renderer>().enabled = true;
+        //go.transform.localScale += new Vector3(0, 0.3f, 0);
+        //go.GetComponent<Renderer>().enabled = true;
         go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = true;
         go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = true;
         hasCollide = false;
         go.GetComponent<Movement>().hasCollide = false;
+        go.GetComponent<Movement>().anim.SetBool("damage", false);
+
+    }
+
+    IEnumerator SpawnPortal(Vector3 pos)
+    {
+        Instantiate(portal, pos, Quaternion.identity);
+        return null;
     }
 
 }
