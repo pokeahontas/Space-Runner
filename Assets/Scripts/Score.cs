@@ -43,7 +43,7 @@ public class Score : MonoBehaviour {
     public void dec(int value)
     {
         clear();
-        if (score > 0 && score-value >= 0)
+        if (score > 0 && (score-value) >= 0)
         {
             score -= value;
         }

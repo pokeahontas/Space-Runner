@@ -578,8 +578,17 @@ public class Movement : MonoBehaviour
 
         if (dmg)
         {
+            if (ship1)
+            {
+                scoreP1.GetComponent<Score>().dec(5);
+            }
+            else
+            {
+                scoreP2.GetComponent<Score>().dec(5);
+            }
+            
             StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
-        }
+            }
     }
 
     IEnumerator ChangeSpeedOverTime(float newSpeed, float duration)
