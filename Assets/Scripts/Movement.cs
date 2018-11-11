@@ -181,6 +181,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J1") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike1 && hasTurnedAround && !anim.GetBool("damage"))
             {
+                SoundManagement.Instance.PlayNote("c");
                 onGround = false;
                 Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
@@ -197,6 +198,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike1 && hasTurnedAround && !anim.GetBool("damage"))
             {
+                SoundManagement.Instance.PlayNote("c");
                 onGround = false;
                 Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
@@ -265,6 +267,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J2") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))
             {
+                SoundManagement.Instance.PlayNote("c");
                 onGround = false;
                 Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
@@ -281,6 +284,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J2") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))
             {
+                SoundManagement.Instance.PlayNote("c");
                 onGround = false;
                 Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
