@@ -12,6 +12,9 @@ public class SoundManagement : MonoBehaviour {
     public AudioClip gNote;
     public AudioClip aNote;
     public AudioClip testSound;
+    public AudioClip endSound;
+    public AudioClip losePointsSound;
+    public AudioClip portalSound;
 
     Stack<string> ship1Melody = new Stack<string>();
     Stack<string> ship2Melody = new Stack<string>();
@@ -37,19 +40,6 @@ public class SoundManagement : MonoBehaviour {
         }
 
         DontDestroyOnLoad(this.gameObject);
-    }
-
-    public void Update()
-    {
-        if(!endMelodyPlayed)
-            if(ship1Won)
-            {
-
-            }
-            if (ship1Won)
-            {
-
-            }
     }
 
     public void PlayNote(string note, string ship, bool push)
@@ -121,6 +111,18 @@ public class SoundManagement : MonoBehaviour {
         }
     }
 
+    public void PlayLosePointsSound()
+    {
+        audioSource.clip = losePointsSound;
+        audioSource.Play();
+    }
+
+    public void PlayPortalSound()
+    {
+        audioSource.clip = portalSound;
+        audioSource.Play();
+    }
+
     public void PlayEndMelody(string ship)
     {
         AudioClip[] clipsToPlay;
@@ -144,7 +146,6 @@ public class SoundManagement : MonoBehaviour {
         string[] noteArray = stackWithNotes.GetValues();
         
             int count = 0;
-        print("WOHOOOOOOOOOOOO:   "+noteArray[0]);
         foreach (string s in noteArray)
         {
             if (s != null) {
@@ -176,6 +177,7 @@ public class SoundManagement : MonoBehaviour {
                 }
             }
         }
+        clips[count] = endSound;
 
         return clips;
     }

@@ -85,6 +85,7 @@ public class Movement : MonoBehaviour
         {
             if (Input.GetAxis("Direction_J1") < -0.1f && facingRight && onGround && !hasPike1 && !anim.GetBool("damage"))
             {
+                SoundManagement.Instance.PlayNote("g", "ship1", true);
                 facingRight = false;
                 if (GetComponent<Rigidbody2D>().gravityScale == 1)
                 {
@@ -112,6 +113,7 @@ public class Movement : MonoBehaviour
         {
             if (Input.GetAxis("Direction_J2") < -0.1f && facingRight && onGround && !hasPike2 && !anim.GetBool("damage"))
             {
+                SoundManagement.Instance.PlayNote("g", "ship1", true);
                 facingRight = false;
                 if (GetComponent<Rigidbody2D>().gravityScale == 1)
                 {
@@ -181,7 +183,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J1") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike1 && hasTurnedAround && !anim.GetBool("damage"))
             {
-                SoundManagement.Instance.PlayNote("c", "ship1", true);
+                //SoundManagement.Instance.PlayNote("c", "ship1", true);
                 onGround = false;
                 Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
@@ -198,7 +200,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike1 && hasTurnedAround && !anim.GetBool("damage"))
             {
-                SoundManagement.Instance.PlayNote("c","ship1", true);
+                //SoundManagement.Instance.PlayNote("c","ship1", true);
                 onGround = false;
                 Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
@@ -230,6 +232,9 @@ public class Movement : MonoBehaviour
             */
             if (Input.GetButton("Boost1") && !anim.GetBool("damage"))
             {
+                if (!hasPike1) {
+                    SoundManagement.Instance.PlayNote("c", "ship2", true);
+                }
                 //StartCoroutine(Speedboost(0.05f));
                 anim.SetBool("defenseON", true);
                 //StartCoroutine(SetSpike(0.5f,0.05f, 1));
@@ -267,7 +272,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J2") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))
             {
-                SoundManagement.Instance.PlayNote("c","ship2", true);
+                //SoundManagement.Instance.PlayNote("c","ship2", true);
                 onGround = false;
                 Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
@@ -284,7 +289,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J2") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))
             {
-                SoundManagement.Instance.PlayNote("c","ship2", true);
+                //SoundManagement.Instance.PlayNote("c","ship2", true);
                 onGround = false;
                 Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
@@ -317,6 +322,10 @@ public class Movement : MonoBehaviour
 
             if (Input.GetButton("Boost2") && !anim.GetBool("damage"))
             {
+                if (!hasPike2)
+                {
+                    SoundManagement.Instance.PlayNote("c", "ship2", true);
+                }
                 anim.SetBool("defenseON", true);
                 //StartCoroutine(SetSpike(0.5f, 0.05f, 2));
                 MaxSpeed = 0.0f;
@@ -373,6 +382,7 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Top1" && collision.gameObject.GetComponentInParent<Movement>().hasPike1)
         {
+            SoundManagement.Instance.PlayLosePointsSound();
             print("ship2 hit pike");
             if (ship2)
             {
@@ -387,6 +397,7 @@ public class Movement : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Top1")
         {
+            SoundManagement.Instance.PlayLosePointsSound();
             print("Top1");
             if (ship2)
             {
@@ -411,6 +422,7 @@ public class Movement : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Top2" && collision.gameObject.GetComponentInParent<Movement>().hasPike2)
         {
+            SoundManagement.Instance.PlayLosePointsSound();
             print("ship1 hit pike");
             if (ship1)
             {
@@ -425,6 +437,7 @@ public class Movement : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Top2")
         {
+            SoundManagement.Instance.PlayLosePointsSound();
             print("Top2");
             if (ship1)
             {
@@ -793,6 +806,7 @@ public class Movement : MonoBehaviour
 
     IEnumerator SpawnPortal(Vector3 pos)
     {
+        SoundManagement.Instance.PlayPortalSound();
         Instantiate(portal, pos, Quaternion.identity);
         return null;
     }
