@@ -2,7 +2,7 @@ fileFormatVersion: 2
 guid: 9d5a2bd18f6d0664795554df5b4ade86
 TextureImporter:
   fileIDToRecycleName:
-    21300000: items_spritesheet_0
+    21300000: orange_diamond
     21300002: items_spritesheet_1
     21300004: items_spritesheet_2
     21300006: items_spritesheet_3
@@ -143,13 +143,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: items_spritesheet_0
+      name: orange_diamond
       rect:
         serializedVersion: 2
-        x: 0
-        y: 505
-        width: 129
-        height: 71
+        x: 162
+        y: 312
+        width: 34
+        height: 23
       alignment: 1
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}

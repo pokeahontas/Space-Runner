@@ -76,15 +76,17 @@ public class Score : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (score >= 15)
+        if (score >= 5)
         {
             if (ship1)
             {
                 SceneManager.LoadScene("P1Won");
+                StartCoroutine(SoundManagement.Instance.PlayEndMelody("ship1"));
             }
             else
             {
                 SceneManager.LoadScene("P2Won");
+                StartCoroutine(SoundManagement.Instance.PlayEndMelody("ship2"));
             }
             
         }

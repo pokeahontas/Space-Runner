@@ -181,7 +181,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J1") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike1 && hasTurnedAround && !anim.GetBool("damage"))
             {
-                SoundManagement.Instance.PlayNote("c");
+                SoundManagement.Instance.PlayNote("c", "ship1");
                 onGround = false;
                 Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
@@ -198,7 +198,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike1 && hasTurnedAround && !anim.GetBool("damage"))
             {
-                SoundManagement.Instance.PlayNote("c");
+                SoundManagement.Instance.PlayNote("c","ship1");
                 onGround = false;
                 Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
@@ -267,7 +267,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J2") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))
             {
-                SoundManagement.Instance.PlayNote("c");
+                SoundManagement.Instance.PlayNote("c","ship2");
                 onGround = false;
                 Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
@@ -284,7 +284,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J2") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))
             {
-                SoundManagement.Instance.PlayNote("c");
+                SoundManagement.Instance.PlayNote("c","ship2");
                 onGround = false;
                 Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
@@ -447,14 +447,44 @@ public class Movement : MonoBehaviour
                 }
             }
         }
-        else if (collision.gameObject.tag == "collectible")
+        else if (collision.gameObject.tag == "collectible") //yellow
         {
             if (ship1)
             {
+                SoundManagement.Instance.PlayNote("d", "ship1");
                 scoreP1.GetComponent<Score>().inc(1);
             }
             else
             {
+                SoundManagement.Instance.PlayNote("d", "ship2");
+                scoreP2.GetComponent<Score>().inc(1);
+            }
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "collectibleOrange") 
+        {
+            if (ship1)
+            {
+                SoundManagement.Instance.PlayNote("e", "ship1");
+                scoreP1.GetComponent<Score>().inc(1);
+            }
+            else
+            {
+                SoundManagement.Instance.PlayNote("e", "ship2");
+                scoreP2.GetComponent<Score>().inc(1);
+            }
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "collectibleGreen") 
+        {
+            if (ship1)
+            {
+                SoundManagement.Instance.PlayNote("a", "ship1");
+                scoreP1.GetComponent<Score>().inc(1);
+            }
+            else
+            {
+                SoundManagement.Instance.PlayNote("a", "ship2");
                 scoreP2.GetComponent<Score>().inc(1);
             }
             Destroy(collision.gameObject);

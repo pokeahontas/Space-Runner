@@ -23,6 +23,8 @@ TagManager:
   - collectible
   - ColliderUp
   - ColliderDown
+  - collectibleOrange
+  - collectibleGreen
   layers:
   - Default
   - TransparentFX
