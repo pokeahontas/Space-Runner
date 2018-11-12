@@ -60,5 +60,10 @@ public class Stack<T> : IEnumerable<T>
         }
     }
 
+    public T[] GetValues()
+    {
+        return values;
+    }
+
 }
 

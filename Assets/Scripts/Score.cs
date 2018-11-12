@@ -12,11 +12,14 @@ public class Score : MonoBehaviour {
     public bool ship1;
     public bool ship2;
 
+    private bool endMelodyHasPlayed;
+
     public int score = 0;
 	// Use this for initialization
 	void Start () {
         activeObj = new GameObject[field.Length];
         setVal(score);
+        endMelodyHasPlayed = false;
 	}
 
     void setVal(int score)
@@ -76,17 +79,20 @@ public class Score : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (score >= 5)
+        if (score >= 5 && !endMelodyHasPlayed)
         {
+            print("score >= 5 && !endMelodyHasPlayed");
             if (ship1)
             {
+                SoundManagement.Instance.PlayEndMelody("ship1");
+                endMelodyHasPlayed = true;
                 SceneManager.LoadScene("P1Won");
-                StartCoroutine(SoundManagement.Instance.PlayEndMelody("ship1"));
             }
             else
             {
+                SoundManagement.Instance.PlayEndMelody("ship2");
+                endMelodyHasPlayed = true;
                 SceneManager.LoadScene("P2Won");
-                StartCoroutine(SoundManagement.Instance.PlayEndMelody("ship2"));
             }
             
         }

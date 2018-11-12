@@ -2838,7 +2838,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.881
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2865,6 +2865,7 @@ MonoBehaviour:
   eNote: {fileID: 8300000, guid: 6ebf1bb0025caec488ca5807e933a403, type: 3}
   gNote: {fileID: 8300000, guid: 985d65492aab842428aed65295ef37a2, type: 3}
   aNote: {fileID: 8300000, guid: 7671bc93be86bb7439d796bde4197a11, type: 3}
+  testSound: {fileID: 8300000, guid: 1bdaedd8432a02444b109191ae7bc909, type: 3}
 --- !u!1001 &1563487213
 Prefab:
   m_ObjectHideFlags: 0

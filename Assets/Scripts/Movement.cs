@@ -181,7 +181,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J1") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike1 && hasTurnedAround && !anim.GetBool("damage"))
             {
-                SoundManagement.Instance.PlayNote("c", "ship1");
+                SoundManagement.Instance.PlayNote("c", "ship1", true);
                 onGround = false;
                 Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
@@ -198,7 +198,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J1") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike1 && hasTurnedAround && !anim.GetBool("damage"))
             {
-                SoundManagement.Instance.PlayNote("c","ship1");
+                SoundManagement.Instance.PlayNote("c","ship1", true);
                 onGround = false;
                 Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
@@ -267,7 +267,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J2") < -0.1f && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))
             {
-                SoundManagement.Instance.PlayNote("c","ship2");
+                SoundManagement.Instance.PlayNote("c","ship2", true);
                 onGround = false;
                 Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
@@ -284,7 +284,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetAxis("Gravity_J2") > 0.1f && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))
             {
-                SoundManagement.Instance.PlayNote("c","ship2");
+                SoundManagement.Instance.PlayNote("c","ship2", true);
                 onGround = false;
                 Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
@@ -451,12 +451,12 @@ public class Movement : MonoBehaviour
         {
             if (ship1)
             {
-                SoundManagement.Instance.PlayNote("d", "ship1");
+                SoundManagement.Instance.PlayNote("d", "ship1", true);
                 scoreP1.GetComponent<Score>().inc(1);
             }
             else
             {
-                SoundManagement.Instance.PlayNote("d", "ship2");
+                SoundManagement.Instance.PlayNote("d", "ship2", true);
                 scoreP2.GetComponent<Score>().inc(1);
             }
             Destroy(collision.gameObject);
@@ -465,12 +465,12 @@ public class Movement : MonoBehaviour
         {
             if (ship1)
             {
-                SoundManagement.Instance.PlayNote("e", "ship1");
+                SoundManagement.Instance.PlayNote("e", "ship1", true);
                 scoreP1.GetComponent<Score>().inc(1);
             }
             else
             {
-                SoundManagement.Instance.PlayNote("e", "ship2");
+                SoundManagement.Instance.PlayNote("e", "ship2", true);
                 scoreP2.GetComponent<Score>().inc(1);
             }
             Destroy(collision.gameObject);
@@ -479,12 +479,12 @@ public class Movement : MonoBehaviour
         {
             if (ship1)
             {
-                SoundManagement.Instance.PlayNote("a", "ship1");
+                SoundManagement.Instance.PlayNote("a", "ship1", true);
                 scoreP1.GetComponent<Score>().inc(1);
             }
             else
             {
-                SoundManagement.Instance.PlayNote("a", "ship2");
+                SoundManagement.Instance.PlayNote("a", "ship2", true);
                 scoreP2.GetComponent<Score>().inc(1);
             }
             Destroy(collision.gameObject);
