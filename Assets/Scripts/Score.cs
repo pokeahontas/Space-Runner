@@ -79,7 +79,7 @@ public class Score : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (score >= 5 && !endMelodyHasPlayed)
+        if (score >= 15 && !endMelodyHasPlayed)
         {
             print("score >= 5 && !endMelodyHasPlayed");
             if (ship1)

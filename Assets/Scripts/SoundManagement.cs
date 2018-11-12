@@ -130,14 +130,26 @@ public class SoundManagement : MonoBehaviour {
         {
             clipsToPlay = NoteStringsToClipArray(ship1Melody);
             audioSource.clip = Combine(clipsToPlay);
+            audioSource.pitch = 2;
             audioSource.Play();
         }
         else
         {
             clipsToPlay = NoteStringsToClipArray(ship2Melody);
             audioSource.clip = Combine(clipsToPlay);
+            audioSource.pitch = 2;
             audioSource.Play();
         }
+    }
+
+    public Stack<string> getShip1Melody()
+    {
+        return ship1Melody;
+    }
+
+    public Stack<string> getShip2Melody()
+    {
+        return ship2Melody;
     }
 
     private AudioClip[] NoteStringsToClipArray(Stack<string> stackWithNotes)
