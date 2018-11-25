@@ -15,8 +15,13 @@ public class Score : MonoBehaviour {
     private bool endMelodyHasPlayed;
 
     public int score = 0;
-	// Use this for initialization
-	void Start () {
+
+    public GameObject numberOne;
+    public GameObject plusSign;
+    public GameObject minusSign;
+
+    // Use this for initialization
+    void Start () {
         activeObj = new GameObject[field.Length];
         setVal(score);
         endMelodyHasPlayed = false;
@@ -39,6 +44,7 @@ public class Score : MonoBehaviour {
         if (score<99)
         {
             score += value;
+            StartCoroutine(ShowDiamondsAbovePlayer(0.2f,value, true));
         }
         setVal(score);
     }
@@ -49,6 +55,7 @@ public class Score : MonoBehaviour {
         if (score > 0 && (score-value) >= 0)
         {
             score -= value;
+            StartCoroutine(ShowDiamondsAbovePlayer(0.2f, value, false));
         }
         else
         {
@@ -76,9 +83,36 @@ public class Score : MonoBehaviour {
         this.activeObj[activeObj].name = this.field[field].name;
         this.activeObj[activeObj].transform.parent = this.field[field];
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    IEnumerator ShowDiamondsAbovePlayer(float duration, int value, bool positiveNumber)
+    {
+        if (positiveNumber)
+        {
+            plusSign.SetActive(true);
+        }
+        else
+        {
+            minusSign.SetActive(true);
+        }
+        if (value == 1)
+        {
+            numberOne.SetActive(true);
+
+            while (duration > 0f)
+            {
+                duration -= Time.deltaTime;
+                yield return new WaitForSeconds(0.1f);
+            }
+
+            numberOne.SetActive(false);
+        }
+
+        plusSign.SetActive(false);
+        minusSign.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (score >= 15 && !endMelodyHasPlayed)
         {
             print("score >= 5 && !endMelodyHasPlayed");

@@ -48,6 +48,12 @@ public class Movement : MonoBehaviour
     public GameObject colliderLeft;
     public GameObject goRight;
 
+    public int decAmount;
+    public int incAmount;
+
+    
+
+
     void Start()
     {
         //Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
@@ -170,7 +176,7 @@ public class Movement : MonoBehaviour
             */
             
 
-            if ((Input.GetAxis("Acceleration_J1") > 0) && start && !anim.GetBool("damage"))
+            if ((Input.GetKey(KeyCode.D)) && start && !anim.GetBool("damage"))
             {
                 anim.SetBool("isRunning", true);
                 Accelerate("Acceleration_J1");
@@ -344,7 +350,7 @@ public class Movement : MonoBehaviour
     {
         if (Speed < MaxSpeed)
         {
-            Speed += 1.0f * Input.GetAxis(s);
+            Speed += 1000.0f;
         }
         if (Speed > MaxSpeed)
         {
@@ -390,7 +396,7 @@ public class Movement : MonoBehaviour
                 {
                     print("ship2 hit pike");
                     hasCollide = true;
-                    scoreP2.GetComponent<Score>().dec(5);
+                    scoreP2.GetComponent<Score>().dec(decAmount);
                     StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
                 }
             }
@@ -406,15 +412,15 @@ public class Movement : MonoBehaviour
                     print("Top1Inner");
                     hasCollide = true;
                     int temp = scoreP1.GetComponent<Score>().score;
-                    if (temp < 5)
+                    if (temp < decAmount)
                     {
                         scoreP2.GetComponent<Score>().inc(temp);
                         scoreP1.GetComponent<Score>().dec(temp);
                     }
                     else
                     {
-                        scoreP2.GetComponent<Score>().inc(5);
-                        scoreP1.GetComponent<Score>().dec(5);
+                        scoreP2.GetComponent<Score>().inc(decAmount);
+                        scoreP1.GetComponent<Score>().dec(decAmount);
                     }
                     StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
                 }
@@ -430,7 +436,7 @@ public class Movement : MonoBehaviour
                 {
                     print("ship1 hit pike");
                     hasCollide = true;
-                    scoreP1.GetComponent<Score>().dec(5);
+                    scoreP1.GetComponent<Score>().dec(decAmount);
                     StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
                 }
             }
@@ -446,15 +452,15 @@ public class Movement : MonoBehaviour
                     print("Top2Inner");
                     hasCollide = true;
                     int temp = (int)scoreP2.GetComponent<Score>().score;
-                    if (temp < 5)
+                    if (temp < decAmount)
                     {
                         scoreP1.GetComponent<Score>().inc(temp);
                         scoreP2.GetComponent<Score>().dec(temp);
                     }
                     else
                     {
-                        scoreP1.GetComponent<Score>().inc(5);
-                        scoreP2.GetComponent<Score>().dec(5);
+                        scoreP1.GetComponent<Score>().inc(decAmount);
+                        scoreP2.GetComponent<Score>().dec(decAmount);
                     }
                     StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
                 }
@@ -465,12 +471,12 @@ public class Movement : MonoBehaviour
             if (ship1)
             {
                 SoundManagement.Instance.PlayNote("d", "ship1", true);
-                scoreP1.GetComponent<Score>().inc(1);
+                scoreP1.GetComponent<Score>().inc(incAmount);
             }
             else
             {
                 SoundManagement.Instance.PlayNote("d", "ship2", true);
-                scoreP2.GetComponent<Score>().inc(1);
+                scoreP2.GetComponent<Score>().inc(incAmount);
             }
             Destroy(collision.gameObject);
         }
@@ -479,12 +485,12 @@ public class Movement : MonoBehaviour
             if (ship1)
             {
                 SoundManagement.Instance.PlayNote("e", "ship1", true);
-                scoreP1.GetComponent<Score>().inc(1);
+                scoreP1.GetComponent<Score>().inc(incAmount);
             }
             else
             {
                 SoundManagement.Instance.PlayNote("e", "ship2", true);
-                scoreP2.GetComponent<Score>().inc(1);
+                scoreP2.GetComponent<Score>().inc(incAmount);
             }
             Destroy(collision.gameObject);
         }
@@ -493,12 +499,13 @@ public class Movement : MonoBehaviour
             if (ship1)
             {
                 SoundManagement.Instance.PlayNote("a", "ship1", true);
-                scoreP1.GetComponent<Score>().inc(1);
+                scoreP1.GetComponent<Score>().inc(incAmount);
+                
             }
             else
             {
                 SoundManagement.Instance.PlayNote("a", "ship2", true);
-                scoreP2.GetComponent<Score>().inc(1);
+                scoreP2.GetComponent<Score>().inc(incAmount);
             }
             Destroy(collision.gameObject);
         }
@@ -597,7 +604,6 @@ public class Movement : MonoBehaviour
 
 
     }
-
     void newSpawn(bool dmg)
     {
         Vector3 spawnPos = new Vector3(goRight.transform.position.x-4.0f, goRight.transform.position.y, transform.position.z);
@@ -627,11 +633,11 @@ public class Movement : MonoBehaviour
         {
             if (ship1)
             {
-                scoreP1.GetComponent<Score>().dec(5);
+                scoreP1.GetComponent<Score>().dec(decAmount);
             }
             else
             {
-                scoreP2.GetComponent<Score>().dec(5);
+                scoreP2.GetComponent<Score>().dec(decAmount);
             }
             
             StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
