@@ -176,7 +176,7 @@ public class Movement : MonoBehaviour
             */
             
 
-            if ((Input.GetKey(KeyCode.D)) && start && !anim.GetBool("damage"))
+            if ((Input.GetAxis("Acceleration_J1") > 0) && start && !anim.GetBool("damage"))
             {
                 anim.SetBool("isRunning", true);
                 Accelerate("Acceleration_J1");
@@ -350,7 +350,7 @@ public class Movement : MonoBehaviour
     {
         if (Speed < MaxSpeed)
         {
-            Speed += 1000.0f;
+            Speed += 1.0f * Input.GetAxis(s);
         }
         if (Speed > MaxSpeed)
         {
@@ -411,7 +411,7 @@ public class Movement : MonoBehaviour
                 {
                     print("Top1Inner");
                     hasCollide = true;
-                    int temp = scoreP1.GetComponent<Score>().score;
+                    int temp = scoreP1.GetComponent<Score>().score; 
                     if (temp < decAmount)
                     {
                         scoreP2.GetComponent<Score>().inc(temp);

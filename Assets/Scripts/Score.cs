@@ -17,6 +17,10 @@ public class Score : MonoBehaviour {
     public int score = 0;
 
     public GameObject numberOne;
+    public GameObject numberTwo;
+    public GameObject numberThree;
+    public GameObject numberFour;
+    public GameObject numberFive;
     public GameObject plusSign;
     public GameObject minusSign;
 
@@ -105,6 +109,54 @@ public class Score : MonoBehaviour {
             }
 
             numberOne.SetActive(false);
+        }
+        else if (value == 2)
+        {
+            numberTwo.SetActive(true);
+
+            while (duration > 0f)
+            {
+                duration -= Time.deltaTime;
+                yield return new WaitForSeconds(0.1f);
+            }
+
+            numberTwo.SetActive(false);
+        }
+        else if (value == 3)
+        {
+            numberThree.SetActive(true);
+
+            while (duration > 0f)
+            {
+                duration -= Time.deltaTime;
+                yield return new WaitForSeconds(0.1f);
+            }
+
+            numberThree.SetActive(false);
+        }
+        else if (value == 4)
+        {
+            numberFour.SetActive(true);
+
+            while (duration > 0f)
+            {
+                duration -= Time.deltaTime;
+                yield return new WaitForSeconds(0.1f);
+            }
+
+            numberFour.SetActive(false);
+        }
+        else if (value == 5)
+        {
+            numberFive.SetActive(true);
+
+            while (duration > 0f)
+            {
+                duration -= Time.deltaTime;
+                yield return new WaitForSeconds(0.1f);
+            }
+
+            numberFive.SetActive(false);
         }
 
         plusSign.SetActive(false);
