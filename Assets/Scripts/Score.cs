@@ -184,11 +184,9 @@ public class Score : MonoBehaviour {
             posAboveHead = Movement.GetShip2().transform.position;
             if (Movement.GetShip2().GetComponent<Rigidbody2D>().gravityScale == 1)
             {
-                print("-1");
                 posAboveHead.y += 0.3f;
             } else
             {
-                print("1");
                 posAboveHead.y -= 2.3f;
             }
             aboveHead.transform.position = posAboveHead;
