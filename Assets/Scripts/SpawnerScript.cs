@@ -62,7 +62,7 @@ public class SpawnerScript : MonoBehaviour {
             {
             */
                 SpawnMap(new Vector3(transform.position.x + 100, transform.position.y, transform.position.z));
-                transform.position = new Vector3(transform.position.x + 100, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x + 50, transform.position.y, transform.position.z);
             //}
             /*else
             {
