@@ -169,8 +169,8 @@ InputManager:
     m_Name: Direction_J1
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: joystick button 8
+    positiveButton: joystick button 8
     altNegativeButton: joystick button 8
     altPositiveButton: joystick button 8
     gravity: 0
