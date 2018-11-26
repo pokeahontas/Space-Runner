@@ -316,7 +316,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            if ((Input.GetAxis("Gravity_J2") > 0.1f || Input.GetButton("Boost1")) && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))
+            if ((Input.GetAxis("Gravity_J2") > 0.1f || Input.GetButton("Boost2")) && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))
             {
                 //SoundManagement.Instance.PlayNote("c","ship2", true);
                 onGround = false;
