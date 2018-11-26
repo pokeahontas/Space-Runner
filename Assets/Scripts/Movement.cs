@@ -604,6 +604,15 @@ public class Movement : MonoBehaviour
 
 
     }
+
+    public static GameObject GetShip1()
+    {
+        return GameObject.FindGameObjectWithTag("Ship1");
+    }
+    public static GameObject GetShip2()
+    {
+        return GameObject.FindGameObjectWithTag("Ship2");
+    }
     void newSpawn(bool dmg)
     {
         Vector3 spawnPos = new Vector3(goRight.transform.position.x-4.0f, goRight.transform.position.y, transform.position.z);

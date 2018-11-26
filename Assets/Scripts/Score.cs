@@ -13,9 +13,10 @@ public class Score : MonoBehaviour {
     public bool ship2;
 
     private bool endMelodyHasPlayed;
-
+    private Vector3 posAboveHead;
     public int score = 0;
 
+    public GameObject aboveHead;
     public GameObject numberOne;
     public GameObject numberTwo;
     public GameObject numberThree;
@@ -164,7 +165,35 @@ public class Score : MonoBehaviour {
     }
 
     // Update is called once per frame
+
     void Update () {
+
+        if(ship1)
+        {
+            posAboveHead = Movement.GetShip1().transform.position;
+            if (Movement.GetShip1().GetComponent<Rigidbody2D>().gravityScale == 1) {
+                posAboveHead.y += 0.3f;
+            } else
+            {
+                posAboveHead.y -= 2.3f;
+            }
+            aboveHead.transform.position = posAboveHead;
+        }
+        if(ship2)
+        {
+            posAboveHead = Movement.GetShip2().transform.position;
+            if (Movement.GetShip2().GetComponent<Rigidbody2D>().gravityScale == 1)
+            {
+                print("-1");
+                posAboveHead.y += 0.3f;
+            } else
+            {
+                print("1");
+                posAboveHead.y -= 2.3f;
+            }
+            aboveHead.transform.position = posAboveHead;
+        }
+        
         if (score >= 15 && !endMelodyHasPlayed)
         {
             print("score >= 5 && !endMelodyHasPlayed");
