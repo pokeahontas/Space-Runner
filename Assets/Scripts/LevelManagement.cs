@@ -55,13 +55,21 @@ public class LevelManagement : MonoBehaviour {
         }
         else
         {
-            int[] tempArray = { 0, diamondBlue, diamondGreen, diamondYellow };
-            // Finding max
-            int m = tempArray.Max();
-            // Positioning max
-            int p = tempArray.ToList().IndexOf(m);
+            int[] tempArray = { diamondBlue, diamondGreen, diamondYellow };
+            
+            int max = tempArray.Max();
+            int min = tempArray.Min();
+            int secondHighest = (from number in tempArray orderby number descending select number).Distinct().Skip(1).First();
+   
+            int p = tempArray.ToList().IndexOf(max);
+            levelfarbe = p+1;
 
-            levelfarbe = p;
+            //Entfernung von unentschieden
+            hgBoden = max - secondHighest;
+
+            //Entfernung von Minimum
+            hgWeit = max - min;
+
         }
     }
 }
