@@ -12606,6 +12606,11 @@ MonoBehaviour:
   - {fileID: 21300274, guid: 4236d88d1bfe404469a31fe72868abe8, type: 3}
   - {fileID: 21300210, guid: 4236d88d1bfe404469a31fe72868abe8, type: 3}
   - {fileID: 21300204, guid: 4236d88d1bfe404469a31fe72868abe8, type: 3}
+  tiles2:
+  - {fileID: 21300114, guid: 4236d88d1bfe404469a31fe72868abe8, type: 3}
+  - {fileID: 21300312, guid: 4236d88d1bfe404469a31fe72868abe8, type: 3}
+  - {fileID: 21300308, guid: 4236d88d1bfe404469a31fe72868abe8, type: 3}
+  - {fileID: 21300308, guid: 4236d88d1bfe404469a31fe72868abe8, type: 3}
   levelfarbe: 0
   hgBoden: 0
   hgWeit: 0

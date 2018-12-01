@@ -6,6 +6,8 @@ public class TileChanger : MonoBehaviour {
 
     int last = 0;
     int now;
+    public bool above = true;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -18,7 +20,14 @@ public class TileChanger : MonoBehaviour {
         if (now != last)
         {
             last = now;
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = LevelManagement.Instance.tiles[now];
+            if (above)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = LevelManagement.Instance.tiles[now];
+            }
+            else
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = LevelManagement.Instance.tiles2[now];
+            }
         }
         
     }
