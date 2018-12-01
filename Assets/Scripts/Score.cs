@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class Score : MonoBehaviour {
 
     public GameObject[] number;
@@ -30,7 +31,7 @@ public class Score : MonoBehaviour {
         activeObj = new GameObject[field.Length];
         setVal(score);
         endMelodyHasPlayed = false;
-	}
+    }
 
     void setVal(int score)
     {

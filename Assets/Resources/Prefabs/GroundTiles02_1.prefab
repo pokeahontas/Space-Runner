@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 60706272389129842}
   m_Layer: 0
   m_Name: CollectibleOrange (2)
-  m_TagString: collectibleOrange
+  m_TagString: collectibleBlue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 60259424658272280}
   m_Layer: 0
   m_Name: CollectibleOrange
-  m_TagString: collectibleOrange
+  m_TagString: collectibleBlue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 60494896055246744}
   m_Layer: 0
   m_Name: CollectibleOrange (1)
-  m_TagString: collectibleOrange
+  m_TagString: collectibleBlue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1417,7 +1417,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300038, guid: d24b41eb604fbca4b989eab292a6f6dd, type: 3}
+  m_Sprite: {fileID: 21300004, guid: d24b41eb604fbca4b989eab292a6f6dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1693,7 +1693,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300038, guid: d24b41eb604fbca4b989eab292a6f6dd, type: 3}
+  m_Sprite: {fileID: 21300004, guid: d24b41eb604fbca4b989eab292a6f6dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1969,7 +1969,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300038, guid: d24b41eb604fbca4b989eab292a6f6dd, type: 3}
+  m_Sprite: {fileID: 21300004, guid: d24b41eb604fbca4b989eab292a6f6dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -25,6 +25,7 @@ TagManager:
   - ColliderDown
   - collectibleOrange
   - collectibleGreen
+  - collectibleBlue
   layers:
   - Default
   - TransparentFX
