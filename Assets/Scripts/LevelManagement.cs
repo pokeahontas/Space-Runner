@@ -13,6 +13,7 @@ public class LevelManagement : MonoBehaviour {
     int diamondGreen = 0;
     int diamondYellow = 0;
 
+    public Sprite[] tiles = new Sprite[4];
 
     public int levelfarbe = 0;
     public int hgBoden = 0;
