@@ -195,7 +195,6 @@ public class Score : MonoBehaviour {
         
         if (score >= 15 && !endMelodyHasPlayed)
         {
-            print("score >= 5 && !endMelodyHasPlayed");
             if (ship1)
             {
                 SoundManagement.Instance.PlayEndMelody("ship1");

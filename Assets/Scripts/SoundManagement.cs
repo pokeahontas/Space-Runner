@@ -163,7 +163,6 @@ public class SoundManagement : MonoBehaviour {
             if (s != null) {
                 if (s.Equals("d"))
                 {
-                    print("bla");
                     clips[count] = cNote;
                     count++;
                 }
