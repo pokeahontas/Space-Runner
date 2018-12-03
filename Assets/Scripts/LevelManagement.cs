@@ -22,10 +22,15 @@ public class LevelManagement : MonoBehaviour {
 
     public GameObject[] onlySilTrees;
     public GameObject[] onlyColorTrees;
+    public GameObject[] onlySilDesert;
+    public GameObject[] onlyColorDesert;
+
     public GameObject backGroundNeutral1;
     public GameObject backGroundNeutral2;
     public GameObject backGroundForest1;
     public GameObject backGroundForest2;
+    public GameObject backGroundDesert1;
+    public GameObject backGroundDesert2;
 
     public bool hasChangedFar1;
     public bool hasChangedFar2;
@@ -98,19 +103,37 @@ public class LevelManagement : MonoBehaviour {
                 ActivateFarBGAndDisableOthers("forest");
             }
         }
-        else if (levelfarbe == 3)   //Yellow
+        else if (levelfarbe == 3 )   //Yellow
         {
-            if (hgWeit <= 2)
+            if (hgWeit <= 2 && !hasChangedFar1 && firstChangeDone)
             {
+                //hasChangedFar1 = true;
+                //hasChangedFar2 = false;
+                //hasChangedFar3 = false;
 
+                //StartCoroutine(ChangeAlphaValue(onlySilDesert[0].GetComponent<SpriteRenderer>().color.a, onlySilDesert[0]));
+                //StartCoroutine(ChangeAlphaValue(onlySilDesert[1].GetComponent<SpriteRenderer>().color.a, onlySilDesert[1]));
+                //ActivateFarBGAndDisableOthers("neutral");
             }
-            else if (hgWeit >= 3 && hgWeit <= 5)
+            else if ((hgWeit >= 3 && hgWeit <= 5) && !hasChangedFar2)
             {
-
+                //hasChangedFar2 = true;
+                //hasChangedFar1 = false;
+                //hasChangedFar3 = false;
+                //firstChangeDone = true;
+                ////print("blend in trees");
+                //StartCoroutine(ChangeAlphaValue(onlySilDesert[0].GetComponent<SpriteRenderer>().color.a, onlySilDesert[0]));
+                //StartCoroutine(ChangeAlphaValue(onlySilDesert[1].GetComponent<SpriteRenderer>().color.a, onlySilDesert[1]));
+                //ActivateFarBGAndDisableOthers("neutral");
             }
             else if (hgWeit >= 6 && hgWeit <= 8)
             {
-
+                //hasChangedFar3 = true;
+                //hasChangedFar1 = false;
+                //hasChangedFar2 = false;
+                //StartCoroutine(ChangeAlphaValue(onlySilDesert[0].GetComponent<SpriteRenderer>().color.a, onlySilDesert[0]));
+                //StartCoroutine(ChangeAlphaValue(onlySilDesert[1].GetComponent<SpriteRenderer>().color.a, onlySilDesert[1]));
+                //ActivateFarBGAndDisableOthers("desert");
             }
         }
     }
@@ -189,8 +212,12 @@ public class LevelManagement : MonoBehaviour {
             backGroundNeutral2.SetActive(true);
             backGroundForest1.SetActive(false);
             backGroundForest2.SetActive(false);
+            backGroundDesert1.SetActive(false);
+            backGroundDesert2.SetActive(false);
             onlyColorTrees[0].SetActive(false);
             onlyColorTrees[1].SetActive(false);
+            onlyColorDesert[0].SetActive(false);
+            onlyColorDesert[1].SetActive(false);
             //TODO rest missing
         } 
         else if(which.Equals("forest"))
@@ -199,12 +226,25 @@ public class LevelManagement : MonoBehaviour {
             backGroundNeutral2.SetActive(false);
             backGroundForest1.SetActive(true);
             backGroundForest2.SetActive(true);
+            backGroundDesert1.SetActive(false);
+            backGroundDesert2.SetActive(false);
             onlyColorTrees[0].SetActive(true);
             onlyColorTrees[1].SetActive(true);
+            onlyColorDesert[0].SetActive(false);
+            onlyColorDesert[1].SetActive(false);
         }
         else if (which.Equals("desert"))
         {
-
+            backGroundNeutral1.SetActive(false);
+            backGroundNeutral2.SetActive(false);
+            backGroundForest1.SetActive(false);
+            backGroundForest2.SetActive(false);
+            backGroundDesert1.SetActive(true);
+            backGroundDesert2.SetActive(true);
+            onlyColorTrees[0].SetActive(false);
+            onlyColorTrees[1].SetActive(false);
+            onlyColorDesert[0].SetActive(true);
+            onlyColorDesert[1].SetActive(true);
         }
         else if (which.Equals("snow"))
         {
