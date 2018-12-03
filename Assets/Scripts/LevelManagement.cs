@@ -21,6 +21,12 @@ public class LevelManagement : MonoBehaviour {
     public int hgWeit = 0;
 
     public GameObject[] onlySilTrees;
+    public GameObject[] onlyColorTrees;
+    public GameObject backGroundNeutral1;
+    public GameObject backGroundNeutral2;
+    public GameObject backGroundForest1;
+    public GameObject backGroundForest2;
+
     public bool hasChangedFar1;
     public bool hasChangedFar2;
     public bool hasChangedFar3;
@@ -66,11 +72,10 @@ public class LevelManagement : MonoBehaviour {
                 hasChangedFar2 = false;
                 hasChangedFar3 = false;
                 print("Woooosh2: " + onlySilTrees[0].GetComponent<SpriteRenderer>().color.a +", " + onlySilTrees[1].GetComponent<SpriteRenderer>().color.a );
-                if (onlySilTrees[0].GetComponent<SpriteRenderer>().color.a > 0.1f) {
-                    print("Woooosh1");
-                    StartCoroutine(ChangeAlphaValue(onlySilTrees[0].GetComponent<SpriteRenderer>().color.a, onlySilTrees[0]));
-                    StartCoroutine(ChangeAlphaValue(onlySilTrees[1].GetComponent<SpriteRenderer>().color.a, onlySilTrees[1]));
-                }
+                
+                StartCoroutine(ChangeAlphaValue(onlySilTrees[0].GetComponent<SpriteRenderer>().color.a, onlySilTrees[0]));
+                StartCoroutine(ChangeAlphaValue(onlySilTrees[1].GetComponent<SpriteRenderer>().color.a, onlySilTrees[1]));
+                ActivateFarBGAndDisableOthers("neutral");
             }
             else if ((hgWeit >= 3 && hgWeit <= 5) && !hasChangedFar2)
             {
@@ -81,12 +86,16 @@ public class LevelManagement : MonoBehaviour {
                 //print("blend in trees");
                 StartCoroutine(ChangeAlphaValue(onlySilTrees[0].GetComponent<SpriteRenderer>().color.a, onlySilTrees[0]));
                 StartCoroutine(ChangeAlphaValue(onlySilTrees[1].GetComponent<SpriteRenderer>().color.a, onlySilTrees[1]));
+                ActivateFarBGAndDisableOthers("neutral");
             }
             else if ((hgWeit >= 6 && hgWeit <= 8) && !hasChangedFar3)
             {
                 hasChangedFar3 = true;
                 hasChangedFar1 = false;
                 hasChangedFar2 = false;
+                StartCoroutine(ChangeAlphaValue(onlySilTrees[0].GetComponent<SpriteRenderer>().color.a, onlySilTrees[0]));
+                StartCoroutine(ChangeAlphaValue(onlySilTrees[1].GetComponent<SpriteRenderer>().color.a, onlySilTrees[1]));
+                ActivateFarBGAndDisableOthers("forest");
             }
         }
         else if (levelfarbe == 3)   //Yellow
@@ -169,6 +178,37 @@ public class LevelManagement : MonoBehaviour {
                 yield return new WaitForSeconds(0.1f);
                 go.GetComponent<SpriteRenderer>().color = tmp;
             }
+        }
+    }
+
+    private void ActivateFarBGAndDisableOthers(string which) 
+    {
+        if(which.Equals("neutral"))
+        {
+            backGroundNeutral1.SetActive(true);
+            backGroundNeutral2.SetActive(true);
+            backGroundForest1.SetActive(false);
+            backGroundForest2.SetActive(false);
+            onlyColorTrees[0].SetActive(false);
+            onlyColorTrees[1].SetActive(false);
+            //TODO rest missing
+        } 
+        else if(which.Equals("forest"))
+        {
+            backGroundNeutral1.SetActive(false);
+            backGroundNeutral2.SetActive(false);
+            backGroundForest1.SetActive(true);
+            backGroundForest2.SetActive(true);
+            onlyColorTrees[0].SetActive(true);
+            onlyColorTrees[1].SetActive(true);
+        }
+        else if (which.Equals("desert"))
+        {
+
+        }
+        else if (which.Equals("snow"))
+        {
+
         }
     }
 }
