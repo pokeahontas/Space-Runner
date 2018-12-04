@@ -204,9 +204,7 @@ GameObject:
   - component: {fileID: 212206156225195594}
   - component: {fileID: 50670142427046740}
   - component: {fileID: 114664820936179846}
-  - component: {fileID: 60815624817626248}
   - component: {fileID: 114401577852141042}
-  - component: {fileID: 114264593913421010}
   - component: {fileID: 61539993211086696}
   - component: {fileID: 95250217444929900}
   m_Layer: 0
@@ -663,63 +661,6 @@ CircleCollider2D:
   m_Offset: {x: -0.1115042, y: 0.012119949}
   serializedVersion: 2
   m_Radius: 0.49303204
---- !u!60 &60815624817626248
-PolygonCollider2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1785495275612462}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.66, y: 0.92}
-    newSize: {x: 0.92, y: 0.69}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.65, y: -0.5}
-      - {x: 0.65999997, y: -0.42}
-      - {x: 0.65999997, y: -0.14999999}
-      - {x: 0.65, y: -0.12}
-      - {x: 0.48999998, y: 0}
-      - {x: 0.17999999, y: 0}
-      - {x: 0.11, y: -0.02}
-      - {x: 0, y: -0.19}
-      - {x: 0, y: -0.48}
-      - {x: 0.03, y: -0.55}
-      - {x: 0, y: -0.59999996}
-      - {x: 0, y: -0.77}
-      - {x: 0.13, y: -0.91999996}
-      - {x: 0.5, y: -0.91999996}
-      - {x: 0.51, y: -0.88}
-      - {x: 0.63, y: -0.72999996}
-    - - {x: 0.08, y: -0.39999998}
-      - {x: 0.08, y: -0.26}
-      - {x: 0.089999996, y: -0.25}
-      - {x: 0.17, y: -0.13}
-      - {x: 0.45999998, y: -0.12}
-      - {x: 0.56, y: -0.26999998}
-      - {x: 0.57, y: -0.37}
-      - {x: 0.56, y: -0.38}
-      - {x: 0.56, y: -0.42999998}
-      - {x: 0.57, y: -0.37}
-      - {x: 0.53999996, y: -0.26}
-      - {x: 0.39999998, y: -0.14}
-      - {x: 0.25, y: -0.14}
-      - {x: 0.12, y: -0.24}
-      - {x: 0.08, y: -0.35}
-      - {x: 0.089999996, y: -0.45}
-      - {x: 0.099999994, y: -0.44}
 --- !u!61 &61200863886934426
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -839,30 +780,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114264593913421010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1785495275612462}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15bde267e7e4d1144af31bca46d14ce5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedForce: 50
-  ship1: 0
-  ship2: 1
-  Speed: 0
-  MaxSpeed: 50
-  Acceleration: 1
-  Deceleration: 1
-  onGround: 1
-  shot: {fileID: 1834971489782230, guid: 665e1b5975759054bb0c57d10e1cc431, type: 2}
-  shotSpawn: {fileID: 4439762586593384}
-  boostAmount: 0
-  boostBar: {fileID: 0}
-  streamParticles: {fileID: 198554193641844118}
 --- !u!114 &114401577852141042
 MonoBehaviour:
   m_ObjectHideFlags: 1

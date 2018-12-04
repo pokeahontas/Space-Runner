@@ -109,7 +109,7 @@ public class Physics : MonoBehaviour {
 
         if (minusHP)
         {
-            go.GetComponent<Movement>().leben--;
+            //go.GetComponent<Movement>().leben--;
         }
 
         while (duration > 0f)

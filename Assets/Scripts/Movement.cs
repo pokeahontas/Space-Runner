@@ -20,22 +20,8 @@ public class Movement : MonoBehaviour
     private float MaxSpeed;
 
     public bool onGround;
-
-    public GameObject shot;
-    public Transform shotSpawn;
-    private bool hasLaser;
     public bool start;
-
-    private float boostAmount;
-    public Image boostBar;
-
-    public int leben;
-    public Sprite[] heartSprites;
-    public Image heartsImage;
-
     public bool hasCollide = false;
-
-    public ParticleSystem streamParticles;
 
     public Text hp;
 
@@ -50,22 +36,15 @@ public class Movement : MonoBehaviour
 
     public int decAmount;
     public int incAmount;
-
     
-
 
     void Start()
     {
         //Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
-        hasLaser = false;
         start = false;
-        leben = 3;
-        heartsImage.sprite = heartSprites[2];
         //hp.text = "HP: " + leben;
         MaxSpeed = 5.0f;
-        boostAmount = 1.0f;
         hasCollide = false;
-        streamParticles.Stop();
         anim = GetComponent<Animator>();
 
         hasPike1 = false;
@@ -175,40 +154,10 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(leben > 0) { 
-        heartsImage.sprite = heartSprites[leben-1];
-            }
-        //hp.text = "HP: " + leben;
-        boostBar.fillAmount = this.boostAmount;
-        if (facingRight)
-        {
-            transform.Translate(Speed * Time.deltaTime, 0, 0);
-        } else
-        {
-            transform.Translate(-Speed * Time.deltaTime, 0, 0);
-        }
-        //print(Speed);
+    
 
         if (ship1)
         {
-            /*
-            if (leben <= 0)
-            {
-                SceneManager.LoadScene("P2Won");
-            }
-            */
-            
-
-            //if ((Input.GetAxis("Acceleration_J1") > 0) && start && !anim.GetBool("damage"))
-            //{
-            //    anim.SetBool("isRunning", true);
-            //    Accelerate("Acceleration_J1");
-            //}
-            //else
-            //{
-            //    DeAccelerate();
-            //    anim.SetBool("isRunning", false);
-            //}
 
             if (Input.GetButton("Boost1") && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike1 && hasTurnedAround && !anim.GetBool("damage")) // OR Input.GetButton("Boost1")
             {
@@ -243,22 +192,6 @@ public class Movement : MonoBehaviour
                 }
             }
             
-            /*
-            if (Input.GetButton("Fire1") && hasLaser)
-            {
-                Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-                hasLaser = false;
-            }
-            */
-            /*
-            if (Input.GetButton("Boost1") && boostAmount >= 1 && ship1)
-            {
-                StartCoroutine(Speedboost(0.05f));
-                boostAmount = 0;
-                StartCoroutine(IncreaseValueOverTime());
-                print("boost1 "+ship1);
-            }
-            */
             if ((Input.GetAxis("Acceleration_J1") > 0) && !anim.GetBool("damage") && start) // (Input.GetButton("Boost1") && !anim.GetBool("damage"))
             {
                 if (!hasPike1) {
@@ -281,23 +214,7 @@ public class Movement : MonoBehaviour
 
         if (ship2)
         {
-            /*
-            if (leben <= 0)
-            {
-                SceneManager.LoadScene("P1Won");
-            }
-            */
 
-            //if ((Input.GetAxis("Acceleration_J2") > 0) && start && !anim.GetBool("damage")) 
-            //{
-            //    anim.SetBool("isRunning", true);
-            //    Accelerate("Acceleration_J2");
-            //}
-            //else
-            //{
-            //    anim.SetBool("isRunning", false);
-            //    DeAccelerate();
-            //}
 
             if (Input.GetButton("Boost2") && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))  
             {
@@ -332,22 +249,6 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            
-            /*
-            if (Input.GetButton("Fire2") && hasLaser)
-            {
-                Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-                hasLaser = false;
-            }
-            */
-            /*
-            if (Input.GetButton("Boost2") && boostAmount >= 1 && ship2) 
-            {
-                StartCoroutine(Speedboost(0.05f));
-                boostAmount = 0;
-                StartCoroutine(IncreaseValueOverTime());
-            }
-            */
 
             if ((Input.GetAxis("Acceleration_J2") > 0)  && !anim.GetBool("damage") && start) // war (Input.GetButton("Boost2") && !anim.GetBool("damage"))
             {
@@ -550,86 +451,6 @@ public class Movement : MonoBehaviour
             newSpawn(true);
         }
 
-        /*
-        else if (collision.gameObject.tag == "Speedboost")
-        {
-            Debug.Log("Speedboost");
-            StartCoroutine(ChangeSpeedOverTime(70, 0.1f));
-        }
-        else if (collision.gameObject.tag == "Slow")
-        {
-            Debug.Log("Slow");
-            StartCoroutine(ChangeSpeedOverTime(25, 0.1f));
-        }
-        else if (collision.gameObject.tag == "LaserCollectible")
-        {
-            Debug.Log("Laser picked up");
-            hasLaser = true;
-            StartCoroutine(DoBlinks(0.1f, 0.2f, collision.gameObject));
-        }
-        else if (collision.gameObject.tag == "LaserBarrier")
-        {
-            Debug.Log("LaserBarrier");
-            StartCoroutine(ChangeSpeedOverTime(5, 0.1f));
-        }
-        else if (collision.gameObject.tag == "Goal")
-        {
-            if (ship1)
-            {
-                SceneManager.LoadScene("P1Won");
-            }
-            if (ship2)
-            {
-                SceneManager.LoadScene("P2Won");
-            }
-        }
-        else if (collision.gameObject.tag == "Portal")
-        {
-            Debug.Log("Portal");
-            Vector3 pos;
-            if (ship1)
-            {
-                StartCoroutine(ChangeBoostOverTime(30, 0.1f));
-                pos = GameObject.FindGameObjectWithTag("Ship2").transform.position;
-                transform.position = new Vector3(pos.x - 15f, pos.y, pos.z);
-
-            }
-            else
-            {
-                StartCoroutine(ChangeBoostOverTime(30, 0.1f));
-                pos = GameObject.FindGameObjectWithTag("Ship1").transform.position;
-                transform.position = new Vector3(pos.x - 15f, pos.y, pos.z);
-
-            }
-            Destroy(collision.gameObject);
-        }
-        else if (collision.gameObject.tag == "Back1")
-        {
-            print("Back1");
-            if (ship2)
-            {
-                if (hasCollide == false)
-                {
-                    print("Back1Inner");
-                    hasCollide = true;
-                    StartCoroutine(BackDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
-                }
-            }
-        }
-        else if (collision.gameObject.tag == "Back2")
-        {
-            print("Back2");
-            if (ship1)
-            {
-                if (hasCollide == false)
-                {
-                    print("Back2Inner");
-                    hasCollide = true;
-                    StartCoroutine(BackDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
-                }
-            }
-        }
-        */
 
 
     }
@@ -696,27 +517,27 @@ public class Movement : MonoBehaviour
 
     IEnumerator ChangeBoostOverTime(float plusSpeed, float duration)
     {
-        streamParticles.Play();
+        //streamParticles.Play();
         MaxSpeed += plusSpeed;
         while (duration > 0f)
         {
             duration -= Time.deltaTime;
             yield return new WaitForSeconds(0.2f);
         }
-        streamParticles.Stop();
+        //streamParticles.Stop();
         MaxSpeed -= plusSpeed;
     }
 
     IEnumerator Speedboost(float duration)
     {
-        streamParticles.Play();
+        //streamParticles.Play();
         MaxSpeed +=  30;
         while (duration > 0f)
         {
             duration -= Time.deltaTime;
             yield return new WaitForSeconds(0.2f);
         }
-        streamParticles.Stop();
+        //streamParticles.Stop();
         MaxSpeed -= 30;
     }
 
@@ -769,48 +590,6 @@ public class Movement : MonoBehaviour
         go.GetComponent<Renderer>().enabled = true;
     }
 
-    IEnumerator IncreaseValueOverTime()
-    {
-        
-        while (boostAmount < 1f)
-        {
-            boostAmount += 0.05f;
-            yield return new WaitForSeconds(0.5f);
-        }
-        boostAmount = 1.0f;
-    }
-
-    IEnumerator BackDamage(float duration, float blinkTime, GameObject go, bool minusHP)
-    {
-        go.transform.localScale -= new Vector3(0.3f, 0, 0);
-        go.GetComponent<Movement>().hasCollide = true;
-        go.GetComponent<Movement>().Speed = 0;
-        go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = false;
-        go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = false;
-
-        if (minusHP)
-        { 
-            go.GetComponent<Movement>().leben--;
-        }
-
-        while (duration > 0f)
-        {
-            duration -= Time.deltaTime;
-            //toggle renderer
-            go.GetComponent<Renderer>().enabled = !go.GetComponent<Renderer>().enabled;
-            //wait for a bit
-            yield return new WaitForSeconds(blinkTime);
-        }
-
-        //make sure renderer is enabled when we exit
-        go.transform.localScale += new Vector3(0.3f, 0, 0);
-        go.GetComponent<Renderer>().enabled = true;
-        hasCollide = false;
-        go.GetComponent<Movement>().hasCollide = false;
-        go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = true;
-        go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = true;
-    }
-
     IEnumerator TopDamage(float duration, float blinkTime, GameObject go, bool minusHP)
     {
         go.transform.position = new Vector3(go.transform.position.x - 1.0f, go.transform.position.y, go.transform.position.z);
@@ -825,7 +604,7 @@ public class Movement : MonoBehaviour
 
         if (minusHP)
         {
-            go.GetComponent<Movement>().leben--;
+            //go.GetComponent<Movement>().leben--;
         }
 
         while (duration > 0f)
@@ -855,4 +634,51 @@ public class Movement : MonoBehaviour
         return null;
     }
 
+
+
+    /*
+IEnumerator BackDamage(float duration, float blinkTime, GameObject go, bool minusHP)
+{
+    go.transform.localScale -= new Vector3(0.3f, 0, 0);
+    go.GetComponent<Movement>().hasCollide = true;
+    go.GetComponent<Movement>().Speed = 0;
+    go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = false;
+    go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = false;
+
+    if (minusHP)
+    { 
+        go.GetComponent<Movement>().leben--;
+    }
+
+    while (duration > 0f)
+    {
+        duration -= Time.deltaTime;
+        //toggle renderer
+        go.GetComponent<Renderer>().enabled = !go.GetComponent<Renderer>().enabled;
+        //wait for a bit
+        yield return new WaitForSeconds(blinkTime);
+    }
+
+    //make sure renderer is enabled when we exit
+    go.transform.localScale += new Vector3(0.3f, 0, 0);
+    go.GetComponent<Renderer>().enabled = true;
+    hasCollide = false;
+    go.GetComponent<Movement>().hasCollide = false;
+    go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = true;
+    go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = true;
+}
+*/
+
+    /*
+IEnumerator IncreaseValueOverTime()
+{
+
+    while (boostAmount < 1f)
+    {
+        boostAmount += 0.05f;
+        yield return new WaitForSeconds(0.5f);
+    }
+    boostAmount = 1.0f;
+}
+*/
 }
