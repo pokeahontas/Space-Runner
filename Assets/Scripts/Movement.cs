@@ -23,9 +23,6 @@ public class Movement : MonoBehaviour
     public bool start;
     public bool hasCollide = false;
 
-    public Text hp;
-
-    public GameObject spike;
     public bool hasPike1;
     public bool hasPike2;
     public bool facingRight;
@@ -42,7 +39,7 @@ public class Movement : MonoBehaviour
     {
         //Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
         start = false;
-        //hp.text = "HP: " + leben;
+
         MaxSpeed = 5.0f;
         hasCollide = false;
         anim = GetComponent<Animator>();
@@ -57,19 +54,12 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        //if(transform.position.x < colliderLeft.transform.position.x + 2.0f)
-        //{
-        //    colliderLeft.GetComponent<BoxCollider2D>().enabled = false;
-        //} 
-        //else
-        //{
-        //    colliderLeft.GetComponent<BoxCollider2D>().enabled = true;
-        //}
 
         if(ship1)
         {
             if (Input.GetAxis("Direction_J1") < -0.1f && facingRight && onGround && !hasPike1 && !anim.GetBool("damage"))
             {
+                
                 SoundManagement.Instance.PlayNote("g", "ship1", true);
                 facingRight = false;
                 Accelerate("Direction_J1");
