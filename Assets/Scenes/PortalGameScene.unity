@@ -386,12 +386,10 @@ MonoBehaviour:
   portal: {fileID: 1115404514765902, guid: 3b05c4a696b060b40a68e8bd0ee4a010, type: 2}
   ship1: 1
   ship2: 0
-  Speed: 50
+  Speed: 0
   onGround: 0
   start: 0
   hasCollide: 0
-  hp: {fileID: 0}
-  spike: {fileID: 0}
   hasPike1: 0
   hasPike2: 0
   facingRight: 0
@@ -3209,8 +3207,6 @@ MonoBehaviour:
   onGround: 0
   start: 0
   hasCollide: 0
-  hp: {fileID: 0}
-  spike: {fileID: 0}
   hasPike1: 0
   hasPike2: 0
   facingRight: 1

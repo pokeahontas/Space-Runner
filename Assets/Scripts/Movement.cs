@@ -144,6 +144,13 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (facingRight)
+        {
+            transform.Translate(Speed * Time.deltaTime, 0, 0);
+        } else
+        {
+            transform.Translate(-Speed * Time.deltaTime, 0, 0);
+        }
     
 
         if (ship1)
