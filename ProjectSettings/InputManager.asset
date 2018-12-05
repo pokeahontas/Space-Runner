@@ -6,68 +6,36 @@ InputManager:
   serializedVersion: 2
   m_Axes:
   - serializedVersion: 3
-    m_Name: Gravity_J1
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
-    altNegativeButton: joystick button 8
-    altPositiveButton: joystick button 8
-    gravity: 0
-    dead: 0.2
-    sensitivity: 1
-    snap: 0
-    invert: 0
-    type: 2
-    axis: 1
-    joyNum: 1
-  - serializedVersion: 3
-    m_Name: Gravity_J2
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: w
-    positiveButton: w
-    altNegativeButton: joystick button 8
-    altPositiveButton: joystick button 8
-    gravity: 0
-    dead: 0.2
-    sensitivity: 1
-    snap: 0
-    invert: 0
-    type: 2
-    axis: 1
-    joyNum: 2
-  - serializedVersion: 3
-    m_Name: Acceleration_J1
+    m_Name: Pike1
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
     altNegativeButton: 
-    altPositiveButton: joystick 1 button 10
+    altPositiveButton: 
     gravity: 0
     dead: 0.1
     sensitivity: 1
     snap: 0
     invert: 0
     type: 2
-    axis: 2
+    axis: 9
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Acceleration_J2
+    m_Name: Pike2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
     altNegativeButton: 
-    altPositiveButton: joystick 2 button 10
+    altPositiveButton: 
     gravity: 0
     dead: 0.1
     sensitivity: 1
     snap: 0
     invert: 0
     type: 2
-    axis: 2
+    axis: 9
     joyNum: 2
   - serializedVersion: 3
     m_Name: Submit
@@ -118,7 +86,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Boost1
+    m_Name: Gravity1
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -150,7 +118,7 @@ InputManager:
     axis: 0
     joyNum: 2
   - serializedVersion: 3
-    m_Name: Boost2
+    m_Name: Gravity2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
