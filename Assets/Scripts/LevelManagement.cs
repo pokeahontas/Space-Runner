@@ -15,6 +15,7 @@ public class LevelManagement : MonoBehaviour {
 
     public Sprite[] tiles = new Sprite[4];
     public Sprite[] tiles2 = new Sprite[4];
+    public Sprite[] tiles3 = new Sprite[4];
 
     public int levelfarbe = 0;
     public int hgBoden = 0;
