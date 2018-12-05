@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Movement : MonoBehaviour
+public class Movement2 : MonoBehaviour
 {
 
     public GameObject scoreP1;
@@ -297,13 +297,15 @@ public class Movement : MonoBehaviour
         {
             onGround = true;
         }
+    }
 
-        //Ship 2 jumps on Ship1 (with pike activated)
-        else if (collision.gameObject.tag == "Ship1" && collision.gameObject.GetComponent<Movement>().hasPike1)
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Top1" && collision.gameObject.GetComponentInParent<Movement>().hasPike1)
         {
             SoundManagement.Instance.PlayLosePointsSound();
             print("ship2 hit pike");
-            if (ship2 && !onGround && collision.gameObject.GetComponent<Movement>().onGround)
+            if (ship2)
             {
                 if (hasCollide == false)
                 {
@@ -314,18 +316,17 @@ public class Movement : MonoBehaviour
                 }
             }
         }
-        //Ship 2 jumps on Ship1 (without pike)
-        else if (collision.gameObject.tag == "Ship1")
+        else if (collision.gameObject.tag == "Top1")
         {
             SoundManagement.Instance.PlayLosePointsSound();
             print("Top1");
-            if (ship2 && !onGround && collision.gameObject.GetComponent<Movement>().onGround)
+            if (ship2)
             {
                 if (hasCollide == false)
                 {
                     print("Top1Inner");
                     hasCollide = true;
-                    int temp = scoreP1.GetComponent<Score>().score;
+                    int temp = scoreP1.GetComponent<Score>().score; 
                     if (temp < decAmount)
                     {
                         scoreP2.GetComponent<Score>().inc(temp);
@@ -336,16 +337,15 @@ public class Movement : MonoBehaviour
                         scoreP2.GetComponent<Score>().inc(decAmount);
                         scoreP1.GetComponent<Score>().dec(decAmount);
                     }
-                    StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.gameObject, true));
+                    StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
                 }
             }
         }
-        //Ship 1 jumps on Ship2 (with pike activated)
-        else if (collision.gameObject.tag == "Ship2" && collision.gameObject.GetComponent<Movement>().hasPike2)
+        else if (collision.gameObject.tag == "Top2" && collision.gameObject.GetComponentInParent<Movement>().hasPike2)
         {
             SoundManagement.Instance.PlayLosePointsSound();
             print("ship1 hit pike");
-            if (ship1 && !onGround && collision.gameObject.GetComponent<Movement>().onGround)
+            if (ship1)
             {
                 if (hasCollide == false)
                 {
@@ -356,12 +356,11 @@ public class Movement : MonoBehaviour
                 }
             }
         }
-        //Ship 1 jumps on Ship2 (without pike)
-        else if (collision.gameObject.tag == "Ship2")
+        else if (collision.gameObject.tag == "Top2")
         {
             SoundManagement.Instance.PlayLosePointsSound();
             print("Top2");
-            if (ship1 && !onGround && collision.gameObject.GetComponent<Movement>().onGround)
+            if (ship1)
             {
                 if (hasCollide == false)
                 {
@@ -378,16 +377,11 @@ public class Movement : MonoBehaviour
                         scoreP1.GetComponent<Score>().inc(decAmount);
                         scoreP2.GetComponent<Score>().dec(decAmount);
                     }
-                    StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.gameObject, true));
+                    StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.parent.gameObject, true));
                 }
             }
         }
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {   
-        
-        if (collision.gameObject.tag == "collectible") //yellow
+        else if (collision.gameObject.tag == "collectible") //yellow
         {
             if (ship1)
             {
@@ -590,14 +584,14 @@ public class Movement : MonoBehaviour
     IEnumerator TopDamage(float duration, float blinkTime, GameObject go, bool minusHP)
     {
         go.transform.position = new Vector3(go.transform.position.x - 1.0f, go.transform.position.y, go.transform.position.z);
-        go.GetComponent<Movement>().anim.SetBool("damage", true);
+        go.GetComponent<Movement2>().anim.SetBool("damage", true);
         
         //go.transform.localScale -= new Vector3(0, 0.3f, 0);
         
         go.GetComponent<Movement>().hasCollide = true;
         go.GetComponent<Movement>().Speed = 0;
-        //go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = false;
-        //go.transform.GetComponent<BoxCollider2D>().enabled = false;
+        go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = false;
+        go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = false;
 
         if (minusHP)
         {
@@ -616,11 +610,11 @@ public class Movement : MonoBehaviour
         //make sure renderer is enabled when we exit
         //go.transform.localScale += new Vector3(0, 0.3f, 0);
         //go.GetComponent<Renderer>().enabled = true;
-        //go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = true;
-        //go.transform.GetComponent<BoxCollider2D>().enabled = true;
+        go.transform.GetChild(1).GetComponent<CapsuleCollider2D>().enabled = true;
+        go.transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = true;
         hasCollide = false;
         go.GetComponent<Movement>().hasCollide = false;
-        go.GetComponent<Movement>().anim.SetBool("damage", false);
+        go.GetComponent<Movement2>().anim.SetBool("damage", false);
 
     }
 

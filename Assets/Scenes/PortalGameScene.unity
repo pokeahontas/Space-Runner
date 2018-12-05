@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 34427451}
   - component: {fileID: 34427449}
   - component: {fileID: 34427448}
+  - component: {fileID: 34427450}
   m_Layer: 0
   m_Name: spaceship p1
   m_TagString: Ship1
@@ -304,8 +305,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1670033845}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -354,6 +354,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &34427450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34427446}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a1dfe2004409304f9b5edde843fbb61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreP1: {fileID: 296764169}
+  scoreP2: {fileID: 1427008846}
+  portal: {fileID: 1115404514765902, guid: 3b05c4a696b060b40a68e8bd0ee4a010, type: 2}
+  anim: {fileID: 0}
+  ship1: 1
+  ship2: 0
+  Speed: 0
+  MaxSpeed: 0
+  onGround: 0
+  start: 0
+  hasCollide: 0
+  hasPike1: 0
+  hasPike2: 0
+  facingRight: 0
+  hasTurnedAround: 0
+  colliderLeft: {fileID: 1843672546}
+  goRight: {fileID: 125518357}
+  decAmount: 5
+  incAmount: 1
 --- !u!114 &34427451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3062,6 +3092,7 @@ GameObject:
   - component: {fileID: 861218475}
   - component: {fileID: 861218473}
   - component: {fileID: 861218472}
+  - component: {fileID: 861218474}
   m_Layer: 0
   m_Name: spaceship p2
   m_TagString: Ship2
@@ -3114,6 +3145,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6655555, y: 0.9255562}
   m_EdgeRadius: 0
+--- !u!114 &861218474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 861218471}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a1dfe2004409304f9b5edde843fbb61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreP1: {fileID: 296764169}
+  scoreP2: {fileID: 1427008846}
+  portal: {fileID: 1115404514765902, guid: 3b05c4a696b060b40a68e8bd0ee4a010, type: 2}
+  anim: {fileID: 0}
+  ship1: 0
+  ship2: 1
+  Speed: 0
+  MaxSpeed: 0
+  onGround: 0
+  start: 0
+  hasCollide: 0
+  hasPike1: 0
+  hasPike2: 0
+  facingRight: 0
+  hasTurnedAround: 0
+  colliderLeft: {fileID: 1843672546}
+  goRight: {fileID: 125518357}
+  decAmount: 5
+  incAmount: 1
 --- !u!114 &861218475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3293,8 +3354,7 @@ Transform:
   m_LocalRotation: {x: -1, y: -0, z: -0.00000028088027, w: 0}
   m_LocalPosition: {x: -10, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1955793876}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 179.99998, z: -180}
@@ -5794,53 +5854,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 616bd87401eed6046b13e0a09d7df4ad, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1670033844
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1719161311175400, guid: 480da305b0053464d87cce5f511feb28,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1670033845}
-  - component: {fileID: 1670033846}
-  m_Layer: 0
-  m_Name: Top1
-  m_TagString: Top1
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1670033845
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4332944458054102, guid: 480da305b0053464d87cce5f511feb28,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1670033844}
-  m_LocalRotation: {x: -1, y: -0, z: -0.00000028088027, w: 0}
-  m_LocalPosition: {x: 0, y: 0.3, z: -0}
-  m_LocalScale: {x: 1.2, y: 0.49999902, z: 1}
-  m_Children: []
-  m_Father: {fileID: 34427447}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &1670033846
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 70081710697488852, guid: 480da305b0053464d87cce5f511feb28,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1670033844}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 1
 --- !u!1 &1675322462
 GameObject:
   m_ObjectHideFlags: 0
@@ -6695,53 +6708,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1955793875
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1199481448120740, guid: bfb16d772327c11489ce691babd4ba1b,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1955793876}
-  - component: {fileID: 1955793877}
-  m_Layer: 0
-  m_Name: Top2
-  m_TagString: Top2
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1955793876
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4303431895073188, guid: bfb16d772327c11489ce691babd4ba1b,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1955793875}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: -0}
-  m_LocalScale: {x: 1.2, y: 0.5, z: 1}
-  m_Children: []
-  m_Father: {fileID: 861218480}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &1955793877
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 70664134486886634, guid: bfb16d772327c11489ce691babd4ba1b,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1955793875}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 1
 --- !u!1001 &2007927809
 Prefab:
   m_ObjectHideFlags: 0
