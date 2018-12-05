@@ -386,7 +386,7 @@ public class Movement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {   
-        
+        /*
         if (collision.gameObject.tag == "collectible") //yellow
         {
             if (ship1)
@@ -436,8 +436,9 @@ public class Movement : MonoBehaviour
             }
             Destroy(collision.gameObject);
         }
-
-        else if (collision.gameObject.tag == "ColliderLeft")
+        */
+        //else if (collision.gameObject.tag == "ColliderLeft")
+        if (collision.gameObject.tag == "ColliderLeft")
         {
             newSpawn(false);
             
