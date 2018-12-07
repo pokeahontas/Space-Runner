@@ -365,25 +365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1dfe2004409304f9b5edde843fbb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreP1: {fileID: 296764169}
-  scoreP2: {fileID: 1427008846}
-  portal: {fileID: 1115404514765902, guid: 3b05c4a696b060b40a68e8bd0ee4a010, type: 2}
-  anim: {fileID: 0}
-  ship1: 1
-  ship2: 0
-  Speed: 0
-  MaxSpeed: 0
-  onGround: 0
-  start: 0
-  hasCollide: 0
-  hasPike1: 0
-  hasPike2: 0
-  facingRight: 0
-  hasTurnedAround: 0
-  colliderLeft: {fileID: 1843672546}
-  goRight: {fileID: 125518357}
-  decAmount: 5
-  incAmount: 1
 --- !u!114 &34427451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2923,25 +2904,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1dfe2004409304f9b5edde843fbb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreP1: {fileID: 296764169}
-  scoreP2: {fileID: 1427008846}
-  portal: {fileID: 1115404514765902, guid: 3b05c4a696b060b40a68e8bd0ee4a010, type: 2}
-  anim: {fileID: 0}
-  ship1: 0
-  ship2: 1
-  Speed: 0
-  MaxSpeed: 0
-  onGround: 0
-  start: 0
-  hasCollide: 0
-  hasPike1: 0
-  hasPike2: 0
-  facingRight: 0
-  hasTurnedAround: 0
-  colliderLeft: {fileID: 1843672546}
-  goRight: {fileID: 125518357}
-  decAmount: 5
-  incAmount: 1
 --- !u!114 &861218475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3413,7 +3375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &946011244
 Transform:
   m_ObjectHideFlags: 0
@@ -3644,7 +3606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1090228052
 Transform:
   m_ObjectHideFlags: 0
@@ -4299,7 +4261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1389738496
 Transform:
   m_ObjectHideFlags: 0
@@ -5120,7 +5082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1595464178
 Transform:
   m_ObjectHideFlags: 0
