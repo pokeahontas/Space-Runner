@@ -177,12 +177,29 @@ public class LevelManagement : MonoBehaviour {
         {
             diamondYellow += value;
         }
-        print("Blue: " + diamondBlue + " Green: " + diamondGreen + " Yellow: " + diamondYellow);
+        
 
 
         if (diamondBlue + diamondGreen + diamondYellow == 0)
         {
             levelfarbe = 0;
+        } else if(CheckIfTwoDiamondsHaveSameValue())
+        {
+            levelfarbe = 0;
+
+            int[] tempArray = { diamondBlue, diamondGreen, diamondYellow };
+
+            int max = tempArray.Max();
+            int min = tempArray.Min();
+            int secondHighest = (from number in tempArray orderby number descending select number).Distinct().Skip(1).First();
+            
+            //Entfernung von Minimum  
+            hgBoden = max - secondHighest;
+
+            //Entfernung von unentschieden
+            hgWeit = max - min;
+
+            print("Blue: " + diamondBlue + " Green: " + diamondGreen + " Yellow: " + diamondYellow + ", lvlfarbe=" + levelfarbe + " hgWeit=" + hgWeit + " hgBoden=" + hgBoden);
         }
         else
         {
@@ -195,13 +212,36 @@ public class LevelManagement : MonoBehaviour {
             int p = tempArray.ToList().IndexOf(max);
             levelfarbe = p+1;
 
-            //Entfernung von Minimum ; INFO: WAR VERWECHSELT    
-            hgWeit = max - secondHighest;
+            //Entfernung von Minimum  
+            hgBoden = max - secondHighest;
 
             //Entfernung von unentschieden
-            hgBoden = max - min;
+            hgWeit = max - min;
+
+            print("Blue: " + diamondBlue + " Green: " + diamondGreen + " Yellow: " + diamondYellow + ", lvlfarbe=" + levelfarbe + " hgWeit=" + hgWeit + " hgBoden=" + hgBoden);
 
         }
+    }
+
+    private bool CheckIfTwoDiamondsHaveSameValue()
+    {
+        bool check;
+        int countZeros = 0;
+        int[] tempArray = { diamondBlue, diamondGreen, diamondYellow };
+        
+        foreach(int i in tempArray)
+        {
+            if(i==0) { countZeros++; }
+        }
+        if((countZeros<=1) && ((diamondBlue==diamondGreen) || (diamondBlue==diamondYellow) || (diamondYellow==diamondGreen)))
+        {
+            check = true;
+        } 
+        else
+        {
+            check = false;
+        }
+        return check;
     }
 
     IEnumerator ChangeAlphaValue(float alphaValue, GameObject go)
@@ -250,6 +290,7 @@ public class LevelManagement : MonoBehaviour {
             onlyColorDesert[0].SetActive(false);
             onlyColorDesert[1].SetActive(false);
             BackgroundSpawner.setBackgroundTheme("neutral");
+            //print("ActivateFarBGAndDisableOthers: neutral");
             //TODO rest missing
         } 
         else if(theme.Equals("forest"))
