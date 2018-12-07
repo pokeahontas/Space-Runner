@@ -70,8 +70,8 @@ public class BackgroundSpawner : MonoBehaviour
         }
         else if (theme.Equals("snow"))
         {
-            background1 = GameObject.Find("bg_neutral1").transform; // TODO SET CORRECT BG
-            background2 = GameObject.Find("bg_neutral2").transform;
+            background1 = GameObject.Find("bg_snow1").transform;
+            background2 = GameObject.Find("bg_snow2").transform;
         }
     }
 }

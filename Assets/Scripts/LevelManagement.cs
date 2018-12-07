@@ -25,6 +25,7 @@ public class LevelManagement : MonoBehaviour {
     public GameObject[] onlyColorTrees;
     public GameObject[] onlySilDesert;
     public GameObject[] onlyColorDesert;
+    public GameObject[] onlyColorSnowTrees;
 
     public GameObject backGroundNeutral1;
     public GameObject backGroundNeutral2;
@@ -32,6 +33,8 @@ public class LevelManagement : MonoBehaviour {
     public GameObject backGroundForest2;
     public GameObject backGroundDesert1;
     public GameObject backGroundDesert2;
+    public GameObject backGroundSnow1;
+    public GameObject backGroundSnow2;
 
     public bool hasChangedFar1;
     public bool hasChangedFar2;
@@ -60,15 +63,46 @@ public class LevelManagement : MonoBehaviour {
     public void Update()
     {
         if (levelfarbe == 1) {  //Blue
-            if (hgWeit <= 2)
+            //print(hasChangedFar1 + "," + firstChangeDone);
+            if ((hgWeit <= 2) && !hasChangedFar1 && firstChangeDone) // neutral state
             {
+                hasChangedFar1 = true;
+                hasChangedFar2 = false;
+                hasChangedFar3 = false;
 
-            } else if (hgWeit >= 3 && hgWeit <= 5)
+                StartCoroutine(ChangeAlphaValue(onlySilTrees[0].GetComponent<SpriteRenderer>().color.a, onlySilTrees[0]));
+                StartCoroutine(ChangeAlphaValue(onlySilTrees[1].GetComponent<SpriteRenderer>().color.a, onlySilTrees[1]));
+                ActivateFarBGAndDisableOthers("neutral");
+            }
+            else if ((hgWeit >= 3 && hgWeit <= 5) && !hasChangedFar2) // blend in sil trees
             {
-                
-            } else if (hgWeit >= 6 && hgWeit <= 8)
-            {
+                if (hasChangedFar3 && !hasChangedFar1 && !hasChangedFar2) // switches down from colored map
+                {
+                    SetAlphaValue(1.0f, onlySilTrees[0]);
+                    SetAlphaValue(1.0f, onlySilTrees[1]);
+                    ActivateFarBGAndDisableOthers("neutral");
+                }
+                else
+                {
+                    StartCoroutine(ChangeAlphaValue(onlySilTrees[0].GetComponent<SpriteRenderer>().color.a, onlySilTrees[0]));
+                    StartCoroutine(ChangeAlphaValue(onlySilTrees[1].GetComponent<SpriteRenderer>().color.a, onlySilTrees[1]));
+                    ActivateFarBGAndDisableOthers("neutral");
+                }
+                hasChangedFar2 = true;
+                hasChangedFar1 = false;
+                hasChangedFar3 = false;
+                firstChangeDone = true;
+                //print("blend in trees");
 
+            }
+            else if ((hgWeit >= 6 && hgWeit <= 8) && !hasChangedFar3) //switch to color trees and switch to colored BG
+            {
+                hasChangedFar3 = true;
+                hasChangedFar1 = false;
+                hasChangedFar2 = false;
+                StartCoroutine(ChangeAlphaValue(onlySilTrees[0].GetComponent<SpriteRenderer>().color.a, onlySilTrees[0]));
+                StartCoroutine(ChangeAlphaValue(onlySilTrees[1].GetComponent<SpriteRenderer>().color.a, onlySilTrees[1]));
+                ActivateFarBGAndDisableOthers("snow");
             }
         } else if (levelfarbe == 2) //Green
         {
@@ -267,13 +301,15 @@ public class LevelManagement : MonoBehaviour {
             backGroundForest2.SetActive(false);
             backGroundDesert1.SetActive(false);
             backGroundDesert2.SetActive(false);
+            backGroundSnow1.SetActive(false);
+            backGroundSnow2.SetActive(false);
             onlyColorTrees[0].SetActive(false);
             onlyColorTrees[1].SetActive(false);
             onlyColorDesert[0].SetActive(false);
             onlyColorDesert[1].SetActive(false);
+            onlyColorSnowTrees[0].SetActive(false);
+            onlyColorSnowTrees[1].SetActive(false);
             BackgroundSpawner.setBackgroundTheme("neutral");
-            //print("ActivateFarBGAndDisableOthers: neutral");
-            //TODO rest missing
         } 
         else if(theme.Equals("forest"))
         {
@@ -283,10 +319,14 @@ public class LevelManagement : MonoBehaviour {
             backGroundForest2.SetActive(true);
             backGroundDesert1.SetActive(false);
             backGroundDesert2.SetActive(false);
+            backGroundSnow1.SetActive(false);
+            backGroundSnow2.SetActive(false);
             onlyColorTrees[0].SetActive(true);
             onlyColorTrees[1].SetActive(true);
             onlyColorDesert[0].SetActive(false);
             onlyColorDesert[1].SetActive(false);
+            onlyColorSnowTrees[0].SetActive(false);
+            onlyColorSnowTrees[1].SetActive(false);
             BackgroundSpawner.setBackgroundTheme("forest");
         }
         else if (theme.Equals("desert"))
@@ -297,15 +337,32 @@ public class LevelManagement : MonoBehaviour {
             backGroundForest2.SetActive(false);
             backGroundDesert1.SetActive(true);
             backGroundDesert2.SetActive(true);
+            backGroundSnow1.SetActive(false);
+            backGroundSnow2.SetActive(false);
             onlyColorTrees[0].SetActive(false);
             onlyColorTrees[1].SetActive(false);
             onlyColorDesert[0].SetActive(true);
             onlyColorDesert[1].SetActive(true);
+            onlyColorSnowTrees[0].SetActive(false);
+            onlyColorSnowTrees[1].SetActive(false);
             BackgroundSpawner.setBackgroundTheme("desert");
         }
         else if (theme.Equals("snow"))
         {
-            //TODO
+            backGroundNeutral1.SetActive(false);
+            backGroundNeutral2.SetActive(false);
+            backGroundForest1.SetActive(false);
+            backGroundForest2.SetActive(false);
+            backGroundDesert1.SetActive(false);
+            backGroundDesert2.SetActive(false);
+            backGroundSnow1.SetActive(true);
+            backGroundSnow2.SetActive(true);
+            onlyColorTrees[0].SetActive(false);
+            onlyColorTrees[1].SetActive(false);
+            onlyColorDesert[0].SetActive(true);
+            onlyColorDesert[1].SetActive(true);
+            onlyColorSnowTrees[0].SetActive(true);
+            onlyColorSnowTrees[1].SetActive(true);
             BackgroundSpawner.setBackgroundTheme("snow");
         }
     }
