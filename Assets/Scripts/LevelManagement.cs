@@ -205,9 +205,9 @@ public class LevelManagement : MonoBehaviour {
         }
     }
 
-    private void ActivateFarBGAndDisableOthers(string which) 
+    private void ActivateFarBGAndDisableOthers(string theme) 
     {
-        if(which.Equals("neutral"))
+        if(theme.Equals("neutral"))
         {
             backGroundNeutral1.SetActive(true);
             backGroundNeutral2.SetActive(true);
@@ -219,9 +219,10 @@ public class LevelManagement : MonoBehaviour {
             onlyColorTrees[1].SetActive(false);
             onlyColorDesert[0].SetActive(false);
             onlyColorDesert[1].SetActive(false);
+            BackgroundSpawner.setBackgroundTheme("neutral");
             //TODO rest missing
         } 
-        else if(which.Equals("forest"))
+        else if(theme.Equals("forest"))
         {
             backGroundNeutral1.SetActive(false);
             backGroundNeutral2.SetActive(false);
@@ -233,8 +234,9 @@ public class LevelManagement : MonoBehaviour {
             onlyColorTrees[1].SetActive(true);
             onlyColorDesert[0].SetActive(false);
             onlyColorDesert[1].SetActive(false);
+            BackgroundSpawner.setBackgroundTheme("forest");
         }
-        else if (which.Equals("desert"))
+        else if (theme.Equals("desert"))
         {
             backGroundNeutral1.SetActive(false);
             backGroundNeutral2.SetActive(false);
@@ -246,10 +248,12 @@ public class LevelManagement : MonoBehaviour {
             onlyColorTrees[1].SetActive(false);
             onlyColorDesert[0].SetActive(true);
             onlyColorDesert[1].SetActive(true);
+            BackgroundSpawner.setBackgroundTheme("desert");
         }
-        else if (which.Equals("snow"))
+        else if (theme.Equals("snow"))
         {
-
+            //TODO
+            BackgroundSpawner.setBackgroundTheme("snow");
         }
     }
 }
