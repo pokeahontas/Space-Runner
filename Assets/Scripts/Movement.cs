@@ -160,7 +160,7 @@ public class Movement : MonoBehaviour
             {
                 //SoundManagement.Instance.PlayNote("c", "ship1", true);
                 onGround = false;
-                Debug.Log("flipped gravity");
+                //Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
                 //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, -0.5f, 1f);
                 if (facingRight)
@@ -177,7 +177,7 @@ public class Movement : MonoBehaviour
             {
                 //SoundManagement.Instance.PlayNote("c","ship1", true);
                 onGround = false;
-                Debug.Log("normal gravity");
+                //Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
                 //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, 0.5f, 1f);
                 if (facingRight) {
@@ -217,7 +217,7 @@ public class Movement : MonoBehaviour
             {
                 //SoundManagement.Instance.PlayNote("c","ship2", true);
                 onGround = false;
-                Debug.Log("normal gravity");
+                //Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
                 //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, 0.5f, 1f);
                 if (facingRight)
@@ -234,7 +234,7 @@ public class Movement : MonoBehaviour
             {
                 //SoundManagement.Instance.PlayNote("c","ship2", true);
                 onGround = false;
-                Debug.Log("flipped gravity");
+                //Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
                 //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, -0.5f, 1f);
                 if (facingRight) {
@@ -544,7 +544,7 @@ public class Movement : MonoBehaviour
         Vector3 actualScale = GetComponent<SpriteRenderer>().transform.localScale;             // scale of the object at the begining of the animation
         hasTurnedAround = false;
         //Vector3 targetScale = new Vector3(0.5f, 0.5f, 0.5f);     // scale of the object at the end of the animation
-        print(GetComponent<SpriteRenderer>().transform.localScale);
+        //print(GetComponent<SpriteRenderer>().transform.localScale);
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / duration)
         {
             //print("t: "+t);

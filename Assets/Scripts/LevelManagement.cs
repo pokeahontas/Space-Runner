@@ -72,12 +72,12 @@ public class LevelManagement : MonoBehaviour {
             }
         } else if (levelfarbe == 2) //Green
         {
+            //print(hasChangedFar1 + "," + firstChangeDone);
             if ((hgWeit <= 2) && !hasChangedFar1 && firstChangeDone) // neutral state
             {
                 hasChangedFar1 = true;
                 hasChangedFar2 = false;
                 hasChangedFar3 = false;
-                print("Woooosh2: " + onlySilTrees[0].GetComponent<SpriteRenderer>().color.a +", " + onlySilTrees[1].GetComponent<SpriteRenderer>().color.a );
                 
                 StartCoroutine(ChangeAlphaValue(onlySilTrees[0].GetComponent<SpriteRenderer>().color.a, onlySilTrees[0]));
                 StartCoroutine(ChangeAlphaValue(onlySilTrees[1].GetComponent<SpriteRenderer>().color.a, onlySilTrees[1]));
@@ -177,46 +177,28 @@ public class LevelManagement : MonoBehaviour {
         {
             diamondYellow += value;
         }
-        
 
+        int[] tempArray = { diamondBlue, diamondGreen, diamondYellow };
 
-        if (diamondBlue + diamondGreen + diamondYellow == 0)
+        int max = tempArray.Max();
+        int min = tempArray.Min();
+        int secondHighest = (from number in tempArray orderby number descending select number).Distinct().Skip(1).First();
+
+        //Entfernung von Minimum  
+        hgBoden = max - secondHighest;
+
+        //Entfernung von unentschieden
+        hgWeit = max - min;
+
+        if ((diamondBlue + diamondGreen + diamondYellow == 0) || (max == secondHighest) || (max == secondHighest && max == min))
         {
             levelfarbe = 0;
-        } else if(CheckIfTwoDiamondsHaveSameValue())
-        {
-            levelfarbe = 0;
-
-            int[] tempArray = { diamondBlue, diamondGreen, diamondYellow };
-
-            int max = tempArray.Max();
-            int min = tempArray.Min();
-            int secondHighest = (from number in tempArray orderby number descending select number).Distinct().Skip(1).First();
-            
-            //Entfernung von Minimum  
-            hgBoden = max - secondHighest;
-
-            //Entfernung von unentschieden
-            hgWeit = max - min;
-
             print("Blue: " + diamondBlue + " Green: " + diamondGreen + " Yellow: " + diamondYellow + ", lvlfarbe=" + levelfarbe + " hgWeit=" + hgWeit + " hgBoden=" + hgBoden);
-        }
+        } 
         else
         {
-            int[] tempArray = { diamondBlue, diamondGreen, diamondYellow };
-            
-            int max = tempArray.Max();
-            int min = tempArray.Min();
-            int secondHighest = (from number in tempArray orderby number descending select number).Distinct().Skip(1).First();
-   
             int p = tempArray.ToList().IndexOf(max);
             levelfarbe = p+1;
-
-            //Entfernung von Minimum  
-            hgBoden = max - secondHighest;
-
-            //Entfernung von unentschieden
-            hgWeit = max - min;
 
             print("Blue: " + diamondBlue + " Green: " + diamondGreen + " Yellow: " + diamondYellow + ", lvlfarbe=" + levelfarbe + " hgWeit=" + hgWeit + " hgBoden=" + hgBoden);
 
