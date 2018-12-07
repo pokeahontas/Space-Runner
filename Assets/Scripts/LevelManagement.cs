@@ -108,33 +108,33 @@ public class LevelManagement : MonoBehaviour {
         {
             if (hgWeit <= 2 && !hasChangedFar1 && firstChangeDone)
             {
-                //hasChangedFar1 = true;
-                //hasChangedFar2 = false;
-                //hasChangedFar3 = false;
+                hasChangedFar1 = true;
+                hasChangedFar2 = false;
+                hasChangedFar3 = false;
 
-                //StartCoroutine(ChangeAlphaValue(onlySilDesert[0].GetComponent<SpriteRenderer>().color.a, onlySilDesert[0]));
-                //StartCoroutine(ChangeAlphaValue(onlySilDesert[1].GetComponent<SpriteRenderer>().color.a, onlySilDesert[1]));
-                //ActivateFarBGAndDisableOthers("neutral");
+                StartCoroutine(ChangeAlphaValue(onlySilDesert[0].GetComponent<SpriteRenderer>().color.a, onlySilDesert[0]));
+                StartCoroutine(ChangeAlphaValue(onlySilDesert[1].GetComponent<SpriteRenderer>().color.a, onlySilDesert[1]));
+                ActivateFarBGAndDisableOthers("neutral");
             }
             else if ((hgWeit >= 3 && hgWeit <= 5) && !hasChangedFar2)
             {
-                //hasChangedFar2 = true;
-                //hasChangedFar1 = false;
-                //hasChangedFar3 = false;
-                //firstChangeDone = true;
-                ////print("blend in trees");
-                //StartCoroutine(ChangeAlphaValue(onlySilDesert[0].GetComponent<SpriteRenderer>().color.a, onlySilDesert[0]));
-                //StartCoroutine(ChangeAlphaValue(onlySilDesert[1].GetComponent<SpriteRenderer>().color.a, onlySilDesert[1]));
-                //ActivateFarBGAndDisableOthers("neutral");
+                hasChangedFar2 = true;
+                hasChangedFar1 = false;
+                hasChangedFar3 = false;
+                firstChangeDone = true;
+                //print("blend in trees");
+                StartCoroutine(ChangeAlphaValue(onlySilDesert[0].GetComponent<SpriteRenderer>().color.a, onlySilDesert[0]));
+                StartCoroutine(ChangeAlphaValue(onlySilDesert[1].GetComponent<SpriteRenderer>().color.a, onlySilDesert[1]));
+                ActivateFarBGAndDisableOthers("neutral");
             }
             else if (hgWeit >= 6 && hgWeit <= 8)
             {
-                //hasChangedFar3 = true;
-                //hasChangedFar1 = false;
-                //hasChangedFar2 = false;
-                //StartCoroutine(ChangeAlphaValue(onlySilDesert[0].GetComponent<SpriteRenderer>().color.a, onlySilDesert[0]));
-                //StartCoroutine(ChangeAlphaValue(onlySilDesert[1].GetComponent<SpriteRenderer>().color.a, onlySilDesert[1]));
-                //ActivateFarBGAndDisableOthers("desert");
+                hasChangedFar3 = true;
+                hasChangedFar1 = false;
+                hasChangedFar2 = false;
+                StartCoroutine(ChangeAlphaValue(onlySilDesert[0].GetComponent<SpriteRenderer>().color.a, onlySilDesert[0]));
+                StartCoroutine(ChangeAlphaValue(onlySilDesert[1].GetComponent<SpriteRenderer>().color.a, onlySilDesert[1]));
+                ActivateFarBGAndDisableOthers("desert");
             }
         }
     }

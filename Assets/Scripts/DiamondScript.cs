@@ -12,7 +12,8 @@ public class DiamondScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         incAmount = 1;
-
+        scoreP1 = GameObject.Find("ScoreP1");
+        scoreP2 = GameObject.Find("ScoreP2");
     }
 	
 	// Update is called once per frame
