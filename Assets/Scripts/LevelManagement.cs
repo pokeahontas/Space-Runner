@@ -47,7 +47,6 @@ public class LevelManagement : MonoBehaviour {
     public bool hasChangedFar3;
     public bool firstChangeDone;
 
-    GameObject boden;
 
     private void Awake()
     {
@@ -203,38 +202,8 @@ public class LevelManagement : MonoBehaviour {
         {
             ActivateFarBGAndDisableOthers("neutral");
         }
-        boden = GameObject.Find("BgBodenElemente");
 
-        if (hgBoden > 1)
-        {
-            boden.transform.GetChild(0).gameObject.SetActive(true);
-            boden.transform.GetChild(1).gameObject.SetActive(true);
-            if (hgBoden > 2)
-            {
-                boden.transform.GetChild(2).gameObject.SetActive(true);
-                boden.transform.GetChild(3).gameObject.SetActive(true);
-                if (hgBoden > 3)
-                {
-                    boden.transform.GetChild(4).gameObject.SetActive(true);
-                    boden.transform.GetChild(5).gameObject.SetActive(true);
-                }
-                else
-                {
-                    boden.transform.GetChild(4).gameObject.SetActive(false);
-                    boden.transform.GetChild(5).gameObject.SetActive(false);
-                }
-            }
-            else
-            {
-                boden.transform.GetChild(2).gameObject.SetActive(false);
-                boden.transform.GetChild(3).gameObject.SetActive(false);
-            }
-        }
-        else
-        {
-            boden.transform.GetChild(0).gameObject.SetActive(false);
-            boden.transform.GetChild(1).gameObject.SetActive(false);
-        }
+        
         
     }
 
@@ -257,11 +226,13 @@ public class LevelManagement : MonoBehaviour {
 
         int max = tempArray.Max();
         int min = tempArray.Min();
-        int secondHighest = (from number in tempArray orderby number descending select number).Distinct().Skip(1).First();
-        int secondLargest = tempArray[tempArray.Length - 2];
+        int[] ordered = (from number in tempArray orderby number descending select number).ToArray();
+        int secondHighest = ordered[1];
+        print("second "+ secondHighest);
+
 
         //Entfernung von Minimum  
-        hgBoden = max - secondLargest;
+        hgBoden = max - secondHighest;
 
         //Entfernung von unentschieden
         hgWeit = max - min;
