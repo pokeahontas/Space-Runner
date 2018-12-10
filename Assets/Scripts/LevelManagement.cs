@@ -33,14 +33,17 @@ public class LevelManagement : MonoBehaviour {
     public GameObject[] onlyColorDesert;
     public GameObject[] onlyColorSnowTrees;
 
-    public GameObject backGroundNeutral1;
-    public GameObject backGroundNeutral2;
-    public GameObject backGroundForest1;
-    public GameObject backGroundForest2;
-    public GameObject backGroundDesert1;
-    public GameObject backGroundDesert2;
-    public GameObject backGroundSnow1;
-    public GameObject backGroundSnow2;
+    public GameObject[] backGroundNeutral;
+    public GameObject[] backGroundForest;
+    public GameObject[] backGroundDesert;
+    public GameObject[] backGroundSnow;
+
+    public GameObject[] bgColorForestFar1;
+    public GameObject[] bgColorForestFar2;
+    public GameObject[] bgColorDesertFar1;
+    public GameObject[] bgColorDesertFar2;
+    public GameObject[] bgColorSnowFar1;
+    public GameObject[] bgColorSnowFar2;
 
     public bool hasChangedFar1;
     public bool hasChangedFar2;
@@ -69,142 +72,430 @@ public class LevelManagement : MonoBehaviour {
 
     public void Update()
     {
-        if (levelfarbe == 1) {  //Blue
-            //print(hasChangedFar1 + "," + firstChangeDone);
-            if ((hgWeit <= 2) && !hasChangedFar1 && firstChangeDone) // neutral state
-            {
-                hasChangedFar1 = true;
-                hasChangedFar2 = false;
-                hasChangedFar3 = false;
-
-                StartCoroutine(ChangeAlphaValue(onlySilTrees[0].GetComponent<SpriteRenderer>().color.a, onlySilTrees[0]));
-                StartCoroutine(ChangeAlphaValue(onlySilTrees[1].GetComponent<SpriteRenderer>().color.a, onlySilTrees[1]));
-                ActivateFarBGAndDisableOthers("neutral");
-            }
-            else if ((hgWeit >= 3 && hgWeit <= 5) && !hasChangedFar2) // blend in sil trees
-            {
-                if (hasChangedFar3 && !hasChangedFar1 && !hasChangedFar2) // switches down from colored map
-                {
-                    SetAlphaValue(1.0f, onlySilTrees[0]);
-                    SetAlphaValue(1.0f, onlySilTrees[1]);
-                    ActivateFarBGAndDisableOthers("neutral");
-                }
-                else
-                {
-                    StartCoroutine(ChangeAlphaValue(onlySilTrees[0].GetComponent<SpriteRenderer>().color.a, onlySilTrees[0]));
-                    StartCoroutine(ChangeAlphaValue(onlySilTrees[1].GetComponent<SpriteRenderer>().color.a, onlySilTrees[1]));
-                    ActivateFarBGAndDisableOthers("neutral");
-                }
-                hasChangedFar2 = true;
-                hasChangedFar1 = false;
-                hasChangedFar3 = false;
-                firstChangeDone = true;
-                //print("blend in trees");
-
-            }
-            else if ((hgWeit >= 6 && hgWeit <= 8) && !hasChangedFar3) //switch to color trees and switch to colored BG
-            {
-                hasChangedFar3 = true;
-                hasChangedFar1 = false;
-                hasChangedFar2 = false;
-                StartCoroutine(ChangeAlphaValue(onlySilTrees[0].GetComponent<SpriteRenderer>().color.a, onlySilTrees[0]));
-                StartCoroutine(ChangeAlphaValue(onlySilTrees[1].GetComponent<SpriteRenderer>().color.a, onlySilTrees[1]));
-                ActivateFarBGAndDisableOthers("snow");
-            }
-        } else if (levelfarbe == 2) //Green
+        if ((hgWeit <= 2) || (levelfarbe == 0)) // vielleicht auch || levelfarbe==0 statt im else unten
         {
-            //print(hasChangedFar1 + "," + firstChangeDone);
-            if ((hgWeit <= 2) && !hasChangedFar1 && firstChangeDone) // neutral state
-            {
-                hasChangedFar1 = true;
-                hasChangedFar2 = false;
-                hasChangedFar3 = false;
-                
-                StartCoroutine(ChangeAlphaValue(onlySilTrees[0].GetComponent<SpriteRenderer>().color.a, onlySilTrees[0]));
-                StartCoroutine(ChangeAlphaValue(onlySilTrees[1].GetComponent<SpriteRenderer>().color.a, onlySilTrees[1]));
-                ActivateFarBGAndDisableOthers("neutral");
-            }
-            else if ((hgWeit >= 3 && hgWeit <= 5) && !hasChangedFar2) // blend in sil trees
-            {
-                if(hasChangedFar3 && !hasChangedFar1 && !hasChangedFar2) // switches down from colored map
+            // deactivate all silhouettes, colored elements and activate neutral background(if its not already activated)
+            // deactivateAllElements()
+            DeactivateLayer("all");
+            // activateBackground("neutral")
+            ActivateBGDeactivateOthers("neutral");
+
+        }
+        else
+        {
+            if (levelfarbe == 1)
+            {  //Blue
+                if (hgWeit >= 3 && hgWeit <= 4)
                 {
-                    SetAlphaValue(1.0f, onlySilTrees[0]);
-                    SetAlphaValue(1.0f, onlySilTrees[1]);
-                    ActivateFarBGAndDisableOthers("neutral");
-                } else
-                {
-                    StartCoroutine(ChangeAlphaValue(onlySilTrees[0].GetComponent<SpriteRenderer>().color.a, onlySilTrees[0]));
-                    StartCoroutine(ChangeAlphaValue(onlySilTrees[1].GetComponent<SpriteRenderer>().color.a, onlySilTrees[1]));
-                    ActivateFarBGAndDisableOthers("neutral");
+                    ActivateBGDeactivateOthers("neutral");
+                    // activate snowtree silhouettes and deactivate every other silhouette 
+                    ActivateSilhouetteAndDeactivateOthers("snow");
+                    DeactivateLayer("color");
+
                 }
-                hasChangedFar2 = true;
-                hasChangedFar1 = false;
-                hasChangedFar3 = false;
-                firstChangeDone = true;
-                //print("blend in trees");
-                
+                else if (hgWeit == 5)
+                {
+                    ActivateBGDeactivateOthers("snow");
+                    // activate colored snow tree 1 and deactivate every other colored 
+                    ActivateColoredElementsDeactivateOthers(0, "snow");
+                    ActivateSilhouetteAndDeactivateOthers("snow");
+
+                }
+                else if (hgWeit == 6)
+                {
+                    ActivateBGDeactivateOthers("snow");
+                    // activate colored snow tree 2 and deactivate every other colored 
+                    ActivateColoredElementsDeactivateOthers(1, "snow");
+                    ActivateSilhouetteAndDeactivateOthers("snow");
+                }
+                else if (hgWeit == 7)
+                {
+                    // activate snow background and deactivate all others
+                    ActivateBGDeactivateOthers("snow");
+                    // activate colored snow tree 3 and deactivate every other colored 
+                    ActivateColoredElementsDeactivateOthers(2, "snow");
+                    ActivateSilhouetteAndDeactivateOthers("snow");
+                }
+                else if (hgWeit >= 8)
+                {
+                    ActivateBGDeactivateOthers("snow");
+                    // activate colored snow tree 4 and deactivate every other colored 
+                    ActivateColoredElementsDeactivateOthers(3, "snow");
+                    DeactivateLayer("sil");
+                }
             }
-            else if ((hgWeit >= 6 && hgWeit <= 8) && !hasChangedFar3) //switch to color trees and switch to colored BG
+            else if (levelfarbe == 2) //Green
             {
-                hasChangedFar3 = true;
-                hasChangedFar1 = false;
-                hasChangedFar2 = false;
-                StartCoroutine(ChangeAlphaValue(onlySilTrees[0].GetComponent<SpriteRenderer>().color.a, onlySilTrees[0]));
-                StartCoroutine(ChangeAlphaValue(onlySilTrees[1].GetComponent<SpriteRenderer>().color.a, onlySilTrees[1]));
-                ActivateFarBGAndDisableOthers("forest");
+                if (hgWeit >= 3 && hgWeit <= 4)
+                {
+                    ActivateBGDeactivateOthers("neutral");
+                    // activate snowtree silhouettes and deactivate every other silhouette 
+                    ActivateSilhouetteAndDeactivateOthers("forest");
+                    DeactivateLayer("color");
+
+                }
+                else if (hgWeit == 5)
+                {
+                    ActivateBGDeactivateOthers("forest");
+                    // activate colored snow tree 1 and deactivate every other colored 
+                    ActivateColoredElementsDeactivateOthers(0, "forest");
+                    ActivateSilhouetteAndDeactivateOthers("forest");
+
+                }
+                else if (hgWeit == 6)
+                {
+                    ActivateBGDeactivateOthers("forest");
+                    // activate colored snow tree 2 and deactivate every other colored 
+                    ActivateColoredElementsDeactivateOthers(1, "forest");
+                    ActivateSilhouetteAndDeactivateOthers("forest");
+                }
+                else if (hgWeit == 7)
+                {
+                    // activate snow background and deactivate all others
+                    ActivateBGDeactivateOthers("forest");
+                    // activate colored snow tree 3 and deactivate every other colored 
+                    ActivateColoredElementsDeactivateOthers(2, "forest");
+                    ActivateSilhouetteAndDeactivateOthers("forest");
+                }
+                else if (hgWeit >= 8)
+                {
+                    ActivateBGDeactivateOthers("forest");
+                    // activate colored snow tree 4 and deactivate every other colored 
+                    ActivateColoredElementsDeactivateOthers(3, "forest");
+                    DeactivateLayer("sil");
+                }
+            }
+            else if (levelfarbe == 3)   //Yellow
+            {
+                if (hgWeit >= 3 && hgWeit <= 4)
+                {
+                    ActivateBGDeactivateOthers("neutral");
+                    // activate snowtree silhouettes and deactivate every other silhouette 
+                    ActivateSilhouetteAndDeactivateOthers("desert");
+                    DeactivateLayer("color");
+
+                }
+                else if (hgWeit == 5)
+                {
+                    ActivateBGDeactivateOthers("desert");
+                    // activate colored snow tree 1 and deactivate every other colored 
+                    ActivateColoredElementsDeactivateOthers(0, "desert");
+                    ActivateSilhouetteAndDeactivateOthers("desert");
+
+                }
+                else if (hgWeit == 6)
+                {
+                    ActivateBGDeactivateOthers("desert");
+                    // activate colored snow tree 2 and deactivate every other colored 
+                    ActivateColoredElementsDeactivateOthers(1, "desert");
+                    ActivateSilhouetteAndDeactivateOthers("desert");
+                }
+                else if (hgWeit == 7)
+                {
+                    // activate snow background and deactivate all others
+                    ActivateBGDeactivateOthers("desert");
+                    // activate colored snow tree 3 and deactivate every other colored 
+                    ActivateColoredElementsDeactivateOthers(2, "desert");
+                    ActivateSilhouetteAndDeactivateOthers("desert");
+                }
+                else if (hgWeit >= 8)
+                {
+                    ActivateBGDeactivateOthers("deserts");
+                    // activate colored snow tree 4 and deactivate every other colored 
+                    ActivateColoredElementsDeactivateOthers(3, "desert");
+                    DeactivateLayer("sil");
+                }
+            }
+            //else // neutral; levelfarbe == 0
+            //{
+            //    //activate neutral BG and deactivate every other background
+            //    BackgroundSpawner.setBackgroundTheme("neutral");
+            //    // deactivate all silhouettes and colored elements
+            //    //siehe kommentar oben
+            //}
+        }
+
+
+
+    }
+
+    private void ActivateBGDeactivateOthers(string theme)
+    {
+        if (theme.Equals("neutral"))
+        {
+            SetActivationOfGoInArray(ref backGroundNeutral, true);
+            SetActivationOfGoInArray(ref backGroundSnow, false);
+            SetActivationOfGoInArray(ref backGroundForest, false);
+            SetActivationOfGoInArray(ref backGroundDesert, false);
+        }
+        else if (theme.Equals("snow"))
+        {
+            SetActivationOfGoInArray(ref backGroundNeutral, false);
+            SetActivationOfGoInArray(ref backGroundSnow, true);
+            SetActivationOfGoInArray(ref backGroundForest, false);
+            SetActivationOfGoInArray(ref backGroundDesert, false);
+        }
+        else if (theme.Equals("forest"))
+        {
+            SetActivationOfGoInArray(ref backGroundNeutral, false);
+            SetActivationOfGoInArray(ref backGroundSnow, false);
+            SetActivationOfGoInArray(ref backGroundForest, true);
+            SetActivationOfGoInArray(ref backGroundDesert, false);
+        }
+        else if (theme.Equals("desert"))
+        {
+            SetActivationOfGoInArray(ref backGroundNeutral, false);
+            SetActivationOfGoInArray(ref backGroundSnow, false);
+            SetActivationOfGoInArray(ref backGroundForest, false);
+            SetActivationOfGoInArray(ref backGroundDesert, true);
+        }
+        BackgroundSpawner.setBackgroundTheme(theme);
+    }
+
+    private void ActivateSilhouetteAndDeactivateOthers(string theme)
+    {
+        if (theme.Equals("snow"))
+        {
+            SetActivationOfGoInArray(ref onlySilDesert, false);
+            SetActivationOfGoInArray(ref onlySilTrees, true);
+        }
+        else if (theme.Equals("forest"))
+        {
+            SetActivationOfGoInArray(ref onlySilDesert, false);
+            SetActivationOfGoInArray(ref onlySilTrees, true);
+        }
+        else if (theme.Equals("desert"))
+        {
+            SetActivationOfGoInArray(ref onlySilDesert, true);
+            SetActivationOfGoInArray(ref onlySilTrees, false);
+        }
+    }
+
+    private void SetActivationOfGoInArray(ref GameObject[] bgArray, bool which)
+    {
+        foreach (GameObject go in bgArray)
+        {
+            go.SetActive(which);
+        }
+    }
+    private void SetActivationOfGoInArrayOneDifferent(ref GameObject[] bgArray, bool which, int i)
+    {
+        int count = 0;
+        foreach (GameObject go in bgArray)
+        {
+            //Set every element state to which, el[i] to !which
+            if (count == i)
+            {
+                go.SetActive(which);
+            }
+            else
+            {
+                go.SetActive(!which);
+            }
+            count++;
+        }
+    }
+
+    private void ActivateColoredElementsDeactivateOthers(int level, string theme)
+    {
+        if (theme.Equals("snow"))
+        {
+            if (level == 0)
+            {
+                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 0);
+                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 0);
+                //bgColorSnowFar1[0].SetActive(true);
+                //bgColorSnowFar2[0].SetActive(true);
+                //bgColorSnowFar1[1].SetActive(false);
+                //bgColorSnowFar2[1].SetActive(false);
+                //bgColorSnowFar1[2].SetActive(false);
+                //bgColorSnowFar2[2].SetActive(false);
+                //bgColorSnowFar1[3].SetActive(false);
+                //bgColorSnowFar2[3].SetActive(false);
+
+                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
+                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
+                SetActivationOfGoInArray(ref bgColorForestFar1, false);
+                SetActivationOfGoInArray(ref bgColorForestFar2, false);
+            }
+            else if (level == 1)
+            {
+                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 1);
+                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 1);
+                //bgColorSnowFar1[1].SetActive(true);
+                //bgColorSnowFar2[1].SetActive(true);
+                //bgColorSnowFar1[0].SetActive(false);
+                //bgColorSnowFar2[0].SetActive(false);
+                //bgColorSnowFar1[2].SetActive(false);
+                //bgColorSnowFar2[2].SetActive(false);
+                //bgColorSnowFar1[3].SetActive(false);
+                //bgColorSnowFar2[3].SetActive(false);
+
+                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
+                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
+                SetActivationOfGoInArray(ref bgColorForestFar1, false);
+                SetActivationOfGoInArray(ref bgColorForestFar2, false);
+            }
+            else if (level == 2)
+            {
+                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 2);
+                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 2);
+                //bgColorSnowFar1[2].SetActive(true);
+                //bgColorSnowFar2[2].SetActive(true);
+                //bgColorSnowFar1[1].SetActive(false);
+                //bgColorSnowFar2[1].SetActive(false);
+                //bgColorSnowFar1[0].SetActive(false);
+                //bgColorSnowFar2[0].SetActive(false);
+                //bgColorSnowFar1[3].SetActive(false);
+                //bgColorSnowFar2[3].SetActive(false);
+
+                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
+                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
+                SetActivationOfGoInArray(ref bgColorForestFar1, false);
+                SetActivationOfGoInArray(ref bgColorForestFar2, false);
+            }
+            else if (level == 3)
+            {
+                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 3);
+                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 3);
+                //bgColorSnowFar1[3].SetActive(true);
+                //bgColorSnowFar2[3].SetActive(true);
+                //bgColorSnowFar1[1].SetActive(false);
+                //bgColorSnowFar2[1].SetActive(false);
+                //bgColorSnowFar1[2].SetActive(false);
+                //bgColorSnowFar2[2].SetActive(false);
+                //bgColorSnowFar1[0].SetActive(false);
+                //bgColorSnowFar2[0].SetActive(false);
+
+                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
+                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
+                SetActivationOfGoInArray(ref bgColorForestFar1, false);
+                SetActivationOfGoInArray(ref bgColorForestFar2, false);
             }
         }
-        else if (levelfarbe == 3 )   //Yellow
+        else if (theme.Equals("forest"))
         {
-            if (hgWeit <= 2 && !hasChangedFar1 && firstChangeDone)
+            if (level == 0)
             {
-                hasChangedFar1 = true;
-                hasChangedFar2 = false;
-                hasChangedFar3 = false;
+                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar1, true, 0);
+                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar2, true, 0);
+                //bgColorForestFar1[0].SetActive(true);
+                //bgColorForestFar2[0].SetActive(true);
+                //bgColorForestFar1[1].SetActive(false);
+                //bgColorForestFar2[1].SetActive(false);
+                //bgColorForestFar1[2].SetActive(false);
+                //bgColorForestFar2[2].SetActive(false);
+                //bgColorForestFar1[3].SetActive(false);
+                //bgColorForestFar2[3].SetActive(false);
 
-                StartCoroutine(ChangeAlphaValue(onlySilDesert[0].GetComponent<SpriteRenderer>().color.a, onlySilDesert[0]));
-                StartCoroutine(ChangeAlphaValue(onlySilDesert[1].GetComponent<SpriteRenderer>().color.a, onlySilDesert[1]));
-                ActivateFarBGAndDisableOthers("neutral");
+                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
+                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
             }
-            else if ((hgWeit >= 3 && hgWeit <= 5) && !hasChangedFar2)
+            else if (level == 1)
             {
-                if (hasChangedFar3 && !hasChangedFar1 && !hasChangedFar2) // if switch from colored BG
-                {
-                    SetAlphaValue(1.0f, onlySilDesert[0]);
-                    SetAlphaValue(1.0f, onlySilDesert[1]);
-                    ActivateFarBGAndDisableOthers("neutral");
-                } else
-                {
-                    StartCoroutine(ChangeAlphaValue(onlySilDesert[0].GetComponent<SpriteRenderer>().color.a, onlySilDesert[0]));
-                    StartCoroutine(ChangeAlphaValue(onlySilDesert[1].GetComponent<SpriteRenderer>().color.a, onlySilDesert[1]));
-                    ActivateFarBGAndDisableOthers("neutral");
-                }
-                hasChangedFar2 = true;
-                hasChangedFar1 = false;
-                hasChangedFar3 = false;
-                firstChangeDone = true;
-                //print("blend in trees");
-                //StartCoroutine(ChangeAlphaValue(onlySilDesert[0].GetComponent<SpriteRenderer>().color.a, onlySilDesert[0]));
-                //StartCoroutine(ChangeAlphaValue(onlySilDesert[1].GetComponent<SpriteRenderer>().color.a, onlySilDesert[1]));
-                //ActivateFarBGAndDisableOthers("neutral");
+                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar1, true, 1);
+                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar2, true, 1);
+
+                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
+                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
             }
-            else if ((hgWeit >= 6 && hgWeit <= 8) && !hasChangedFar3)
+            else if (level == 2)
             {
-                hasChangedFar3 = true;
-                hasChangedFar1 = false;
-                hasChangedFar2 = false;
-                StartCoroutine(ChangeAlphaValue(onlySilDesert[0].GetComponent<SpriteRenderer>().color.a, onlySilDesert[0]));
-                StartCoroutine(ChangeAlphaValue(onlySilDesert[1].GetComponent<SpriteRenderer>().color.a, onlySilDesert[1]));
-                ActivateFarBGAndDisableOthers("desert");
+                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar1, true, 2);
+                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar2, true, 2);
+
+                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
+                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+            }
+            else if (level == 3)
+            {
+                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar1, true, 3);
+                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar2, true, 3);
+
+                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
+                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
             }
         }
-        else // neutral; levelfarbe == 0
+        else if (theme.Equals("desert"))
         {
-            ActivateFarBGAndDisableOthers("neutral");
-        }
+            if (level == 0)
+            {
+                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar1, true, 0);
+                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar2, true, 0);
 
-        
-        
+                SetActivationOfGoInArray(ref bgColorForestFar1, false);
+                SetActivationOfGoInArray(ref bgColorForestFar2, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+            }
+            else if (level == 1)
+            {
+                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar1, true, 1);
+                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar2, true, 1);
+
+                SetActivationOfGoInArray(ref bgColorForestFar1, false);
+                SetActivationOfGoInArray(ref bgColorForestFar2, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+            }
+            else if (level == 2)
+            {
+                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar1, true, 2);
+                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar2, true, 2);
+
+                SetActivationOfGoInArray(ref bgColorForestFar1, false);
+                SetActivationOfGoInArray(ref bgColorForestFar2, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+            }
+            else if (level == 3)
+            {
+                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar1, true, 3);
+                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar2, true, 3);
+
+                SetActivationOfGoInArray(ref bgColorForestFar1, false);
+                SetActivationOfGoInArray(ref bgColorForestFar2, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
+                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+            }
+        }
+    }
+
+    private void DeactivateLayer(string level)
+    {
+        if (level.Equals("all"))
+        {
+            SetActivationOfGoInArray(ref bgColorSnowFar1, false);
+            SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+            SetActivationOfGoInArray(ref bgColorDesertFar1, false);
+            SetActivationOfGoInArray(ref bgColorDesertFar2, false);
+            SetActivationOfGoInArray(ref bgColorForestFar1, false);
+            SetActivationOfGoInArray(ref bgColorForestFar2, false);
+            SetActivationOfGoInArray(ref onlySilDesert, false);
+            SetActivationOfGoInArray(ref onlySilTrees, false);
+        }
+        else if (level.Equals("sil"))
+        {
+            SetActivationOfGoInArray(ref onlySilDesert, false);
+            SetActivationOfGoInArray(ref onlySilTrees, false);
+        }
+        else if (level.Equals("color"))
+        {
+            SetActivationOfGoInArray(ref bgColorSnowFar1, false);
+            SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+            SetActivationOfGoInArray(ref bgColorDesertFar1, false);
+            SetActivationOfGoInArray(ref bgColorDesertFar2, false);
+            SetActivationOfGoInArray(ref bgColorForestFar1, false);
+            SetActivationOfGoInArray(ref bgColorForestFar2, false);
+        }
     }
 
     public void updateDiamond(int color, int value)
@@ -304,79 +595,4 @@ public class LevelManagement : MonoBehaviour {
         go.GetComponent<SpriteRenderer>().color = tmp;
     }
 
-    private void ActivateFarBGAndDisableOthers(string theme) 
-    {
-        if(theme.Equals("neutral"))
-        {
-            backGroundNeutral1.SetActive(true);
-            backGroundNeutral2.SetActive(true);
-            backGroundForest1.SetActive(false);
-            backGroundForest2.SetActive(false);
-            backGroundDesert1.SetActive(false);
-            backGroundDesert2.SetActive(false);
-            backGroundSnow1.SetActive(false);
-            backGroundSnow2.SetActive(false);
-            onlyColorTrees[0].SetActive(false);
-            onlyColorTrees[1].SetActive(false);
-            onlyColorDesert[0].SetActive(false);
-            onlyColorDesert[1].SetActive(false);
-            onlyColorSnowTrees[0].SetActive(false);
-            onlyColorSnowTrees[1].SetActive(false);
-            BackgroundSpawner.setBackgroundTheme("neutral");
-        } 
-        else if(theme.Equals("forest"))
-        {
-            backGroundNeutral1.SetActive(false);
-            backGroundNeutral2.SetActive(false);
-            backGroundForest1.SetActive(true);
-            backGroundForest2.SetActive(true);
-            backGroundDesert1.SetActive(false);
-            backGroundDesert2.SetActive(false);
-            backGroundSnow1.SetActive(false);
-            backGroundSnow2.SetActive(false);
-            onlyColorTrees[0].SetActive(true);
-            onlyColorTrees[1].SetActive(true);
-            onlyColorDesert[0].SetActive(false);
-            onlyColorDesert[1].SetActive(false);
-            onlyColorSnowTrees[0].SetActive(false);
-            onlyColorSnowTrees[1].SetActive(false);
-            BackgroundSpawner.setBackgroundTheme("forest");
-        }
-        else if (theme.Equals("desert"))
-        {
-            backGroundNeutral1.SetActive(false);
-            backGroundNeutral2.SetActive(false);
-            backGroundForest1.SetActive(false);
-            backGroundForest2.SetActive(false);
-            backGroundDesert1.SetActive(true);
-            backGroundDesert2.SetActive(true);
-            backGroundSnow1.SetActive(false);
-            backGroundSnow2.SetActive(false);
-            onlyColorTrees[0].SetActive(false);
-            onlyColorTrees[1].SetActive(false);
-            onlyColorDesert[0].SetActive(true);
-            onlyColorDesert[1].SetActive(true);
-            onlyColorSnowTrees[0].SetActive(false);
-            onlyColorSnowTrees[1].SetActive(false);
-            BackgroundSpawner.setBackgroundTheme("desert");
-        }
-        else if (theme.Equals("snow"))
-        {
-            backGroundNeutral1.SetActive(false);
-            backGroundNeutral2.SetActive(false);
-            backGroundForest1.SetActive(false);
-            backGroundForest2.SetActive(false);
-            backGroundDesert1.SetActive(false);
-            backGroundDesert2.SetActive(false);
-            backGroundSnow1.SetActive(true);
-            backGroundSnow2.SetActive(true);
-            onlyColorTrees[0].SetActive(false);
-            onlyColorTrees[1].SetActive(false);
-            onlyColorDesert[0].SetActive(true);
-            onlyColorDesert[1].SetActive(true);
-            onlyColorSnowTrees[0].SetActive(true);
-            onlyColorSnowTrees[1].SetActive(true);
-            BackgroundSpawner.setBackgroundTheme("snow");
-        }
-    }
 }
