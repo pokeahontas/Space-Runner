@@ -27,11 +27,17 @@ public class LevelManagement : MonoBehaviour {
     public int hgBoden = 0;
     public int hgWeit = 0;
 
+    //child objects of neutral BG
     public GameObject[] onlySilTrees;
     public GameObject[] onlyColorTrees;
     public GameObject[] onlySilDesert;
     public GameObject[] onlyColorDesert;
     public GameObject[] onlyColorSnowTrees;
+
+    //child objects of themed BG
+    public GameObject[] silForest;
+    public GameObject[] silDesert;
+    public GameObject[] silSnow;
 
     public GameObject[] backGroundNeutral;
     public GameObject[] backGroundForest;
@@ -89,7 +95,7 @@ public class LevelManagement : MonoBehaviour {
                 {
                     ActivateBGDeactivateOthers("neutral");
                     // activate snowtree silhouettes and deactivate every other silhouette 
-                    ActivateSilhouetteAndDeactivateOthers("snow");
+                    ActivateSilhouetteAndDeactivateOthers("snow",false);
                     DeactivateLayer("color");
 
                 }
@@ -98,7 +104,7 @@ public class LevelManagement : MonoBehaviour {
                     ActivateBGDeactivateOthers("snow");
                     // activate colored snow tree 1 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(0, "snow");
-                    ActivateSilhouetteAndDeactivateOthers("snow");
+                    ActivateSilhouetteAndDeactivateOthers("snow",true);
 
                 }
                 else if (hgWeit == 6)
@@ -106,7 +112,7 @@ public class LevelManagement : MonoBehaviour {
                     ActivateBGDeactivateOthers("snow");
                     // activate colored snow tree 2 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(1, "snow");
-                    ActivateSilhouetteAndDeactivateOthers("snow");
+                    ActivateSilhouetteAndDeactivateOthers("snow",true);
                 }
                 else if (hgWeit == 7)
                 {
@@ -114,7 +120,7 @@ public class LevelManagement : MonoBehaviour {
                     ActivateBGDeactivateOthers("snow");
                     // activate colored snow tree 3 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(2, "snow");
-                    ActivateSilhouetteAndDeactivateOthers("snow");
+                    ActivateSilhouetteAndDeactivateOthers("snow",true);
                 }
                 else if (hgWeit >= 8)
                 {
@@ -130,7 +136,7 @@ public class LevelManagement : MonoBehaviour {
                 {
                     ActivateBGDeactivateOthers("neutral");
                     // activate snowtree silhouettes and deactivate every other silhouette 
-                    ActivateSilhouetteAndDeactivateOthers("forest");
+                    ActivateSilhouetteAndDeactivateOthers("forest",false);
                     DeactivateLayer("color");
 
                 }
@@ -139,7 +145,7 @@ public class LevelManagement : MonoBehaviour {
                     ActivateBGDeactivateOthers("forest");
                     // activate colored snow tree 1 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(0, "forest");
-                    ActivateSilhouetteAndDeactivateOthers("forest");
+                    ActivateSilhouetteAndDeactivateOthers("forest",true);
 
                 }
                 else if (hgWeit == 6)
@@ -147,7 +153,7 @@ public class LevelManagement : MonoBehaviour {
                     ActivateBGDeactivateOthers("forest");
                     // activate colored snow tree 2 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(1, "forest");
-                    ActivateSilhouetteAndDeactivateOthers("forest");
+                    ActivateSilhouetteAndDeactivateOthers("forest",true);
                 }
                 else if (hgWeit == 7)
                 {
@@ -155,7 +161,7 @@ public class LevelManagement : MonoBehaviour {
                     ActivateBGDeactivateOthers("forest");
                     // activate colored snow tree 3 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(2, "forest");
-                    ActivateSilhouetteAndDeactivateOthers("forest");
+                    ActivateSilhouetteAndDeactivateOthers("forest",true);
                 }
                 else if (hgWeit >= 8)
                 {
@@ -171,7 +177,7 @@ public class LevelManagement : MonoBehaviour {
                 {
                     ActivateBGDeactivateOthers("neutral");
                     // activate snowtree silhouettes and deactivate every other silhouette 
-                    ActivateSilhouetteAndDeactivateOthers("desert");
+                    ActivateSilhouetteAndDeactivateOthers("desert",false);
                     DeactivateLayer("color");
 
                 }
@@ -180,7 +186,7 @@ public class LevelManagement : MonoBehaviour {
                     ActivateBGDeactivateOthers("desert");
                     // activate colored snow tree 1 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(0, "desert");
-                    ActivateSilhouetteAndDeactivateOthers("desert");
+                    ActivateSilhouetteAndDeactivateOthers("desert",true);
 
                 }
                 else if (hgWeit == 6)
@@ -188,7 +194,7 @@ public class LevelManagement : MonoBehaviour {
                     ActivateBGDeactivateOthers("desert");
                     // activate colored snow tree 2 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(1, "desert");
-                    ActivateSilhouetteAndDeactivateOthers("desert");
+                    ActivateSilhouetteAndDeactivateOthers("desert",true);
                 }
                 else if (hgWeit == 7)
                 {
@@ -196,7 +202,7 @@ public class LevelManagement : MonoBehaviour {
                     ActivateBGDeactivateOthers("desert");
                     // activate colored snow tree 3 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(2, "desert");
-                    ActivateSilhouetteAndDeactivateOthers("desert");
+                    ActivateSilhouetteAndDeactivateOthers("desert",true);
                 }
                 else if (hgWeit >= 8)
                 {
@@ -252,22 +258,45 @@ public class LevelManagement : MonoBehaviour {
         BackgroundSpawner.setBackgroundTheme(theme);
     }
 
-    private void ActivateSilhouetteAndDeactivateOthers(string theme)
+    private void ActivateSilhouetteAndDeactivateOthers(string theme, bool isColoredBG)
     {
-        if (theme.Equals("snow"))
+        if (!isColoredBG) {
+            if (theme.Equals("snow"))
+            {
+                SetActivationOfGoInArray(ref onlySilDesert, false);
+                SetActivationOfGoInArray(ref onlySilTrees, true);
+            }
+            else if (theme.Equals("forest"))
+            {
+                SetActivationOfGoInArray(ref onlySilDesert, false);
+                SetActivationOfGoInArray(ref onlySilTrees, true);
+            }
+            else if (theme.Equals("desert"))
+            {
+                SetActivationOfGoInArray(ref onlySilDesert, true);
+                SetActivationOfGoInArray(ref onlySilTrees, false);
+            }
+        } 
+        else
         {
-            SetActivationOfGoInArray(ref onlySilDesert, false);
-            SetActivationOfGoInArray(ref onlySilTrees, true);
-        }
-        else if (theme.Equals("forest"))
-        {
-            SetActivationOfGoInArray(ref onlySilDesert, false);
-            SetActivationOfGoInArray(ref onlySilTrees, true);
-        }
-        else if (theme.Equals("desert"))
-        {
-            SetActivationOfGoInArray(ref onlySilDesert, true);
-            SetActivationOfGoInArray(ref onlySilTrees, false);
+            if (theme.Equals("snow"))
+            {
+                SetActivationOfGoInArray(ref silForest, false);
+                SetActivationOfGoInArray(ref silDesert, false);
+                SetActivationOfGoInArray(ref silSnow, true);
+            }
+            else if (theme.Equals("forest"))
+            {
+                SetActivationOfGoInArray(ref silForest, true);
+                SetActivationOfGoInArray(ref silDesert, false);
+                SetActivationOfGoInArray(ref silSnow, false);
+            }
+            else if (theme.Equals("desert"))
+            {
+                SetActivationOfGoInArray(ref silForest, false);
+                SetActivationOfGoInArray(ref silDesert, true);
+                SetActivationOfGoInArray(ref silSnow, false);
+            }
         }
     }
 
