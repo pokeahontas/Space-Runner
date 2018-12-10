@@ -29,10 +29,7 @@ public class LevelManagement : MonoBehaviour {
 
     //child objects of neutral BG
     public GameObject[] onlySilTrees;
-    public GameObject[] onlyColorTrees;
     public GameObject[] onlySilDesert;
-    public GameObject[] onlyColorDesert;
-    public GameObject[] onlyColorSnowTrees;
 
     //child objects of themed BG
     public GameObject[] silForest;
@@ -78,12 +75,10 @@ public class LevelManagement : MonoBehaviour {
 
     public void Update()
     {
-        if ((hgWeit <= 2) || (levelfarbe == 0)) // vielleicht auch || levelfarbe==0 statt im else unten
+        if ((hgWeit <= 2) || (levelfarbe == 0))
         {
             // deactivate all silhouettes, colored elements and activate neutral background(if its not already activated)
-            // deactivateAllElements()
             DeactivateLayer("all");
-            // activateBackground("neutral")
             ActivateBGDeactivateOthers("neutral");
 
         }
@@ -212,13 +207,6 @@ public class LevelManagement : MonoBehaviour {
                     DeactivateLayer("sil");
                 }
             }
-            //else // neutral; levelfarbe == 0
-            //{
-            //    //activate neutral BG and deactivate every other background
-            //    BackgroundSpawner.setBackgroundTheme("neutral");
-            //    // deactivate all silhouettes and colored elements
-            //    //siehe kommentar oben
-            //}
         }
 
 
@@ -337,14 +325,6 @@ public class LevelManagement : MonoBehaviour {
             {
                 SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 0);
                 SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 0);
-                //bgColorSnowFar1[0].SetActive(true);
-                //bgColorSnowFar2[0].SetActive(true);
-                //bgColorSnowFar1[1].SetActive(false);
-                //bgColorSnowFar2[1].SetActive(false);
-                //bgColorSnowFar1[2].SetActive(false);
-                //bgColorSnowFar2[2].SetActive(false);
-                //bgColorSnowFar1[3].SetActive(false);
-                //bgColorSnowFar2[3].SetActive(false);
 
                 SetActivationOfGoInArray(ref bgColorDesertFar1, false);
                 SetActivationOfGoInArray(ref bgColorDesertFar2, false);
@@ -355,14 +335,6 @@ public class LevelManagement : MonoBehaviour {
             {
                 SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 1);
                 SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 1);
-                //bgColorSnowFar1[1].SetActive(true);
-                //bgColorSnowFar2[1].SetActive(true);
-                //bgColorSnowFar1[0].SetActive(false);
-                //bgColorSnowFar2[0].SetActive(false);
-                //bgColorSnowFar1[2].SetActive(false);
-                //bgColorSnowFar2[2].SetActive(false);
-                //bgColorSnowFar1[3].SetActive(false);
-                //bgColorSnowFar2[3].SetActive(false);
 
                 SetActivationOfGoInArray(ref bgColorDesertFar1, false);
                 SetActivationOfGoInArray(ref bgColorDesertFar2, false);
@@ -373,14 +345,6 @@ public class LevelManagement : MonoBehaviour {
             {
                 SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 2);
                 SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 2);
-                //bgColorSnowFar1[2].SetActive(true);
-                //bgColorSnowFar2[2].SetActive(true);
-                //bgColorSnowFar1[1].SetActive(false);
-                //bgColorSnowFar2[1].SetActive(false);
-                //bgColorSnowFar1[0].SetActive(false);
-                //bgColorSnowFar2[0].SetActive(false);
-                //bgColorSnowFar1[3].SetActive(false);
-                //bgColorSnowFar2[3].SetActive(false);
 
                 SetActivationOfGoInArray(ref bgColorDesertFar1, false);
                 SetActivationOfGoInArray(ref bgColorDesertFar2, false);
@@ -391,14 +355,6 @@ public class LevelManagement : MonoBehaviour {
             {
                 SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 3);
                 SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 3);
-                //bgColorSnowFar1[3].SetActive(true);
-                //bgColorSnowFar2[3].SetActive(true);
-                //bgColorSnowFar1[1].SetActive(false);
-                //bgColorSnowFar2[1].SetActive(false);
-                //bgColorSnowFar1[2].SetActive(false);
-                //bgColorSnowFar2[2].SetActive(false);
-                //bgColorSnowFar1[0].SetActive(false);
-                //bgColorSnowFar2[0].SetActive(false);
 
                 SetActivationOfGoInArray(ref bgColorDesertFar1, false);
                 SetActivationOfGoInArray(ref bgColorDesertFar2, false);
@@ -412,14 +368,6 @@ public class LevelManagement : MonoBehaviour {
             {
                 SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar1, true, 0);
                 SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar2, true, 0);
-                //bgColorForestFar1[0].SetActive(true);
-                //bgColorForestFar2[0].SetActive(true);
-                //bgColorForestFar1[1].SetActive(false);
-                //bgColorForestFar2[1].SetActive(false);
-                //bgColorForestFar1[2].SetActive(false);
-                //bgColorForestFar2[2].SetActive(false);
-                //bgColorForestFar1[3].SetActive(false);
-                //bgColorForestFar2[3].SetActive(false);
 
                 SetActivationOfGoInArray(ref bgColorDesertFar1, false);
                 SetActivationOfGoInArray(ref bgColorDesertFar2, false);
@@ -576,28 +524,7 @@ public class LevelManagement : MonoBehaviour {
         }
     }
 
-    private bool CheckIfTwoDiamondsHaveSameValue()
-    {
-        bool check;
-        int countZeros = 0;
-        int[] tempArray = { diamondBlue, diamondGreen, diamondYellow };
-        
-        foreach(int i in tempArray)
-        {
-            if(i==0) { countZeros++; }
-        }
-        if((countZeros<=1) && ((diamondBlue==diamondGreen) || (diamondBlue==diamondYellow) || (diamondYellow==diamondGreen)))
-        {
-            check = true;
-        } 
-        else
-        {
-            check = false;
-        }
-        return check;
-    }
-
-    IEnumerator ChangeAlphaValue(float alphaValue, GameObject go)
+    IEnumerator ChangeAlphaValue(float alphaValue, GameObject go) // not used
     {
         if(alphaValue > 0.1f)
         {
@@ -621,7 +548,7 @@ public class LevelManagement : MonoBehaviour {
             }
         }
     }
-    private void SetAlphaValue(float alphaValue, GameObject go)
+    private void SetAlphaValue(float alphaValue, GameObject go) // not used
     {
         Color tmp = go.GetComponent<SpriteRenderer>().color;
         tmp.a = alphaValue;
