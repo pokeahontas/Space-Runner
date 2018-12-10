@@ -304,7 +304,9 @@ public class LevelManagement : MonoBehaviour {
     {
         foreach (GameObject go in bgArray)
         {
-            go.SetActive(which);
+            if (go) {
+                go.SetActive(which);
+            }
         }
     }
     private void SetActivationOfGoInArrayOneDifferent(ref GameObject[] bgArray, bool which, int i)
@@ -315,10 +317,12 @@ public class LevelManagement : MonoBehaviour {
             //Set every element state to which, el[i] to !which
             if (count == i)
             {
+                if(go)
                 go.SetActive(which);
             }
             else
             {
+                if(go)
                 go.SetActive(!which);
             }
             count++;
