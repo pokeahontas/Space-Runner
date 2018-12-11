@@ -53,6 +53,9 @@ public class BackgroundSpawner : MonoBehaviour
 
     public static void setBackgroundTheme(string theme)
     {
+        Vector3 tempBg1 = background1.transform.localPosition;
+        Vector3 tempBg2 = background2.transform.localPosition;
+
         if (theme.Equals("neutral"))
         {
             background1 = GameObject.Find("bg_neutral1").transform;
@@ -73,5 +76,7 @@ public class BackgroundSpawner : MonoBehaviour
             background1 = GameObject.Find("bg_snow1").transform;
             background2 = GameObject.Find("bg_snow2").transform;
         }
+        background1.localPosition = tempBg1;
+        background2.localPosition = tempBg2;
     }
 }
