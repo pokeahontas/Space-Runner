@@ -48,18 +48,45 @@ public class LevelManagement : MonoBehaviour {
     public GameObject[] bgColorSnowFar1;
     public GameObject[] bgColorSnowFar2;
 
-    public bool hasChangedFar1;
-    public bool hasChangedFar2;
-    public bool hasChangedFar3;
-    public bool firstChangeDone;
+    public bool isInNeutralState;
+    public bool isInColor1_Stage1;
+    public bool isInColor1_Stage2;
+    public bool isInColor1_Stage3;
+    public bool isInColor1_Stage4;
+    public bool isInColor1_Stage5;
 
+    public bool isInColor2_Stage1;
+    public bool isInColor2_Stage2;
+    public bool isInColor2_Stage3;
+    public bool isInColor2_Stage4;
+    public bool isInColor2_Stage5;
+
+    public bool isInColor3_Stage1;
+    public bool isInColor3_Stage2;
+    public bool isInColor3_Stage3;
+    public bool isInColor3_Stage4;
+    public bool isInColor3_Stage5;
 
     private void Awake()
     {
-        hasChangedFar1 = false;
-        hasChangedFar2 = false;
-        hasChangedFar3 = false;
-        firstChangeDone = false;
+        isInNeutralState = false;
+        isInColor1_Stage1 = false;
+        isInColor1_Stage2 = false;
+        isInColor1_Stage3 = false;
+        isInColor1_Stage4 = false;
+        isInColor1_Stage5 = false;
+
+        isInColor2_Stage1 = false;
+        isInColor2_Stage2 = false;
+        isInColor2_Stage3 = false;
+        isInColor2_Stage4 = false;
+        isInColor2_Stage5 = false;
+
+        isInColor3_Stage1 = false;
+        isInColor3_Stage2 = false;
+        isInColor3_Stage3 = false;
+        isInColor3_Stage4 = false;
+        isInColor3_Stage5 = false;
 
         if (_instance != null && _instance != this)
         {
@@ -75,136 +102,439 @@ public class LevelManagement : MonoBehaviour {
 
     public void Update()
     {
-        if ((hgWeit <= 2) || (levelfarbe == 0))
+        if ((hgWeit <= 2 || levelfarbe == 0) && !isInNeutralState)
         {
+            //Debug.Log("TESTING1");
+            isInNeutralState = true;
+            isInColor1_Stage1 = false;
+            isInColor1_Stage2 = false;
+            isInColor1_Stage3 = false;
+            isInColor1_Stage4 = false;
+            isInColor1_Stage5 = false;
+
+            isInColor2_Stage1 = false;
+            isInColor2_Stage2 = false;
+            isInColor2_Stage3 = false;
+            isInColor2_Stage4 = false;
+            isInColor2_Stage5 = false;
+
+            isInColor3_Stage1 = false;
+            isInColor3_Stage2 = false;
+            isInColor3_Stage3 = false;
+            isInColor3_Stage4 = false;
+            isInColor3_Stage5 = false;
             // deactivate all silhouettes, colored elements and activate neutral background(if its not already activated)
             DeactivateLayer("all");
             ActivateBGDeactivateOthers("neutral");
-
+            
         }
         else
         {
             if (levelfarbe == 1)
             {  //Blue
-                if (hgWeit >= 3 && hgWeit <= 4)
+                if ((hgWeit >= 3 && hgWeit <= 4) && !isInColor1_Stage1) //Color 1 Stage 1
                 {
                     ActivateBGDeactivateOthers("neutral");
                     // activate snowtree silhouettes and deactivate every other silhouette 
                     ActivateSilhouetteAndDeactivateOthers("snow",false);
                     DeactivateLayer("color");
 
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = true;
+                    isInColor1_Stage2 = false;
+                    isInColor1_Stage3 = false;
+                    isInColor1_Stage4 = false;
+                    isInColor1_Stage5 = false;
+
+                    isInColor2_Stage1 = false;
+                    isInColor2_Stage2 = false;
+                    isInColor2_Stage3 = false;
+                    isInColor2_Stage4 = false;
+                    isInColor2_Stage5 = false;
+
+                    isInColor3_Stage1 = false;
+                    isInColor3_Stage2 = false;
+                    isInColor3_Stage3 = false;
+                    isInColor3_Stage4 = false;
+                    isInColor3_Stage5 = false;
+
                 }
-                else if (hgWeit == 5)
+                else if (hgWeit == 5 && !isInColor1_Stage2)           //Color 1 Stage 2
                 {
                     ActivateBGDeactivateOthers("snow");
                     // activate colored snow tree 1 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(0, "snow");
                     ActivateSilhouetteAndDeactivateOthers("snow",true);
 
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = false;
+                    isInColor1_Stage2 = true;
+                    isInColor1_Stage3 = false;
+                    isInColor1_Stage4 = false;
+                    isInColor1_Stage5 = false;
+
+                    isInColor2_Stage1 = false;
+                    isInColor2_Stage2 = false;
+                    isInColor2_Stage3 = false;
+                    isInColor2_Stage4 = false;
+                    isInColor2_Stage5 = false;
+
+                    isInColor3_Stage1 = false;
+                    isInColor3_Stage2 = false;
+                    isInColor3_Stage3 = false;
+                    isInColor3_Stage4 = false;
+                    isInColor3_Stage5 = false;
                 }
-                else if (hgWeit == 6)
+                else if (hgWeit == 6 && !isInColor1_Stage3)           //Color 1 Stage 3
                 {
                     ActivateBGDeactivateOthers("snow");
                     // activate colored snow tree 2 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(1, "snow");
                     ActivateSilhouetteAndDeactivateOthers("snow",true);
+
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = false;
+                    isInColor1_Stage2 = false;
+                    isInColor1_Stage3 = true;
+                    isInColor1_Stage4 = false;
+                    isInColor1_Stage5 = false;
+
+                    isInColor2_Stage1 = false;
+                    isInColor2_Stage2 = false;
+                    isInColor2_Stage3 = false;
+                    isInColor2_Stage4 = false;
+                    isInColor2_Stage5 = false;
+
+                    isInColor3_Stage1 = false;
+                    isInColor3_Stage2 = false;
+                    isInColor3_Stage3 = false;
+                    isInColor3_Stage4 = false;
+                    isInColor3_Stage5 = false;
                 }
-                else if (hgWeit == 7)
+                else if (hgWeit == 7 && !isInColor1_Stage4)           //Color 1 Stage 4
                 {
                     // activate snow background and deactivate all others
                     ActivateBGDeactivateOthers("snow");
                     // activate colored snow tree 3 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(2, "snow");
                     ActivateSilhouetteAndDeactivateOthers("snow",true);
+
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = false;
+                    isInColor1_Stage2 = false;
+                    isInColor1_Stage3 = false;
+                    isInColor1_Stage4 = true;
+                    isInColor1_Stage5 = false;
+
+                    isInColor2_Stage1 = false;
+                    isInColor2_Stage2 = false;
+                    isInColor2_Stage3 = false;
+                    isInColor2_Stage4 = false;
+                    isInColor2_Stage5 = false;
+
+                    isInColor3_Stage1 = false;
+                    isInColor3_Stage2 = false;
+                    isInColor3_Stage3 = false;
+                    isInColor3_Stage4 = false;
+                    isInColor3_Stage5 = false;
                 }
-                else if (hgWeit >= 8)
+                else if (hgWeit >= 8 && !isInColor1_Stage5)           //Color 1 Stage 5
                 {
                     ActivateBGDeactivateOthers("snow");
                     // activate colored snow tree 4 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(3, "snow");
                     DeactivateLayer("sil");
+
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = false;
+                    isInColor1_Stage2 = false;
+                    isInColor1_Stage3 = false;
+                    isInColor1_Stage4 = false;
+                    isInColor1_Stage5 = true;
+
+                    isInColor2_Stage1 = false;
+                    isInColor2_Stage2 = false;
+                    isInColor2_Stage3 = false;
+                    isInColor2_Stage4 = false;
+                    isInColor2_Stage5 = false;
+
+                    isInColor3_Stage1 = false;
+                    isInColor3_Stage2 = false;
+                    isInColor3_Stage3 = false;
+                    isInColor3_Stage4 = false;
+                    isInColor3_Stage5 = false;
                 }
             }
             else if (levelfarbe == 2) //Green
             {
-                if (hgWeit >= 3 && hgWeit <= 4)
+                if ((hgWeit >= 3 && hgWeit <= 4) && !isInColor2_Stage1) // Color 2 Stage 1
                 {
                     ActivateBGDeactivateOthers("neutral");
                     // activate snowtree silhouettes and deactivate every other silhouette 
                     ActivateSilhouetteAndDeactivateOthers("forest",false);
                     DeactivateLayer("color");
 
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = false;
+                    isInColor1_Stage2 = false;
+                    isInColor1_Stage3 = false;
+                    isInColor1_Stage4 = false;
+                    isInColor1_Stage5 = false;
+
+                    isInColor2_Stage1 = true;
+                    isInColor2_Stage2 = false;
+                    isInColor2_Stage3 = false;
+                    isInColor2_Stage4 = false;
+                    isInColor2_Stage5 = false;
+
+                    isInColor3_Stage1 = false;
+                    isInColor3_Stage2 = false;
+                    isInColor3_Stage3 = false;
+                    isInColor3_Stage4 = false;
+                    isInColor3_Stage5 = false;
+
                 }
-                else if (hgWeit == 5)
+                else if (hgWeit == 5 && !isInColor2_Stage2) // Color 2 Stage 2
                 {
                     ActivateBGDeactivateOthers("forest");
                     // activate colored snow tree 1 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(0, "forest");
                     ActivateSilhouetteAndDeactivateOthers("forest",true);
 
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = false;
+                    isInColor1_Stage2 = false;
+                    isInColor1_Stage3 = false;
+                    isInColor1_Stage4 = false;
+                    isInColor1_Stage5 = false;
+
+                    isInColor2_Stage1 = false;
+                    isInColor2_Stage2 = true;
+                    isInColor2_Stage3 = false;
+                    isInColor2_Stage4 = false;
+                    isInColor2_Stage5 = false;
+
+                    isInColor3_Stage1 = false;
+                    isInColor3_Stage2 = false;
+                    isInColor3_Stage3 = false;
+                    isInColor3_Stage4 = false;
+                    isInColor3_Stage5 = false;
+
                 }
-                else if (hgWeit == 6)
+                else if (hgWeit == 6 && !isInColor2_Stage3) // Color 2 Stage 3
                 {
                     ActivateBGDeactivateOthers("forest");
                     // activate colored snow tree 2 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(1, "forest");
                     ActivateSilhouetteAndDeactivateOthers("forest",true);
+
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = false;
+                    isInColor1_Stage2 = false;
+                    isInColor1_Stage3 = false;
+                    isInColor1_Stage4 = false;
+                    isInColor1_Stage5 = false;
+
+                    isInColor2_Stage1 = false;
+                    isInColor2_Stage2 = false;
+                    isInColor2_Stage3 = true;
+                    isInColor2_Stage4 = false;
+                    isInColor2_Stage5 = false;
+
+                    isInColor3_Stage1 = false;
+                    isInColor3_Stage2 = false;
+                    isInColor3_Stage3 = false;
+                    isInColor3_Stage4 = false;
+                    isInColor3_Stage5 = false;
                 }
-                else if (hgWeit == 7)
+                else if (hgWeit == 7 && !isInColor2_Stage4) // Color 2 Stage 4
                 {
                     // activate snow background and deactivate all others
                     ActivateBGDeactivateOthers("forest");
                     // activate colored snow tree 3 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(2, "forest");
                     ActivateSilhouetteAndDeactivateOthers("forest",true);
+
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = false;
+                    isInColor1_Stage2 = false;
+                    isInColor1_Stage3 = false;
+                    isInColor1_Stage4 = false;
+                    isInColor1_Stage5 = false;
+
+                    isInColor2_Stage1 = false;
+                    isInColor2_Stage2 = false;
+                    isInColor2_Stage3 = false;
+                    isInColor2_Stage4 = true;
+                    isInColor2_Stage5 = false;
+
+                    isInColor3_Stage1 = false;
+                    isInColor3_Stage2 = false;
+                    isInColor3_Stage3 = false;
+                    isInColor3_Stage4 = false;
+                    isInColor3_Stage5 = false;
                 }
-                else if (hgWeit >= 8)
+                else if (hgWeit >= 8 && !isInColor2_Stage5) // Color 2 Stage 5
                 {
                     ActivateBGDeactivateOthers("forest");
                     // activate colored snow tree 4 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(3, "forest");
                     DeactivateLayer("sil");
+
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = false;
+                    isInColor1_Stage2 = false;
+                    isInColor1_Stage3 = false;
+                    isInColor1_Stage4 = false;
+                    isInColor1_Stage5 = false;
+
+                    isInColor2_Stage1 = false;
+                    isInColor2_Stage2 = false;
+                    isInColor2_Stage3 = false;
+                    isInColor2_Stage4 = false;
+                    isInColor2_Stage5 = true;
+
+                    isInColor3_Stage1 = false;
+                    isInColor3_Stage2 = false;
+                    isInColor3_Stage3 = false;
+                    isInColor3_Stage4 = false;
+                    isInColor3_Stage5 = false;
                 }
             }
             else if (levelfarbe == 3)   //Yellow
             {
-                if (hgWeit >= 3 && hgWeit <= 4)
+                if ((hgWeit >= 3 && hgWeit <= 4) && !isInColor3_Stage1) // Color 3 Stage 1
                 {
                     ActivateBGDeactivateOthers("neutral");
                     // activate snowtree silhouettes and deactivate every other silhouette 
                     ActivateSilhouetteAndDeactivateOthers("desert",false);
                     DeactivateLayer("color");
 
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = false;
+                    isInColor1_Stage2 = false;
+                    isInColor1_Stage3 = false;
+                    isInColor1_Stage4 = false;
+                    isInColor1_Stage5 = false;
+
+                    isInColor2_Stage1 = false;
+                    isInColor2_Stage2 = false;
+                    isInColor2_Stage3 = false;
+                    isInColor2_Stage4 = false;
+                    isInColor2_Stage5 = false;
+
+                    isInColor3_Stage1 = true;
+                    isInColor3_Stage2 = false;
+                    isInColor3_Stage3 = false;
+                    isInColor3_Stage4 = false;
+                    isInColor3_Stage5 = false;
+
                 }
-                else if (hgWeit == 5)
+                else if (hgWeit == 5 && !isInColor3_Stage2) // Color 3 Stage 2
                 {
                     ActivateBGDeactivateOthers("desert");
                     // activate colored snow tree 1 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(0, "desert");
                     ActivateSilhouetteAndDeactivateOthers("desert",true);
 
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = false;
+                    isInColor1_Stage2 = false;
+                    isInColor1_Stage3 = false;
+                    isInColor1_Stage4 = false;
+                    isInColor1_Stage5 = false;
+
+                    isInColor2_Stage1 = false;
+                    isInColor2_Stage2 = false;
+                    isInColor2_Stage3 = false;
+                    isInColor2_Stage4 = false;
+                    isInColor2_Stage5 = false;
+
+                    isInColor3_Stage1 = false;
+                    isInColor3_Stage2 = true;
+                    isInColor3_Stage3 = false;
+                    isInColor3_Stage4 = false;
+                    isInColor3_Stage5 = false;
+
                 }
-                else if (hgWeit == 6)
+                else if (hgWeit == 6 && !isInColor3_Stage3) // Color 3 Stage 3
                 {
                     ActivateBGDeactivateOthers("desert");
                     // activate colored snow tree 2 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(1, "desert");
                     ActivateSilhouetteAndDeactivateOthers("desert",true);
+
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = false;
+                    isInColor1_Stage2 = false;
+                    isInColor1_Stage3 = false;
+                    isInColor1_Stage4 = false;
+                    isInColor1_Stage5 = false;
+
+                    isInColor2_Stage1 = false;
+                    isInColor2_Stage2 = false;
+                    isInColor2_Stage3 = false;
+                    isInColor2_Stage4 = false;
+                    isInColor2_Stage5 = false;
+
+                    isInColor3_Stage1 = false;
+                    isInColor3_Stage2 = false;
+                    isInColor3_Stage3 = true;
+                    isInColor3_Stage4 = false;
+                    isInColor3_Stage5 = false;
                 }
-                else if (hgWeit == 7)
+                else if (hgWeit == 7 && !isInColor3_Stage4) // Color 3 Stage 4
                 {
                     // activate snow background and deactivate all others
                     ActivateBGDeactivateOthers("desert");
                     // activate colored snow tree 3 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(2, "desert");
                     ActivateSilhouetteAndDeactivateOthers("desert",true);
+
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = false;
+                    isInColor1_Stage2 = false;
+                    isInColor1_Stage3 = false;
+                    isInColor1_Stage4 = false;
+                    isInColor1_Stage5 = false;
+
+                    isInColor2_Stage1 = false;
+                    isInColor2_Stage2 = false;
+                    isInColor2_Stage3 = false;
+                    isInColor2_Stage4 = false;
+                    isInColor2_Stage5 = false;
+
+                    isInColor3_Stage1 = false;
+                    isInColor3_Stage2 = false;
+                    isInColor3_Stage3 = false;
+                    isInColor3_Stage4 = true;
+                    isInColor3_Stage5 = false;
                 }
-                else if (hgWeit >= 8)
+                else if (hgWeit >= 8 && !isInColor3_Stage5) // Color 3 Stage 5
                 {
                     ActivateBGDeactivateOthers("deserts");
                     // activate colored snow tree 4 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(3, "desert");
                     DeactivateLayer("sil");
+
+                    isInNeutralState = false;
+                    isInColor1_Stage1 = false;
+                    isInColor1_Stage2 = false;
+                    isInColor1_Stage3 = false;
+                    isInColor1_Stage4 = false;
+                    isInColor1_Stage5 = false;
+
+                    isInColor2_Stage1 = false;
+                    isInColor2_Stage2 = false;
+                    isInColor2_Stage3 = false;
+                    isInColor2_Stage4 = false;
+                    isInColor2_Stage5 = false;
+
+                    isInColor3_Stage1 = false;
+                    isInColor3_Stage2 = false;
+                    isInColor3_Stage3 = false;
+                    isInColor3_Stage4 = false;
+                    isInColor3_Stage5 = true;
                 }
             }
         }
@@ -293,7 +623,9 @@ public class LevelManagement : MonoBehaviour {
         foreach (GameObject go in bgArray)
         {
             if (go) {
-                go.SetActive(which);
+                //Debug.Log("TESTING1");
+                //go.SetActive(which);
+                StartCoroutine(ChangeAlphaValue(go.GetComponent<SpriteRenderer>().color.a, new Ref<GameObject>(go)));
             }
         }
     }
@@ -305,13 +637,18 @@ public class LevelManagement : MonoBehaviour {
             //Set every element state to which, el[i] to !which
             if (count == i)
             {
-                if(go)
-                go.SetActive(which);
+                if (go)
+                {
+                    //go.SetActive(which);
+                    StartCoroutine(ChangeAlphaValue(go.GetComponent<SpriteRenderer>().color.a, new Ref<GameObject>(go)));
+                }
             }
             else
             {
-                if(go)
-                go.SetActive(!which);
+                if (go)
+                {
+                    go.SetActive(!which);
+                }
             }
             count++;
         }
@@ -524,27 +861,27 @@ public class LevelManagement : MonoBehaviour {
         }
     }
 
-    IEnumerator ChangeAlphaValue(float alphaValue, GameObject go) // not used
+    IEnumerator ChangeAlphaValue(float alphaValue, Ref<GameObject> go) // not used
     {
         if(alphaValue > 0.1f)
         {
             while (alphaValue > 0.0f)
             {
                 alphaValue -= 0.1f;
-                Color tmp = go.GetComponent<SpriteRenderer>().color;
+                Color tmp = go.Value.GetComponent<SpriteRenderer>().color;
                 tmp.a = alphaValue;
                 yield return new WaitForSeconds(0.1f);
-                go.GetComponent<SpriteRenderer>().color = tmp;
+                go.Value.GetComponent<SpriteRenderer>().color = tmp;
             }
         } else
         {
             while (alphaValue < 1.0f)
             {
                 alphaValue += 0.1f;
-                Color tmp = go.GetComponent<SpriteRenderer>().color;
+                Color tmp = go.Value.GetComponent<SpriteRenderer>().color;
                 tmp.a = alphaValue;
                 yield return new WaitForSeconds(0.1f);
-                go.GetComponent<SpriteRenderer>().color = tmp;
+                go.Value.GetComponent<SpriteRenderer>().color = tmp;
             }
         }
     }
@@ -554,5 +891,5 @@ public class LevelManagement : MonoBehaviour {
         tmp.a = alphaValue;
         go.GetComponent<SpriteRenderer>().color = tmp;
     }
-
+    
 }
