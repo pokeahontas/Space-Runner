@@ -406,7 +406,7 @@ public class LevelManagement : MonoBehaviour {
                 if ((hgWeit >= 3 && hgWeit <= 4) && !isInColor3_Stage1) // Color 3 Stage 1
                 {
                     ActivateBGDeactivateOthers("neutral");
-                    // activate snowtree silhouettes and deactivate every other silhouette 
+                    // activate desert silhouettes and deactivate every other silhouette 
                     ActivateSilhouetteAndDeactivateOthers("desert",false);
                     DeactivateLayer("color");
 
@@ -433,7 +433,7 @@ public class LevelManagement : MonoBehaviour {
                 else if (hgWeit == 5 && !isInColor3_Stage2) // Color 3 Stage 2
                 {
                     ActivateBGDeactivateOthers("desert");
-                    // activate colored snow tree 1 and deactivate every other colored 
+                    // activate colored cactus 1 and deactivate every other colored 
                     ActivateColoredElementsDeactivateOthers(0, "desert");
                     ActivateSilhouetteAndDeactivateOthers("desert",true);
 
@@ -581,39 +581,83 @@ public class LevelManagement : MonoBehaviour {
         if (!isColoredBG) {
             if (theme.Equals("snow"))
             {
-                StartCoroutineOfGoInArray(ref onlySilDesert, false);
-                StartCoroutineOfGoInArray(ref onlySilTrees, true);
+                if (onlySilDesert[0].GetComponent<SpriteRenderer>().color.a > 0.5f) {
+                    StartCoroutineOfGoInArray(ref onlySilDesert, false);
+                }
+                if (onlySilTrees[0].GetComponent<SpriteRenderer>().color.a < 0.5f)
+                {
+                    StartCoroutineOfGoInArray(ref onlySilTrees, true);
+                }
             }
             else if (theme.Equals("forest"))
             {
-                StartCoroutineOfGoInArray(ref onlySilDesert, false);
-                StartCoroutineOfGoInArray(ref onlySilTrees, true);
+                if (onlySilDesert[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+                {
+                    StartCoroutineOfGoInArray(ref onlySilDesert, false);
+                }
+                if (onlySilTrees[0].GetComponent<SpriteRenderer>().color.a < 0.5f)
+                {
+                    StartCoroutineOfGoInArray(ref onlySilTrees, true);
+                }
             }
             else if (theme.Equals("desert"))
             {
-                StartCoroutineOfGoInArray(ref onlySilDesert, true);
-                StartCoroutineOfGoInArray(ref onlySilTrees, false);
+                if (onlySilDesert[0].GetComponent<SpriteRenderer>().color.a < 0.5f)
+                {
+                    StartCoroutineOfGoInArray(ref onlySilDesert, true);
+                }
+                if (onlySilDesert[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+                {
+                    StartCoroutineOfGoInArray(ref onlySilTrees, false);
+                }
             }
         } 
         else
         {
             if (theme.Equals("snow"))
             {
-                StartCoroutineOfGoInArray(ref silForest, false);
-                StartCoroutineOfGoInArray(ref silDesert, false);
-                StartCoroutineOfGoInArray(ref silSnow, true);
+                if (silForest[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+                {
+                    StartCoroutineOfGoInArray(ref silForest, false);
+                }
+                if (silDesert[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+                {
+                    StartCoroutineOfGoInArray(ref silDesert, false);
+                }
+                if (silSnow[0].GetComponent<SpriteRenderer>().color.a < 0.5f)
+                {
+                    StartCoroutineOfGoInArray(ref silSnow, true);
+                }
             }
             else if (theme.Equals("forest"))
             {
-                StartCoroutineOfGoInArray(ref silForest, true);
-                StartCoroutineOfGoInArray(ref silDesert, false);
-                StartCoroutineOfGoInArray(ref silSnow, false);
+                if (silForest[0].GetComponent<SpriteRenderer>().color.a < 0.5f)
+                {
+                    StartCoroutineOfGoInArray(ref silForest, true);
+                }
+                if (silDesert[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+                {
+                    StartCoroutineOfGoInArray(ref silDesert, false);
+                }
+                if (silSnow[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+                {
+                    StartCoroutineOfGoInArray(ref silSnow, false);
+                }
             }
             else if (theme.Equals("desert"))
             {
-                StartCoroutineOfGoInArray(ref silForest, false);
-                StartCoroutineOfGoInArray(ref silDesert, true);
-                StartCoroutineOfGoInArray(ref silSnow, false);
+                if (silDesert[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+                {
+                    StartCoroutineOfGoInArray(ref silForest, false);
+                }
+                if (silDesert[0].GetComponent<SpriteRenderer>().color.a < 0.5f)
+                {
+                    StartCoroutineOfGoInArray(ref silDesert, true);
+                }
+                if (silSnow[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+                {
+                    StartCoroutineOfGoInArray(ref silSnow, false);
+                }
             }
         }
     }
@@ -622,7 +666,7 @@ public class LevelManagement : MonoBehaviour {
     {
         foreach (GameObject go in bgArray)
         {
-            if (go) {
+            if (go) { //&& go.GetComponent<SpriteRenderer>().color.a > 0.5f
                 //Debug.Log("TESTING1");
                 //go.SetActive(which);
                 StartCoroutine(ChangeAlphaValue(go.GetComponent<SpriteRenderer>().color.a, new Ref<GameObject>(go)));
@@ -648,7 +692,7 @@ public class LevelManagement : MonoBehaviour {
             //Set every element state to which, el[i] to !which
             if (count == i)
             {
-                if (go)
+                if (go && go.GetComponent<SpriteRenderer>().color.a < 0.5f)
                 {
                     //go.SetActive(which);
                     StartCoroutine(ChangeAlphaValue(go.GetComponent<SpriteRenderer>().color.a, new Ref<GameObject>(go)));
@@ -656,9 +700,10 @@ public class LevelManagement : MonoBehaviour {
             }
             else
             {
-                if (go)
+                if (go && go.GetComponent<SpriteRenderer>().color.a > 0.5f)
                 {
-                    go.SetActive(!which);
+                    //go.SetActive(!which);
+                    StartCoroutine(ChangeAlphaValue(go.GetComponent<SpriteRenderer>().color.a, new Ref<GameObject>(go)));
                 }
             }
             count++;
@@ -802,28 +847,57 @@ public class LevelManagement : MonoBehaviour {
     {
         if (level.Equals("all"))
         {
-            StartCoroutineOfGoInArray(ref bgColorSnowFar1, false);
-            StartCoroutineOfGoInArray(ref bgColorSnowFar2, false);
-            StartCoroutineOfGoInArray(ref bgColorDesertFar1, false);
-            StartCoroutineOfGoInArray(ref bgColorDesertFar2, false);
-            StartCoroutineOfGoInArray(ref bgColorForestFar1, false);
-            StartCoroutineOfGoInArray(ref bgColorForestFar2, false);
-            StartCoroutineOfGoInArray(ref onlySilDesert, false);
-            StartCoroutineOfGoInArray(ref onlySilTrees, false);
+            if (bgColorSnowFar1[0].GetComponent<SpriteRenderer>().color.a > 0.5f) {
+                StartCoroutineOfGoInArray(ref bgColorSnowFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar2, false);
+            }
+            if (bgColorDesertFar1[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+            {
+                StartCoroutineOfGoInArray(ref bgColorDesertFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar2, false);
+            }
+            if (bgColorForestFar1[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+            {
+                StartCoroutineOfGoInArray(ref bgColorForestFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar2, false);
+            }
+            if (onlySilDesert[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+            {
+                StartCoroutineOfGoInArray(ref onlySilDesert, false);
+            }
+            if (onlySilTrees[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+            {
+                StartCoroutineOfGoInArray(ref onlySilTrees, false);
+            }
         }
         else if (level.Equals("sil"))
         {
-            StartCoroutineOfGoInArray(ref onlySilDesert, false);
-            StartCoroutineOfGoInArray(ref onlySilTrees, false);
+            if (onlySilDesert[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+            {
+                StartCoroutineOfGoInArray(ref onlySilDesert, false);
+            }
+            if (onlySilTrees[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+            {
+                StartCoroutineOfGoInArray(ref onlySilTrees, false);
+            }
         }
         else if (level.Equals("color"))
         {
-            StartCoroutineOfGoInArray(ref bgColorSnowFar1, false);
-            StartCoroutineOfGoInArray(ref bgColorSnowFar2, false);
-            StartCoroutineOfGoInArray(ref bgColorDesertFar1, false);
-            StartCoroutineOfGoInArray(ref bgColorDesertFar2, false);
-            StartCoroutineOfGoInArray(ref bgColorForestFar1, false);
-            StartCoroutineOfGoInArray(ref bgColorForestFar2, false);
+            if (bgColorSnowFar1[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+            {
+                StartCoroutineOfGoInArray(ref bgColorSnowFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar2, false);
+            }
+            if (bgColorDesertFar1[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+            {
+                StartCoroutineOfGoInArray(ref bgColorDesertFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar2, false);
+            }
+            if (bgColorForestFar1[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
+            {
+                StartCoroutineOfGoInArray(ref bgColorForestFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar2, false);
+            }
         }
     }
 
