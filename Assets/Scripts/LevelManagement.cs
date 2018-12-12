@@ -616,48 +616,22 @@ public class LevelManagement : MonoBehaviour {
         {
             if (theme.Equals("snow"))
             {
-                if (silForest[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
-                {
-                    StartCoroutineOfGoInArray(ref silForest, false);
-                }
-                if (silDesert[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
-                {
-                    StartCoroutineOfGoInArray(ref silDesert, false);
-                }
-                if (silSnow[0].GetComponent<SpriteRenderer>().color.a < 0.5f)
-                {
-                    StartCoroutineOfGoInArray(ref silSnow, true);
-                }
+                 SetActivationOfGoInArray(ref silForest, false);
+                 SetActivationOfGoInArray(ref silDesert, false);
+                 SetActivationOfGoInArray(ref silSnow, true); 
             }
             else if (theme.Equals("forest"))
             {
-                if (silForest[0].GetComponent<SpriteRenderer>().color.a < 0.5f)
-                {
-                    StartCoroutineOfGoInArray(ref silForest, true);
-                }
-                if (silDesert[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
-                {
-                    StartCoroutineOfGoInArray(ref silDesert, false);
-                }
-                if (silSnow[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
-                {
-                    StartCoroutineOfGoInArray(ref silSnow, false);
-                }
+                 SetActivationOfGoInArray(ref silForest, true);
+                 SetActivationOfGoInArray(ref silDesert, false);
+                 SetActivationOfGoInArray(ref silSnow, false);
             }
             else if (theme.Equals("desert"))
             {
-                if (silDesert[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
-                {
-                    StartCoroutineOfGoInArray(ref silForest, false);
-                }
-                if (silDesert[0].GetComponent<SpriteRenderer>().color.a < 0.5f)
-                {
-                    StartCoroutineOfGoInArray(ref silDesert, true);
-                }
-                if (silSnow[0].GetComponent<SpriteRenderer>().color.a > 0.5f)
-                {
-                    StartCoroutineOfGoInArray(ref silSnow, false);
-                }
+                 SetActivationOfGoInArray(ref silForest, false);
+                 SetActivationOfGoInArray(ref silDesert, true);
+                 SetActivationOfGoInArray(ref silSnow, false);
+                
             }
         }
     }
