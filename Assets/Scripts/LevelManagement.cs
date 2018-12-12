@@ -581,44 +581,44 @@ public class LevelManagement : MonoBehaviour {
         if (!isColoredBG) {
             if (theme.Equals("snow"))
             {
-                SetActivationOfGoInArray(ref onlySilDesert, false);
-                SetActivationOfGoInArray(ref onlySilTrees, true);
+                StartCoroutineOfGoInArray(ref onlySilDesert, false);
+                StartCoroutineOfGoInArray(ref onlySilTrees, true);
             }
             else if (theme.Equals("forest"))
             {
-                SetActivationOfGoInArray(ref onlySilDesert, false);
-                SetActivationOfGoInArray(ref onlySilTrees, true);
+                StartCoroutineOfGoInArray(ref onlySilDesert, false);
+                StartCoroutineOfGoInArray(ref onlySilTrees, true);
             }
             else if (theme.Equals("desert"))
             {
-                SetActivationOfGoInArray(ref onlySilDesert, true);
-                SetActivationOfGoInArray(ref onlySilTrees, false);
+                StartCoroutineOfGoInArray(ref onlySilDesert, true);
+                StartCoroutineOfGoInArray(ref onlySilTrees, false);
             }
         } 
         else
         {
             if (theme.Equals("snow"))
             {
-                SetActivationOfGoInArray(ref silForest, false);
-                SetActivationOfGoInArray(ref silDesert, false);
-                SetActivationOfGoInArray(ref silSnow, true);
+                StartCoroutineOfGoInArray(ref silForest, false);
+                StartCoroutineOfGoInArray(ref silDesert, false);
+                StartCoroutineOfGoInArray(ref silSnow, true);
             }
             else if (theme.Equals("forest"))
             {
-                SetActivationOfGoInArray(ref silForest, true);
-                SetActivationOfGoInArray(ref silDesert, false);
-                SetActivationOfGoInArray(ref silSnow, false);
+                StartCoroutineOfGoInArray(ref silForest, true);
+                StartCoroutineOfGoInArray(ref silDesert, false);
+                StartCoroutineOfGoInArray(ref silSnow, false);
             }
             else if (theme.Equals("desert"))
             {
-                SetActivationOfGoInArray(ref silForest, false);
-                SetActivationOfGoInArray(ref silDesert, true);
-                SetActivationOfGoInArray(ref silSnow, false);
+                StartCoroutineOfGoInArray(ref silForest, false);
+                StartCoroutineOfGoInArray(ref silDesert, true);
+                StartCoroutineOfGoInArray(ref silSnow, false);
             }
         }
     }
 
-    private void SetActivationOfGoInArray(ref GameObject[] bgArray, bool which)
+    private void StartCoroutineOfGoInArray(ref GameObject[] bgArray, bool which)
     {
         foreach (GameObject go in bgArray)
         {
@@ -629,7 +629,18 @@ public class LevelManagement : MonoBehaviour {
             }
         }
     }
-    private void SetActivationOfGoInArrayOneDifferent(ref GameObject[] bgArray, bool which, int i)
+    private void SetActivationOfGoInArray(ref GameObject[] bgArray, bool which)
+    {
+        foreach (GameObject go in bgArray)
+        {
+            if (go)
+            {
+                //Debug.Log("TESTING1");
+                go.SetActive(which);
+            }
+        }
+    }
+    private void StartCoroutineOfGoInArrayOneDifferent(ref GameObject[] bgArray, bool which, int i)
     {
         int count = 0;
         foreach (GameObject go in bgArray)
@@ -660,129 +671,129 @@ public class LevelManagement : MonoBehaviour {
         {
             if (level == 0)
             {
-                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 0);
-                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 0);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 0);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 0);
 
-                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
-                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
-                SetActivationOfGoInArray(ref bgColorForestFar1, false);
-                SetActivationOfGoInArray(ref bgColorForestFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar2, false);
             }
             else if (level == 1)
             {
-                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 1);
-                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 1);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 1);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 1);
 
-                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
-                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
-                SetActivationOfGoInArray(ref bgColorForestFar1, false);
-                SetActivationOfGoInArray(ref bgColorForestFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar2, false);
             }
             else if (level == 2)
             {
-                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 2);
-                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 2);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 2);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 2);
 
-                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
-                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
-                SetActivationOfGoInArray(ref bgColorForestFar1, false);
-                SetActivationOfGoInArray(ref bgColorForestFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar2, false);
             }
             else if (level == 3)
             {
-                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 3);
-                SetActivationOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 3);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorSnowFar1, true, 3);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorSnowFar2, true, 3);
 
-                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
-                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
-                SetActivationOfGoInArray(ref bgColorForestFar1, false);
-                SetActivationOfGoInArray(ref bgColorForestFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar2, false);
             }
         }
         else if (theme.Equals("forest"))
         {
             if (level == 0)
             {
-                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar1, true, 0);
-                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar2, true, 0);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorForestFar1, true, 0);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorForestFar2, true, 0);
 
-                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
-                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar2, false);
             }
             else if (level == 1)
             {
-                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar1, true, 1);
-                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar2, true, 1);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorForestFar1, true, 1);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorForestFar2, true, 1);
 
-                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
-                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar2, false);
             }
             else if (level == 2)
             {
-                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar1, true, 2);
-                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar2, true, 2);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorForestFar1, true, 2);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorForestFar2, true, 2);
 
-                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
-                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar2, false);
             }
             else if (level == 3)
             {
-                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar1, true, 3);
-                SetActivationOfGoInArrayOneDifferent(ref bgColorForestFar2, true, 3);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorForestFar1, true, 3);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorForestFar2, true, 3);
 
-                SetActivationOfGoInArray(ref bgColorDesertFar1, false);
-                SetActivationOfGoInArray(ref bgColorDesertFar2, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorDesertFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar2, false);
             }
         }
         else if (theme.Equals("desert"))
         {
             if (level == 0)
             {
-                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar1, true, 0);
-                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar2, true, 0);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorDesertFar1, true, 0);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorDesertFar2, true, 0);
 
-                SetActivationOfGoInArray(ref bgColorForestFar1, false);
-                SetActivationOfGoInArray(ref bgColorForestFar2, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar2, false);
             }
             else if (level == 1)
             {
-                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar1, true, 1);
-                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar2, true, 1);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorDesertFar1, true, 1);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorDesertFar2, true, 1);
 
-                SetActivationOfGoInArray(ref bgColorForestFar1, false);
-                SetActivationOfGoInArray(ref bgColorForestFar2, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar2, false);
             }
             else if (level == 2)
             {
-                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar1, true, 2);
-                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar2, true, 2);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorDesertFar1, true, 2);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorDesertFar2, true, 2);
 
-                SetActivationOfGoInArray(ref bgColorForestFar1, false);
-                SetActivationOfGoInArray(ref bgColorForestFar2, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar2, false);
             }
             else if (level == 3)
             {
-                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar1, true, 3);
-                SetActivationOfGoInArrayOneDifferent(ref bgColorDesertFar2, true, 3);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorDesertFar1, true, 3);
+                StartCoroutineOfGoInArrayOneDifferent(ref bgColorDesertFar2, true, 3);
 
-                SetActivationOfGoInArray(ref bgColorForestFar1, false);
-                SetActivationOfGoInArray(ref bgColorForestFar2, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar1, false);
-                SetActivationOfGoInArray(ref bgColorSnowFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorForestFar2, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar1, false);
+                StartCoroutineOfGoInArray(ref bgColorSnowFar2, false);
             }
         }
     }
@@ -791,28 +802,28 @@ public class LevelManagement : MonoBehaviour {
     {
         if (level.Equals("all"))
         {
-            SetActivationOfGoInArray(ref bgColorSnowFar1, false);
-            SetActivationOfGoInArray(ref bgColorSnowFar2, false);
-            SetActivationOfGoInArray(ref bgColorDesertFar1, false);
-            SetActivationOfGoInArray(ref bgColorDesertFar2, false);
-            SetActivationOfGoInArray(ref bgColorForestFar1, false);
-            SetActivationOfGoInArray(ref bgColorForestFar2, false);
-            SetActivationOfGoInArray(ref onlySilDesert, false);
-            SetActivationOfGoInArray(ref onlySilTrees, false);
+            StartCoroutineOfGoInArray(ref bgColorSnowFar1, false);
+            StartCoroutineOfGoInArray(ref bgColorSnowFar2, false);
+            StartCoroutineOfGoInArray(ref bgColorDesertFar1, false);
+            StartCoroutineOfGoInArray(ref bgColorDesertFar2, false);
+            StartCoroutineOfGoInArray(ref bgColorForestFar1, false);
+            StartCoroutineOfGoInArray(ref bgColorForestFar2, false);
+            StartCoroutineOfGoInArray(ref onlySilDesert, false);
+            StartCoroutineOfGoInArray(ref onlySilTrees, false);
         }
         else if (level.Equals("sil"))
         {
-            SetActivationOfGoInArray(ref onlySilDesert, false);
-            SetActivationOfGoInArray(ref onlySilTrees, false);
+            StartCoroutineOfGoInArray(ref onlySilDesert, false);
+            StartCoroutineOfGoInArray(ref onlySilTrees, false);
         }
         else if (level.Equals("color"))
         {
-            SetActivationOfGoInArray(ref bgColorSnowFar1, false);
-            SetActivationOfGoInArray(ref bgColorSnowFar2, false);
-            SetActivationOfGoInArray(ref bgColorDesertFar1, false);
-            SetActivationOfGoInArray(ref bgColorDesertFar2, false);
-            SetActivationOfGoInArray(ref bgColorForestFar1, false);
-            SetActivationOfGoInArray(ref bgColorForestFar2, false);
+            StartCoroutineOfGoInArray(ref bgColorSnowFar1, false);
+            StartCoroutineOfGoInArray(ref bgColorSnowFar2, false);
+            StartCoroutineOfGoInArray(ref bgColorDesertFar1, false);
+            StartCoroutineOfGoInArray(ref bgColorDesertFar2, false);
+            StartCoroutineOfGoInArray(ref bgColorForestFar1, false);
+            StartCoroutineOfGoInArray(ref bgColorForestFar2, false);
         }
     }
 
