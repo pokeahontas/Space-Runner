@@ -26,10 +26,14 @@ public class LevelManagement : MonoBehaviour {
     public Sprite[] diamonds = new Sprite[4];
 
     public List<int> player1Diamonds = new List<int>();
+    public int player1Fast = 0;
     public List<int> player2Diamonds = new List<int>();
+    public int player2Fast = 0;
 
     public GameObject player1DiamondsDisplay;
+    public GameObject player1Schieber;
     public GameObject player2DiamondsDisplay;
+    public GameObject player2Schieber;
 
 
     public int levelfarbe = 0;
@@ -906,15 +910,35 @@ public class LevelManagement : MonoBehaviour {
 
         if (playerNr == 1)
         {
-            if (value >=1)
+            if (value >= 1)
             {
+                
+                if (player1Diamonds.Count>0 && player1Diamonds[player1Diamonds.Count - 1] == color)
+                {
+                    player1Fast++;
+                }
+                else
+                {
+                    Debug.Log(player1Schieber.transform.position.x+" - "+player1Fast + " mal ");
+                    player1Schieber.transform.position = new Vector3((player1Schieber.transform.position.x + (0.475f*player1Fast)), player1Schieber.transform.position.y, player1Schieber.transform.position.z);
+                    player1Fast = 1;
+                }
                 player1Diamonds.Add(color);
             }
             else
             {
-                for (int i = 0; i>=value;i--)
+                for (int i = 0; i >= value; i--)
                 {
                     player1Diamonds.Remove(player1Diamonds.Count - 1);
+
+                }
+                if (player1Fast >= value)
+                {
+                    //Todo
+                }
+                else
+                {
+                    //Todo
                 }
             }
             
@@ -923,6 +947,17 @@ public class LevelManagement : MonoBehaviour {
         {
             if (value >= 1)
             {
+                
+
+                if (player2Diamonds.Count > 0 && player2Diamonds[player2Diamonds.Count-1] == color)
+                {
+                    player2Fast++;
+                }
+                else
+                {
+                    
+                    player2Fast = 1;
+                }
                 player2Diamonds.Add(color);
             }
             else
@@ -930,6 +965,14 @@ public class LevelManagement : MonoBehaviour {
                 for (int i = 0; i >= value; i--)
                 {
                     player2Diamonds.Remove(player2Diamonds.Count - 1);
+                }
+                if (player2Fast >= value)
+                {
+                    //Todo
+                }
+                else
+                {
+                    //Todo
                 }
             }
         }
