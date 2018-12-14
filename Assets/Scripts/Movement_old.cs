@@ -387,13 +387,13 @@ public class Movement2 : MonoBehaviour
             {
                 SoundManagement.Instance.PlayNote("d", "ship1", true);
                 scoreP1.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(3, 1);
+                LevelManagement.Instance.updateDiamond(3, 1,1);
             }
             else
             {
                 SoundManagement.Instance.PlayNote("d", "ship2", true);
                 scoreP2.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(3, 1);
+                LevelManagement.Instance.updateDiamond(3, 1,2);
             }
             Destroy(collision.gameObject);
         }
@@ -403,13 +403,13 @@ public class Movement2 : MonoBehaviour
             {
                 SoundManagement.Instance.PlayNote("e", "ship1", true);
                 scoreP1.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(1, 1);
+                LevelManagement.Instance.updateDiamond(1, 1,1);
             }
             else
             {
                 SoundManagement.Instance.PlayNote("e", "ship2", true);
                 scoreP2.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(1, 1);
+                LevelManagement.Instance.updateDiamond(1, 1,2);
             }
             Destroy(collision.gameObject);
         }
@@ -419,14 +419,14 @@ public class Movement2 : MonoBehaviour
             {
                 SoundManagement.Instance.PlayNote("a", "ship1", true);
                 scoreP1.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(2, 1);
+                LevelManagement.Instance.updateDiamond(2, 1,1);
 
             }
             else
             {
                 SoundManagement.Instance.PlayNote("a", "ship2", true);
                 scoreP2.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(2, 1);
+                LevelManagement.Instance.updateDiamond(2, 1,2);
             }
             Destroy(collision.gameObject);
         }

@@ -23,6 +23,15 @@ public class LevelManagement : MonoBehaviour {
     public Sprite[] BgBoden4 = new Sprite[4];
     public Sprite[] BgBoden5 = new Sprite[4];
 
+    public Sprite[] diamonds = new Sprite[4];
+
+    public List<int> player1Diamonds = new List<int>();
+    public List<int> player2Diamonds = new List<int>();
+
+    public GameObject player1DiamondsDisplay;
+    public GameObject player2DiamondsDisplay;
+
+
     public int levelfarbe = 0;
     public int hgBoden = 0;
     public int hgWeit = 0;
@@ -102,6 +111,8 @@ public class LevelManagement : MonoBehaviour {
 
     public void Update()
     {
+        DiamondDisplay();
+
         if ((hgWeit <= 2 || levelfarbe == 0) && !isInNeutralState)
         {
             //Debug.Log("TESTING1");
@@ -875,19 +886,52 @@ public class LevelManagement : MonoBehaviour {
         }
     }
 
-    public void updateDiamond(int color, int value)
+    public void updateDiamond(int color, int value, int playerNr)
     {
         if (color == 1)
         {
             diamondBlue += value;
+
         }
         else if (color == 2)
         {
             diamondGreen += value;
+
         }
         else if (color == 3)
         {
             diamondYellow += value;
+
+        }
+
+        if (playerNr == 1)
+        {
+            if (value >=1)
+            {
+                player1Diamonds.Add(color);
+            }
+            else
+            {
+                for (int i = 0; i>=value;i--)
+                {
+                    player1Diamonds.Remove(player1Diamonds.Count - 1);
+                }
+            }
+            
+        }
+        else if (playerNr == 2)
+        {
+            if (value >= 1)
+            {
+                player2Diamonds.Add(color);
+            }
+            else
+            {
+                for (int i = 0; i >= value; i--)
+                {
+                    player2Diamonds.Remove(player2Diamonds.Count - 1);
+                }
+            }
         }
 
         int[] tempArray = { diamondBlue, diamondGreen, diamondYellow };
@@ -918,6 +962,56 @@ public class LevelManagement : MonoBehaviour {
             print("Blue: " + diamondBlue + " Green: " + diamondGreen + " Yellow: " + diamondYellow + ", lvlfarbe=" + levelfarbe + " hgWeit=" + hgWeit + " hgBoden=" + hgBoden);
 
         }
+    }
+
+    public void DiamondDisplay()
+    {
+        
+            for (int i = 0; i < 14; i++)
+            {
+                if (player1Diamonds.Count > i)
+                {
+
+                    if (player1Diamonds[i] == 1)
+                    {
+                        player1DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[1];
+                    }
+                    else if (player1Diamonds[i] == 2)
+                    {
+                        player1DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[2];
+                    }
+                    else if (player1Diamonds[i] == 3)
+                    {
+                        player1DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[3];
+                    }
+                }
+                else
+                {
+                    player1DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[0];
+                }
+            if (player2Diamonds.Count > i)
+            {
+
+                if (player2Diamonds[i] == 1)
+                {
+                    player2DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[1];
+                }
+                else if (player2Diamonds[i] == 2)
+                {
+                    player2DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[2];
+                }
+                else if (player2Diamonds[i] == 3)
+                {
+                    player2DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[3];
+                }
+            }
+            else
+            {
+                player2DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[0];
+            }
+        }
+              
+        
     }
 
     IEnumerator ChangeAlphaValue(float alphaValue, Ref<GameObject> go) // not used

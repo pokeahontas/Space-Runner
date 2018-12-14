@@ -12,8 +12,8 @@ public class DiamondScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         incAmount = 1;
-        scoreP1 = GameObject.Find("ScoreP1");
-        scoreP2 = GameObject.Find("ScoreP2");
+        //scoreP1 = GameObject.Find("ScoreP1");
+        //scoreP2 = GameObject.Find("ScoreP2");
     }
 	
 	// Update is called once per frame
@@ -28,14 +28,14 @@ public class DiamondScript : MonoBehaviour {
             if (collision.gameObject.tag == "Ship1")
             {
                 SoundManagement.Instance.PlayNote("d", "ship1", true);
-                scoreP1.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(3, 1);
+                //scoreP1.GetComponent<Score>().inc(incAmount);
+                LevelManagement.Instance.updateDiamond(3, 1, 1);
             }
             else if (collision.gameObject.tag == "Ship2")
             {
                 SoundManagement.Instance.PlayNote("d", "ship2", true);
-                scoreP2.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(3, 1);
+                //scoreP2.GetComponent<Score>().inc(incAmount);
+                LevelManagement.Instance.updateDiamond(3, 1, 2);
             }
         }
         else if (this.gameObject.tag == "collectibleBlue")
@@ -43,14 +43,14 @@ public class DiamondScript : MonoBehaviour {
             if (collision.gameObject.tag == "Ship1")
             {
                 SoundManagement.Instance.PlayNote("e", "ship1", true);
-                scoreP1.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(1, 1);
+                //scoreP1.GetComponent<Score>().inc(incAmount);
+                LevelManagement.Instance.updateDiamond(1, 1, 1);
             }
             else if (collision.gameObject.tag == "Ship2")
             {
                 SoundManagement.Instance.PlayNote("e", "ship2", true);
-                scoreP2.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(1, 1);
+                //scoreP2.GetComponent<Score>().inc(incAmount);
+                LevelManagement.Instance.updateDiamond(1, 1, 2);
             }
             
         }
@@ -59,14 +59,14 @@ public class DiamondScript : MonoBehaviour {
             if (collision.gameObject.tag == "Ship1")
             {
                 SoundManagement.Instance.PlayNote("a", "ship1", true);
-                scoreP1.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(2, 1);
+                //scoreP1.GetComponent<Score>().inc(incAmount);
+                LevelManagement.Instance.updateDiamond(2, 1, 1);
             }
             else if (collision.gameObject.tag == "Ship2")
             {
                 SoundManagement.Instance.PlayNote("e", "ship2", true);
-                scoreP2.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(2, 1);
+                //scoreP2.GetComponent<Score>().inc(incAmount);
+                LevelManagement.Instance.updateDiamond(2, 1,2);
             }
             
         }
