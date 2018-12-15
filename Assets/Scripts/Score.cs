@@ -79,15 +79,15 @@ public class Score : MonoBehaviour {
     {
         for (int i=0;i<field.Length;i++)
         {
-            Destroy(activeObj[i]);
+           // Destroy(activeObj[i]);
         }
     }
 
     void Print(int activeObj, int score, int field)
     {
-        this.activeObj[activeObj] = Instantiate(this.number[score], this.field[field].position, this.field[field].rotation);
-        this.activeObj[activeObj].name = this.field[field].name;
-        this.activeObj[activeObj].transform.parent = this.field[field];
+       // this.activeObj[activeObj] = Instantiate(this.number[score], this.field[field].position, this.field[field].rotation);
+       // this.activeObj[activeObj].name = this.field[field].name;
+       // this.activeObj[activeObj].transform.parent = this.field[field];
     }
 
     IEnumerator ShowDiamondsAbovePlayer(float duration, int value, bool positiveNumber)

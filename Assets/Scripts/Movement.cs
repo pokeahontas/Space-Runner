@@ -325,16 +325,21 @@ public class Movement : MonoBehaviour
                 {
                     print("Top1Inner");
                     hasCollide = true;
-                    int temp = scoreP1.GetComponent<Score>().score;
+                    //int temp = scoreP1.GetComponent<Score>().score;
+                    int temp = LevelManagement.Instance.GetPlayer1DiamondsCount();
                     if (temp < decAmount)
                     {
+                        Debug.Log("temp: " + temp);
                         scoreP2.GetComponent<Score>().inc(temp);
                         scoreP1.GetComponent<Score>().dec(temp);
+                        LevelManagement.Instance.updateDiamond(0, -temp, 1);
                     }
                     else
                     {
+                        Debug.Log("test2");
                         scoreP2.GetComponent<Score>().inc(decAmount);
                         scoreP1.GetComponent<Score>().dec(decAmount);
+                        LevelManagement.Instance.updateDiamond(0, -decAmount, 1);
                     }
                     StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.gameObject, true));
                 }

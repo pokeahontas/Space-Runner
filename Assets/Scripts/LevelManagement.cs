@@ -913,11 +913,11 @@ public class LevelManagement : MonoBehaviour {
             if (value >= 1)
             {
                 
-                if (player1Diamonds.Count>0 && player1Diamonds[player1Diamonds.Count - 1] == color)
+                if (player1Diamonds.Count>0 && player1Diamonds[player1Diamonds.Count - 1] == color) //Wenn p1 nochmal selbe farbe einsammelt
                 {
-                    player1Fast++;
+                    player1Fast++;      
                 }
-                else
+                else //wenn er andere farbe als letztes mal einsammelt ODER ersten diamant einsammelt
                 {
                     Debug.Log(player1Schieber.transform.position.x+" - "+player1Fast + " mal ");
                     player1Schieber.transform.position = new Vector3((player1Schieber.transform.position.x + (0.475f*player1Fast)), player1Schieber.transform.position.y, player1Schieber.transform.position.z);
@@ -927,11 +927,11 @@ public class LevelManagement : MonoBehaviour {
             }
             else
             {
-                for (int i = 0; i >= value; i--)
+                for (int i = 0; i > value; i--)
                 {
-                    player1Diamonds.Remove(player1Diamonds.Count - 1);
-
+                    player1Diamonds.RemoveAt(player1Diamonds.Count - 1);
                 }
+                Debug.Log("p1Diamonds: " + player1Diamonds.Count);
                 if (player1Fast >= value)
                 {
                     //Todo
@@ -962,9 +962,9 @@ public class LevelManagement : MonoBehaviour {
             }
             else
             {
-                for (int i = 0; i >= value; i--)
+                for (int i = 0; i > value; i--)
                 {
-                    player2Diamonds.Remove(player2Diamonds.Count - 1);
+                    player2Diamonds.RemoveAt(player2Diamonds.Count - 1);
                 }
                 if (player2Fast >= value)
                 {
@@ -1055,6 +1055,16 @@ public class LevelManagement : MonoBehaviour {
         }
               
         
+    }
+
+    public int GetPlayer1DiamondsCount()
+    {
+        return player1Diamonds.Count;
+    }
+
+    public int GetPlayer2DiamondsCount()
+    {
+        return player2Diamonds.Count;
     }
 
     IEnumerator ChangeAlphaValue(float alphaValue, Ref<GameObject> go) // not used
