@@ -919,27 +919,40 @@ public class LevelManagement : MonoBehaviour {
                 }
                 else //wenn er andere farbe als letztes mal einsammelt ODER ersten diamant einsammelt
                 {
-                    Debug.Log(player1Schieber.transform.position.x+" - "+player1Fast + " mal ");
-                    player1Schieber.transform.position = new Vector3((player1Schieber.transform.position.x + (0.475f*player1Fast)), player1Schieber.transform.position.y, player1Schieber.transform.position.z);
+                    Debug.Log(player1Schieber.transform.localPosition.x+" - "+player1Fast + " mal ");
+                    player1Schieber.transform.localPosition = new Vector3((player1Schieber.transform.localPosition.x + (1.17f*player1Fast)), player1Schieber.transform.localPosition.y, player1Schieber.transform.localPosition.z);
                     player1Fast = 1;
                 }
                 player1Diamonds.Add(color);
             }
             else
             {
+                int tempDiaCount = player1Diamonds.Count;
                 for (int i = 0; i > value; i--)
                 {
                     player1Diamonds.RemoveAt(player1Diamonds.Count - 1);
                 }
                 Debug.Log("p1Diamonds: " + player1Diamonds.Count);
-                if (player1Fast >= value)
+                
+                if (tempDiaCount > 5) 
                 {
-                    //Todo
+                    float calc = (player1Fast - value - 1) * 1.17f;
+                    Debug.Log("diaCount>5, calc: " + calc);
+
+                    player1Schieber.transform.localPosition = new Vector3(player1Schieber.transform.localPosition.x + calc, player1Schieber.transform.localPosition.y, player1Schieber.transform.localPosition.z);
                 }
                 else
                 {
-                    //Todo
+                    float calc1 = (player1Fast - tempDiaCount) * 1.17f;
+                    float calc2 = player1Schieber.transform.localPosition.x + calc1;
+                    Debug.Log("calc1: " + calc1);
+                    Debug.Log("calc2: " + calc2);
+                    Debug.Log("player1SchieberPos: " + player1Schieber.transform.localPosition.x);
+
+                    player1Schieber.transform.localPosition = new Vector3(player1Schieber.transform.localPosition.x + calc1, player1Schieber.transform.localPosition.y, player1Schieber.transform.localPosition.z);
                 }
+
+                player1Fast = 0;
             }
             
         }
