@@ -333,6 +333,7 @@ public class Movement : MonoBehaviour
                         scoreP2.GetComponent<Score>().inc(temp);
                         scoreP1.GetComponent<Score>().dec(temp);
                         LevelManagement.Instance.updateDiamond(0, -temp, 1);
+                        // TODO  LevelManagement.Instance.updateDiamond(0, temp, 2);
                     }
                     else
                     {
@@ -340,6 +341,7 @@ public class Movement : MonoBehaviour
                         scoreP2.GetComponent<Score>().inc(decAmount);
                         scoreP1.GetComponent<Score>().dec(decAmount);
                         LevelManagement.Instance.updateDiamond(0, -decAmount, 1);
+                        // TODO LevelManagement.Instance.updateDiamond(0, decAmount, 2);
                     }
                     StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.gameObject, true));
                 }
@@ -372,16 +374,21 @@ public class Movement : MonoBehaviour
                 {
                     print("Top2Inner");
                     hasCollide = true;
-                    int temp = (int)scoreP2.GetComponent<Score>().score;
+                    //int temp = (int)scoreP2.GetComponent<Score>().score;
+                    int temp = LevelManagement.Instance.GetPlayer2DiamondsCount();
                     if (temp < decAmount)
                     {
                         scoreP1.GetComponent<Score>().inc(temp);
                         scoreP2.GetComponent<Score>().dec(temp);
+                        LevelManagement.Instance.updateDiamond(0, -temp, 2);
+                        // TODO LevelManagement.Instance.updateDiamond(0, temp, 1);
                     }
                     else
                     {
                         scoreP1.GetComponent<Score>().inc(decAmount);
                         scoreP2.GetComponent<Score>().dec(decAmount);
+                        LevelManagement.Instance.updateDiamond(0, -decAmount, 2);
+                        // TODO LevelManagement.Instance.updateDiamond(0, decAmount, 1);
                     }
                     StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.gameObject, true));
                 }

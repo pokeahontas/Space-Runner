@@ -936,10 +936,14 @@ public class LevelManagement : MonoBehaviour {
                 
                 if (tempDiaCount > 5) 
                 {
-                    float calc = (player1Fast - value - 1) * 1.17f;
+                    float calc = (player1Fast + value - 1) * 1.17f;
+                    Debug.Log("diaCount>5, player1Fast: " + player1Fast);
+                    Debug.Log("diaCount>5, value: " + value);
                     Debug.Log("diaCount>5, calc: " + calc);
+                    Debug.Log("player1SchieberPos: " + player1Schieber.transform.localPosition.x);
 
                     player1Schieber.transform.localPosition = new Vector3(player1Schieber.transform.localPosition.x + calc, player1Schieber.transform.localPosition.y, player1Schieber.transform.localPosition.z);
+                    player1Fast = 1;
                 }
                 else
                 {
@@ -950,9 +954,10 @@ public class LevelManagement : MonoBehaviour {
                     Debug.Log("player1SchieberPos: " + player1Schieber.transform.localPosition.x);
 
                     player1Schieber.transform.localPosition = new Vector3(player1Schieber.transform.localPosition.x + calc1, player1Schieber.transform.localPosition.y, player1Schieber.transform.localPosition.z);
+                    player1Fast = 0;
                 }
 
-                player1Fast = 0;
+                
             }
             
         }
@@ -968,25 +973,42 @@ public class LevelManagement : MonoBehaviour {
                 }
                 else
                 {
-                    
+                    Debug.Log(player2Schieber.transform.localPosition.x + " - " + player2Fast + " mal ");
+                    player2Schieber.transform.localPosition = new Vector3((player2Schieber.transform.localPosition.x + (1.17f * player2Fast)), player2Schieber.transform.localPosition.y, player2Schieber.transform.localPosition.z);
                     player2Fast = 1;
                 }
                 player2Diamonds.Add(color);
             }
             else
             {
+                int tempDiaCount = player2Diamonds.Count;
                 for (int i = 0; i > value; i--)
                 {
                     player2Diamonds.RemoveAt(player2Diamonds.Count - 1);
                 }
-                if (player2Fast >= value)
+                Debug.Log("p2Diamonds: " + player2Diamonds.Count);
+
+                if (tempDiaCount > 5)
                 {
-                    //Todo
+                    float calc = (player2Fast + value - 1) * 1.17f;
+                    Debug.Log("diaCount>5, calc: " + calc);
+
+                    player2Schieber.transform.localPosition = new Vector3(player2Schieber.transform.localPosition.x + calc, player2Schieber.transform.localPosition.y, player2Schieber.transform.localPosition.z);
+                    player2Fast = 1;
                 }
                 else
                 {
-                    //Todo
+                    float calc1 = (player2Fast - tempDiaCount) * 1.17f;
+                    float calc2 = player2Schieber.transform.localPosition.x + calc1;
+                    Debug.Log("calc1: " + calc1);
+                    Debug.Log("calc2: " + calc2);
+                    Debug.Log("player2SchieberPos: " + player2Schieber.transform.localPosition.x);
+
+                    player2Schieber.transform.localPosition = new Vector3(player2Schieber.transform.localPosition.x + calc1, player2Schieber.transform.localPosition.y, player2Schieber.transform.localPosition.z);
+                    player2Fast = 0;
                 }
+
+                
             }
         }
 
