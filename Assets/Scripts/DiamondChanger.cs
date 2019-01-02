@@ -20,7 +20,7 @@ public class DiamondChanger : MonoBehaviour {
 	void Update () {
 		if (!start)
         {
-            randomnNumber = Random.Range(1, 3);
+            randomnNumber = Random.Range(1, 4);
             switch (randomnNumber)
             {
                 case 1:
