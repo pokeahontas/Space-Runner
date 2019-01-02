@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class LevelManagement : MonoBehaviour {
 
@@ -906,7 +907,7 @@ public class LevelManagement : MonoBehaviour {
         {
             diamondYellow += value;
 
-        }
+        } 
 
         if (playerNr == 1)
         {
@@ -960,6 +961,7 @@ public class LevelManagement : MonoBehaviour {
                 
             }
             
+            
         }
         else if (playerNr == 2)
         {
@@ -1012,6 +1014,23 @@ public class LevelManagement : MonoBehaviour {
             }
         }
 
+        if (playerNr == 1)
+        {
+            if (player1Diamonds.Count >= 15 || player1Fast >= 5)
+            {
+                SoundManagement.Instance.PlayEndMelody("ship1");
+                SceneManager.LoadScene("P1Won");
+            }
+        }
+        else
+        {
+            if (player2Diamonds.Count >= 15 || player2Fast >= 5)
+            {
+                SoundManagement.Instance.PlayEndMelody("ship2");
+                SceneManager.LoadScene("P2Won");
+            }
+        }
+
         int[] tempArray = { diamondBlue, diamondGreen, diamondYellow };
 
         int max = tempArray.Max();
@@ -1043,9 +1062,10 @@ public class LevelManagement : MonoBehaviour {
     }
 
     public void DiamondDisplay()
-    {
+    {       
+
         
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 15; i++)
             {
                 if (player1Diamonds.Count > i)
                 {
