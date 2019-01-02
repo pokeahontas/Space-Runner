@@ -398,20 +398,18 @@ public class Movement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {   
-        /*
+        
         if (collision.gameObject.tag == "collectible") //yellow
         {
             if (ship1)
             {
                 SoundManagement.Instance.PlayNote("d", "ship1", true);
-                scoreP1.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(3, 1);
+                LevelManagement.Instance.updateDiamond(3, 1, 1);
             }
             else
             {
                 SoundManagement.Instance.PlayNote("d", "ship2", true);
-                scoreP2.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(3, 1);
+                LevelManagement.Instance.updateDiamond(3, 1, 2);
             }
             Destroy(collision.gameObject);
         }
@@ -420,14 +418,12 @@ public class Movement : MonoBehaviour
             if (ship1)
             {
                 SoundManagement.Instance.PlayNote("e", "ship1", true);
-                scoreP1.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(1, 1);
+                LevelManagement.Instance.updateDiamond(1, 1, 1);
             }
             else
             {
                 SoundManagement.Instance.PlayNote("e", "ship2", true);
-                scoreP2.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(1, 1);
+                LevelManagement.Instance.updateDiamond(1, 1, 2);
             }
             Destroy(collision.gameObject);
         }
@@ -436,19 +432,19 @@ public class Movement : MonoBehaviour
             if (ship1)
             {
                 SoundManagement.Instance.PlayNote("a", "ship1", true);
-                scoreP1.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(2, 1);
+                LevelManagement.Instance.updateDiamond(2, 1, 1);
 
             }
             else
             {
-                SoundManagement.Instance.PlayNote("a", "ship2", true);
-                scoreP2.GetComponent<Score>().inc(incAmount);
-                LevelManagement.Instance.updateDiamond(2, 1);
+                SoundManagement.Instance.PlayNote("e", "ship2", true);
+                LevelManagement.Instance.updateDiamond(2, 1, 2);
             }
             Destroy(collision.gameObject);
         }
-        */
+        
+
+
         //else if (collision.gameObject.tag == "ColliderLeft")
         if (collision.gameObject.tag == "ColliderLeft")
         {
