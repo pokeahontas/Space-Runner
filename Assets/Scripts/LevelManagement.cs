@@ -1112,14 +1112,24 @@ public class LevelManagement : MonoBehaviour {
         
     }
 
-    public int GetPlayer1DiamondsCount()
+    public List<int> GetPlayer1Diamonds()
     {
-        return player1Diamonds.Count;
+        return player1Diamonds;
     }
 
-    public int GetPlayer2DiamondsCount()
+    public List<int> GetPlayer2Diamonds()
     {
-        return player2Diamonds.Count;
+        return player2Diamonds;
+    }
+
+    public int GetPlayer1Fast()
+    {
+        return player1Fast;
+    }
+
+    public int GetPlayer2Fast()
+    {
+        return player2Fast;
     }
 
     IEnumerator ChangeAlphaValue(float alphaValue, Ref<GameObject> go) // not used

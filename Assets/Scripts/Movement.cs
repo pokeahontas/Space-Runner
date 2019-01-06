@@ -326,7 +326,7 @@ public class Movement : MonoBehaviour
                     print("Top1Inner");
                     hasCollide = true;
                     //int temp = scoreP1.GetComponent<Score>().score;
-                    int temp = LevelManagement.Instance.GetPlayer1DiamondsCount();
+                    int temp = LevelManagement.Instance.GetPlayer1Diamonds().Count;
                     if (temp < decAmount)
                     {
                         Debug.Log("temp: " + temp);
@@ -375,7 +375,7 @@ public class Movement : MonoBehaviour
                     print("Top2Inner");
                     hasCollide = true;
                     //int temp = (int)scoreP2.GetComponent<Score>().score;
-                    int temp = LevelManagement.Instance.GetPlayer2DiamondsCount();
+                    int temp = LevelManagement.Instance.GetPlayer2Diamonds().Count;
                     if (temp < decAmount)
                     {
                         scoreP1.GetComponent<Score>().inc(temp);
