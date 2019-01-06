@@ -841,7 +841,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 66569104}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -908,6 +908,9 @@ MonoBehaviour:
   dia3: {fileID: 1729763145}
   dia4: {fileID: 300093832}
   dia5: {fileID: 1998701416}
+  blue: {fileID: 2100000, guid: 57cf8453db4b55c4e97010b0e4759857, type: 2}
+  green: {fileID: 2100000, guid: 2b1e0f1163cefcf46ad3913c315e85c6, type: 2}
+  yellow: {fileID: 2100000, guid: 5a1f1de9c9406454497c02fd1d7928d7, type: 2}
 --- !u!1001 &71139053
 Prefab:
   m_ObjectHideFlags: 0
@@ -2416,7 +2419,7 @@ GameObject:
   - component: {fileID: 300093835}
   - component: {fileID: 300093834}
   - component: {fileID: 300093833}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dia4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5423,7 +5426,7 @@ GameObject:
   - component: {fileID: 734880713}
   - component: {fileID: 734880712}
   - component: {fileID: 734880711}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dia2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10782,7 +10785,7 @@ GameObject:
   - component: {fileID: 1608694616}
   - component: {fileID: 1608694615}
   - component: {fileID: 1608694614}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dia1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11453,7 +11456,7 @@ GameObject:
   - component: {fileID: 1729763148}
   - component: {fileID: 1729763147}
   - component: {fileID: 1729763146}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dia3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12904,6 +12907,9 @@ MonoBehaviour:
   dia3: {fileID: 1664580351}
   dia4: {fileID: 1428292453}
   dia5: {fileID: 1382352268}
+  blue: {fileID: 2100000, guid: 57cf8453db4b55c4e97010b0e4759857, type: 2}
+  green: {fileID: 2100000, guid: 2b1e0f1163cefcf46ad3913c315e85c6, type: 2}
+  yellow: {fileID: 2100000, guid: 5a1f1de9c9406454497c02fd1d7928d7, type: 2}
 --- !u!233 &1969340439
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -13106,7 +13112,7 @@ GameObject:
   - component: {fileID: 1998701419}
   - component: {fileID: 1998701418}
   - component: {fileID: 1998701417}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dia5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
