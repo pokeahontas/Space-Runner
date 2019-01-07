@@ -146,10 +146,10 @@ public class Movement : MonoBehaviour
     {
         if (facingRight)
         {
-            transform.Translate(Speed * Time.deltaTime, 0, 0);
+            transform.Translate(Speed * Time.deltaTime, 0, 0, Space.World);
         } else
         {
-            transform.Translate(-Speed * Time.deltaTime, 0, 0);
+            transform.Translate(-Speed * Time.deltaTime, 0, 0, Space.World);
         }
     
 

@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e2430ed6898f34e83de620cf207533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yellow: {fileID: 1634415434260522, guid: 616bd87401eed6046b13e0a09d7df4ad, type: 2}
+  yellow: {fileID: 1634415434260522, guid: 51ea8ef4a1dff6646bae3c7a2b59fbd5, type: 2}
   blue: {fileID: 1548117573507712, guid: 415095af0de87bc48a5e61a2158682e5, type: 2}
   green: {fileID: 1623262217173730, guid: e1d547a2a3b1dba48880d89bcbc6d0a1, type: 2}
 --- !u!212 &212683468474274458

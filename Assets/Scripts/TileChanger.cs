@@ -47,7 +47,7 @@ public class TileChanger : MonoBehaviour {
     {
         if (collision.gameObject.tag == "MainCamera")
         {
-            print("yeeeehaaaa");
+            //print("yeeeehaaaa");
             imSichtfeld = true;
         }
         
