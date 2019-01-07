@@ -10,6 +10,8 @@ public class TileChanger : MonoBehaviour {
     public bool tiles2 = false;
     public bool tiles3 = false;
 
+    bool imSichtfeld = false;
+
     // Use this for initialization
     void Start () {
 		
@@ -22,19 +24,41 @@ public class TileChanger : MonoBehaviour {
         if (now != last)
         {
             last = now;
-            if (tiles1)
+            if (!imSichtfeld)
             {
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = LevelManagement.Instance.tiles[now];
-            }
-            else if(tiles2)
-            {
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = LevelManagement.Instance.tiles2[now];
-            }
-            else if(tiles3)
-            {
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = LevelManagement.Instance.tiles3[now];
+                if (tiles1)
+                {
+                    this.gameObject.GetComponent<SpriteRenderer>().sprite = LevelManagement.Instance.tiles[now];
+                }
+                else if (tiles2)
+                {
+                    this.gameObject.GetComponent<SpriteRenderer>().sprite = LevelManagement.Instance.tiles2[now];
+                }
+                else if (tiles3)
+                {
+                    this.gameObject.GetComponent<SpriteRenderer>().sprite = LevelManagement.Instance.tiles3[now];
+                }
             }
         }
         
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "MainCamera")
+        {
+            print("yeeeehaaaa");
+            imSichtfeld = true;
+        }
+        
+    }
+    /*
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "MainCamera")
+        {
+            imSichtfeld = false;
+        }
+    }
+    */
 }
