@@ -36,6 +36,9 @@ public class LevelManagement : MonoBehaviour {
     public GameObject player2DiamondsDisplay;
     public GameObject player2Schieber;
 
+    private Vector3 player1SchieberStart;
+    private Vector3 player2SchieberStart;
+
 
     public int levelfarbe = 0;
     public int hgBoden = 0;
@@ -112,6 +115,12 @@ public class LevelManagement : MonoBehaviour {
         }
 
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void Start()
+    {
+        player1SchieberStart = player1Schieber.transform.localPosition;
+        player2SchieberStart = player2Schieber.transform.localPosition;
     }
 
     public void Update()
@@ -930,6 +939,7 @@ public class LevelManagement : MonoBehaviour {
             //Wenn Wert abgezogen wird
             else
             {
+                //Wenn Abzugswert größer als vorhandene Diamanten
                 if (player1Diamonds.Count <= (value*(-1)))
                 {
                     for (int i = player1Diamonds.Count-1; i >= 0; i--)
@@ -937,6 +947,7 @@ public class LevelManagement : MonoBehaviour {
                         player1Diamonds.RemoveAt(i);
                     }                    
                 }
+                //Wenn Abzugswert kleiner als vorhandene Diamanten
                 else
                 {
                     for (int i = 0; i > value; i--)
@@ -946,7 +957,7 @@ public class LevelManagement : MonoBehaviour {
                 }
                 Debug.Log("p1Diamonds: " + player1Diamonds.Count);
 
-                
+                /*
                 if (player1Diamonds.Count > 5) 
                 {
                     float calc = (player1Fast + value - 1) * 1.17f;
@@ -969,8 +980,9 @@ public class LevelManagement : MonoBehaviour {
                     player1Schieber.transform.localPosition = new Vector3(player1Schieber.transform.localPosition.x + calc1, player1Schieber.transform.localPosition.y, player1Schieber.transform.localPosition.z);
                     player1Fast = 0;
                 }
-                
-
+                */
+                float calc1 = (player1Diamonds.Count - player1Fast) * 1.17f;
+                player1Schieber.transform.localPosition = new Vector3(player1SchieberStart.x + calc1, player1Schieber.transform.localPosition.y, player1Schieber.transform.localPosition.z);
             }
             
             
@@ -1010,6 +1022,7 @@ public class LevelManagement : MonoBehaviour {
                 }
                 Debug.Log("p2Diamonds: " + player2Diamonds.Count);
 
+                /*
                 if (player2Diamonds.Count > 5)
                 {
                     float calc = (player2Fast + value - 1) * 1.17f;
@@ -1029,8 +1042,10 @@ public class LevelManagement : MonoBehaviour {
                     player2Schieber.transform.localPosition = new Vector3(player2Schieber.transform.localPosition.x + calc1, player2Schieber.transform.localPosition.y, player2Schieber.transform.localPosition.z);
                     player2Fast = 0;
                 }
+                */
+                float calc1 = (player2Diamonds.Count - player2Fast) * 1.17f;
+                player2Schieber.transform.localPosition = new Vector3(player2SchieberStart.x + calc1, player2Schieber.transform.localPosition.y, player2Schieber.transform.localPosition.z);
 
-                
             }
         }
 
