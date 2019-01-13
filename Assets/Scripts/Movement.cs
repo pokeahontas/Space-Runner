@@ -177,7 +177,6 @@ public class Movement : MonoBehaviour
             {
                 //SoundManagement.Instance.PlayNote("c","ship1", true);
                 onGround = false;
-                //Debug.Log("normal gravity");
                 GetComponent<Rigidbody2D>().gravityScale = 1;
                 //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, 0.5f, 1f);
                 if (facingRight) {
@@ -194,9 +193,8 @@ public class Movement : MonoBehaviour
                 if (!hasPike1) {
                     SoundManagement.Instance.PlayNote("c", "ship2", true);
                 }
-                //StartCoroutine(Speedboost(0.05f));
+                
                 anim.SetBool("defenseON", true);
-                //StartCoroutine(SetSpike(0.5f,0.05f, 1));
                 MaxSpeed = 0.0f;
                 hasPike1 = true;
             }
@@ -309,7 +307,8 @@ public class Movement : MonoBehaviour
                 {
                     print("ship2 hit pike");
                     hasCollide = true;
-                    scoreP2.GetComponent<Score>().dec(decAmount);
+                    //scoreP2.GetComponent<Score>().dec(decAmount);
+                    LevelManagement.Instance.updateDiamond(0, -decAmount, 2);
                     StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
                 }
             }
@@ -330,16 +329,16 @@ public class Movement : MonoBehaviour
                     if (temp < decAmount)
                     {
                         Debug.Log("temp: " + temp);
-                        scoreP2.GetComponent<Score>().inc(temp);
-                        scoreP1.GetComponent<Score>().dec(temp);
+                        //scoreP2.GetComponent<Score>().inc(temp);
+                        //scoreP1.GetComponent<Score>().dec(temp);
                         LevelManagement.Instance.updateDiamond(0, -temp, 1);
                         // TODO  LevelManagement.Instance.updateDiamond(0, temp, 2);
                     }
                     else
                     {
                         Debug.Log("test2");
-                        scoreP2.GetComponent<Score>().inc(decAmount);
-                        scoreP1.GetComponent<Score>().dec(decAmount);
+                        //scoreP2.GetComponent<Score>().inc(decAmount);
+                        //scoreP1.GetComponent<Score>().dec(decAmount);
                         LevelManagement.Instance.updateDiamond(0, -decAmount, 1);
                         // TODO LevelManagement.Instance.updateDiamond(0, decAmount, 2);
                     }
@@ -358,7 +357,8 @@ public class Movement : MonoBehaviour
                 {
                     print("ship1 hit pike");
                     hasCollide = true;
-                    scoreP1.GetComponent<Score>().dec(decAmount);
+                    //scoreP1.GetComponent<Score>().dec(decAmount);
+                    LevelManagement.Instance.updateDiamond(0, -decAmount, 1);
                     StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
                 }
             }
@@ -378,15 +378,15 @@ public class Movement : MonoBehaviour
                     int temp = LevelManagement.Instance.GetPlayer2Diamonds().Count;
                     if (temp < decAmount)
                     {
-                        scoreP1.GetComponent<Score>().inc(temp);
-                        scoreP2.GetComponent<Score>().dec(temp);
+                        //scoreP1.GetComponent<Score>().inc(temp);
+                        //scoreP2.GetComponent<Score>().dec(temp);
                         LevelManagement.Instance.updateDiamond(0, -temp, 2);
                         // TODO LevelManagement.Instance.updateDiamond(0, temp, 1);
                     }
                     else
                     {
-                        scoreP1.GetComponent<Score>().inc(decAmount);
-                        scoreP2.GetComponent<Score>().dec(decAmount);
+                        //scoreP1.GetComponent<Score>().inc(decAmount);
+                        //scoreP2.GetComponent<Score>().dec(decAmount);
                         LevelManagement.Instance.updateDiamond(0, -decAmount, 2);
                         // TODO LevelManagement.Instance.updateDiamond(0, decAmount, 1);
                     }
@@ -498,11 +498,13 @@ public class Movement : MonoBehaviour
         {
             if (ship1)
             {
-                scoreP1.GetComponent<Score>().dec(decAmount);
+                //scoreP1.GetComponent<Score>().dec(decAmount);
+                LevelManagement.Instance.updateDiamond(0, -decAmount, 1);
             }
             else
             {
-                scoreP2.GetComponent<Score>().dec(decAmount);
+                //scoreP2.GetComponent<Score>().dec(decAmount);
+                LevelManagement.Instance.updateDiamond(0, -decAmount, 2);
             }
             
             StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
