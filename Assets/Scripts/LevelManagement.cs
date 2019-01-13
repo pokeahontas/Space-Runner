@@ -911,6 +911,7 @@ public class LevelManagement : MonoBehaviour {
 
         if (playerNr == 1)
         {
+            //Wenn Wert hinzugefügt wird
             if (value >= 1)
             {
                 
@@ -926,16 +927,27 @@ public class LevelManagement : MonoBehaviour {
                 }
                 player1Diamonds.Add(color);
             }
+            //Wenn Wert abgezogen wird
             else
             {
-                int tempDiaCount = player1Diamonds.Count;
-                for (int i = 0; i > value; i--)
+                if (player1Diamonds.Count <= (value*(-1)))
                 {
-                    player1Diamonds.RemoveAt(player1Diamonds.Count - 1);
+                    for (int i = player1Diamonds.Count-1; i >= 0; i--)
+                    {
+                        player1Diamonds.RemoveAt(i);
+                    }                    
+                }
+                else
+                {
+                    for (int i = 0; i > value; i--)
+                    {
+                        player1Diamonds.RemoveAt(player1Diamonds.Count - 1);
+                    }
                 }
                 Debug.Log("p1Diamonds: " + player1Diamonds.Count);
+
                 
-                if (tempDiaCount > 5) 
+                if (player1Diamonds.Count > 5) 
                 {
                     float calc = (player1Fast + value - 1) * 1.17f;
                     Debug.Log("diaCount>5, player1Fast: " + player1Fast);
@@ -948,7 +960,7 @@ public class LevelManagement : MonoBehaviour {
                 }
                 else
                 {
-                    float calc1 = (player1Fast - tempDiaCount) * 1.17f;
+                    float calc1 = (player1Fast - player1Diamonds.Count) * 1.17f;
                     float calc2 = player1Schieber.transform.localPosition.x + calc1;
                     Debug.Log("calc1: " + calc1);
                     Debug.Log("calc2: " + calc2);
@@ -957,8 +969,8 @@ public class LevelManagement : MonoBehaviour {
                     player1Schieber.transform.localPosition = new Vector3(player1Schieber.transform.localPosition.x + calc1, player1Schieber.transform.localPosition.y, player1Schieber.transform.localPosition.z);
                     player1Fast = 0;
                 }
-
                 
+
             }
             
             
@@ -967,7 +979,6 @@ public class LevelManagement : MonoBehaviour {
         {
             if (value >= 1)
             {
-                
 
                 if (player2Diamonds.Count > 0 && player2Diamonds[player2Diamonds.Count-1] == color)
                 {
@@ -983,14 +994,23 @@ public class LevelManagement : MonoBehaviour {
             }
             else
             {
-                int tempDiaCount = player2Diamonds.Count;
-                for (int i = 0; i > value; i--)
+                if (player2Diamonds.Count <= (value * (-1)))
                 {
-                    player2Diamonds.RemoveAt(player2Diamonds.Count - 1);
+                    for (int i = player2Diamonds.Count - 1; i >= 0; i--)
+                    {
+                        player2Diamonds.RemoveAt(i);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i > value; i--)
+                    {
+                        player2Diamonds.RemoveAt(player2Diamonds.Count - 1);
+                    }
                 }
                 Debug.Log("p2Diamonds: " + player2Diamonds.Count);
 
-                if (tempDiaCount > 5)
+                if (player2Diamonds.Count > 5)
                 {
                     float calc = (player2Fast + value - 1) * 1.17f;
                     Debug.Log("diaCount>5, calc: " + calc);
@@ -1000,7 +1020,7 @@ public class LevelManagement : MonoBehaviour {
                 }
                 else
                 {
-                    float calc1 = (player2Fast - tempDiaCount) * 1.17f;
+                    float calc1 = (player2Fast - player2Diamonds.Count) * 1.17f;
                     float calc2 = player2Schieber.transform.localPosition.x + calc1;
                     Debug.Log("calc1: " + calc1);
                     Debug.Log("calc2: " + calc2);

@@ -499,12 +499,12 @@ public class Movement : MonoBehaviour
             if (ship1)
             {
                 //scoreP1.GetComponent<Score>().dec(decAmount);
-                LevelManagement.Instance.updateDiamond(0, -decAmount, 1);
+                LevelManagement.Instance.updateDiamond(0, -1, 1);
             }
             else
             {
                 //scoreP2.GetComponent<Score>().dec(decAmount);
-                LevelManagement.Instance.updateDiamond(0, -decAmount, 2);
+                LevelManagement.Instance.updateDiamond(0, -1, 2);
             }
             
             StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
