@@ -989,23 +989,17 @@ public class LevelManagement : MonoBehaviour {
                     player1Fast = 0;
                 }
                 */
-                if (player1Diamonds.Count > 5)
+
+
+                if (player1Fast < (value*(-1)))
                 {
-                    
-                    player1Fast = 1;
+                    player1Fast = 0;
                 }
                 else
                 {
-                    if (player1Fast < (value*(-1)))
-                    {
-                        player1Fast = 0;
-                    }
-                    else
-                    {
-                        player1Fast += value;
-                    }
-                    
+                    player1Fast += value;
                 }
+                
                 float calc1 = (player1Diamonds.Count - player1Fast) * 1.17f;
                 player1Schieber.transform.localPosition = new Vector3(player1SchieberStart.x + calc1, player1Schieber.transform.localPosition.y, player1Schieber.transform.localPosition.z);
             }
@@ -1073,20 +1067,14 @@ public class LevelManagement : MonoBehaviour {
                     player2Fast = 0;
                 }
                 */
-                if (player2Diamonds.Count > 5)
-                {    
-                    player2Fast = 1;
+
+                if (player2Fast < (value * (-1)))
+                {
+                    player2Fast = 0;
                 }
                 else
                 {
-                    if (player2Fast < (value * (-1)))
-                    {
-                        player2Fast = 0;
-                    }
-                    else
-                    {
-                        player2Fast += value;
-                    }
+                    player2Fast += value;
                 }
                 float calc1 = (player2Diamonds.Count - player2Fast) * 1.17f;
                 player2Schieber.transform.localPosition = new Vector3(player2SchieberStart.x + calc1, player2Schieber.transform.localPosition.y, player2Schieber.transform.localPosition.z);
