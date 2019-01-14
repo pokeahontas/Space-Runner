@@ -27,7 +27,7 @@ public class Movement : MonoBehaviour
     public bool hasPike2;
     public bool facingRight;
     public bool hasTurnedAround;
-
+   
     public GameObject colliderLeft;
     public GameObject goRight;
 
@@ -39,7 +39,6 @@ public class Movement : MonoBehaviour
     {
         //Debug.Log(GetComponent<SpriteRenderer>().transform.localScale);
         start = false;
-
         MaxSpeed = 5.0f;
         hasCollide = false;
         anim = GetComponent<Animator>();
@@ -59,7 +58,6 @@ public class Movement : MonoBehaviour
         {
             if (Input.GetAxis("Direction_J1") < -0.1f && facingRight && onGround && !hasPike1 && !anim.GetBool("damage"))
             {
-                
                 SoundManagement.Instance.PlayNote("g", "ship1", true);
                 facingRight = false;
                 Accelerate("Direction_J1");
@@ -156,7 +154,7 @@ public class Movement : MonoBehaviour
         if (ship1)
         {
 
-            if (Input.GetButton("Gravity1") && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike1 && hasTurnedAround && !anim.GetBool("damage")) // OR Input.GetButton("Boost1")
+            if (Input.GetButton("Gravity1") && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && hasTurnedAround && !anim.GetBool("damage")) // OR Input.GetButton("Boost1")
             {
                 //SoundManagement.Instance.PlayNote("c", "ship1", true);
                 onGround = false;
@@ -173,7 +171,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            if (Input.GetButton("Gravity1") && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike1 && hasTurnedAround && !anim.GetBool("damage"))
+            if (Input.GetButton("Gravity1") && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && hasTurnedAround && !anim.GetBool("damage"))
             {
                 //SoundManagement.Instance.PlayNote("c","ship1", true);
                 onGround = false;
@@ -188,7 +186,7 @@ public class Movement : MonoBehaviour
                 }
             }
             
-            if ((Input.GetAxis("Pike1") > 0) && !anim.GetBool("damage") && start && onGround) 
+            if ((Input.GetAxis("Direction_J1") < 0.1 && Input.GetAxis("Direction_J1") > -0.1) && (Input.GetAxis("Pike1") > 0) && !anim.GetBool("damage") && start && onGround) // (Input.GetAxis("Pike1") > 0) && !anim.GetBool("damage") && start && onGround
             {
                 if (!hasPike1) {
                     SoundManagement.Instance.PlayNote("c", "ship2", true);
@@ -209,9 +207,7 @@ public class Movement : MonoBehaviour
 
         if (ship2)
         {
-
-
-            if (Input.GetButton("Gravity2") && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))  
+            if (Input.GetButton("Gravity2") && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && hasTurnedAround && !anim.GetBool("damage"))  
             {
                 //SoundManagement.Instance.PlayNote("c","ship2", true);
                 onGround = false;
@@ -228,7 +224,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            if (Input.GetButton("Gravity2") && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && !hasPike2 && hasTurnedAround && !anim.GetBool("damage"))
+            if (Input.GetButton("Gravity2") && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && hasTurnedAround && !anim.GetBool("damage"))
             {
                 //SoundManagement.Instance.PlayNote("c","ship2", true);
                 onGround = false;
@@ -245,7 +241,7 @@ public class Movement : MonoBehaviour
             }
 
 
-            if ((Input.GetAxis("Pike2") > 0)  && !anim.GetBool("damage") && start && onGround)
+            if ((Input.GetAxis("Direction_J2") < 0.1 && Input.GetAxis("Direction_J2") > -0.1) && (Input.GetAxis("Pike2") > 0) && !anim.GetBool("damage") && start && onGround) //(Input.GetAxis("Pike2") > 0)
             {
                 if (!hasPike2)
                 {
