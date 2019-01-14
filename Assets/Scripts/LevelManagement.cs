@@ -931,7 +931,10 @@ public class LevelManagement : MonoBehaviour {
                 else //wenn er andere farbe als letztes mal einsammelt ODER ersten diamant einsammelt
                 {
                     Debug.Log(player1Schieber.transform.localPosition.x+" - "+player1Fast + " mal ");
-                    player1Schieber.transform.localPosition = new Vector3((player1Schieber.transform.localPosition.x + (1.17f*player1Fast)), player1Schieber.transform.localPosition.y, player1Schieber.transform.localPosition.z);
+                    if (player1Diamonds.Count < 10)
+                    {
+                        player1Schieber.transform.localPosition = new Vector3((player1Schieber.transform.localPosition.x + (1.17f * player1Fast)), player1Schieber.transform.localPosition.y, player1Schieber.transform.localPosition.z);
+                    }
                     player1Fast = 1;
                 }
                 player1Diamonds.Add(color);
@@ -954,6 +957,11 @@ public class LevelManagement : MonoBehaviour {
                     {
                         player1Diamonds.RemoveAt(player1Diamonds.Count - 1);
                     }
+                }
+
+                if (player1Diamonds.Count == 0)
+                {
+                    player1Fast = 0;
                 }
                 Debug.Log("p1Diamonds: " + player1Diamonds.Count);
 
@@ -981,6 +989,23 @@ public class LevelManagement : MonoBehaviour {
                     player1Fast = 0;
                 }
                 */
+                if (player1Diamonds.Count > 5)
+                {
+                    
+                    player1Fast = 1;
+                }
+                else
+                {
+                    if (player1Fast < (value*(-1)))
+                    {
+                        player1Fast = 0;
+                    }
+                    else
+                    {
+                        player1Fast += value;
+                    }
+                    
+                }
                 float calc1 = (player1Diamonds.Count - player1Fast) * 1.17f;
                 player1Schieber.transform.localPosition = new Vector3(player1SchieberStart.x + calc1, player1Schieber.transform.localPosition.y, player1Schieber.transform.localPosition.z);
             }
@@ -1022,6 +1047,11 @@ public class LevelManagement : MonoBehaviour {
                 }
                 Debug.Log("p2Diamonds: " + player2Diamonds.Count);
 
+                if (player2Diamonds.Count == 0)
+                {
+                    player2Fast = 0;
+                }
+
                 /*
                 if (player2Diamonds.Count > 5)
                 {
@@ -1043,6 +1073,21 @@ public class LevelManagement : MonoBehaviour {
                     player2Fast = 0;
                 }
                 */
+                if (player2Diamonds.Count > 5)
+                {    
+                    player2Fast = 1;
+                }
+                else
+                {
+                    if (player2Fast < (value * (-1)))
+                    {
+                        player2Fast = 0;
+                    }
+                    else
+                    {
+                        player2Fast += value;
+                    }
+                }
                 float calc1 = (player2Diamonds.Count - player2Fast) * 1.17f;
                 player2Schieber.transform.localPosition = new Vector3(player2SchieberStart.x + calc1, player2Schieber.transform.localPosition.y, player2Schieber.transform.localPosition.z);
 
@@ -1072,7 +1117,7 @@ public class LevelManagement : MonoBehaviour {
         int min = tempArray.Min();
         int[] ordered = (from number in tempArray orderby number descending select number).ToArray();
         int secondHighest = ordered[1];
-        print("second "+ secondHighest);
+        //print("second "+ secondHighest);
 
 
         //Entfernung von Minimum  
