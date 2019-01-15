@@ -157,7 +157,7 @@ public class Movement : MonoBehaviour
         if (ship1)
         {
 
-            if (Input.GetButton("Gravity1") && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && hasTurnedAround && !anim.GetBool("damage")) // OR Input.GetButton("Boost1")
+            if (Input.GetButton("Gravity1") && GetComponent<Rigidbody2D>().gravityScale == 1 && !hasPike1 && onGround && start && hasTurnedAround && !anim.GetBool("damage")) // OR Input.GetButton("Boost1")
             {
                 //SoundManagement.Instance.PlayNote("c", "ship1", true);
                 onGround = false;
@@ -174,7 +174,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            if (Input.GetButton("Gravity1") && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && hasTurnedAround && !anim.GetBool("damage"))
+            if (Input.GetButton("Gravity1") && GetComponent<Rigidbody2D>().gravityScale == -1 && !hasPike1 && onGround && start && hasTurnedAround && !anim.GetBool("damage"))
             {
                 //SoundManagement.Instance.PlayNote("c","ship1", true);
                 onGround = false;
@@ -189,10 +189,10 @@ public class Movement : MonoBehaviour
                 }
             }
             
-            if ((Input.GetAxis("Direction_J1") < 0.1 && Input.GetAxis("Direction_J1") > -0.1) && (Input.GetAxis("Pike1") > 0) && !anim.GetBool("damage") && start && onGround) // (Input.GetAxis("Pike1") > 0) && !anim.GetBool("damage") && start && onGround
+            if ((Input.GetAxis("Direction_J1") < 0.1f && Input.GetAxis("Direction_J1") > -0.1f) && (Input.GetButton("Pike1")) && !anim.GetBool("damage") && start && onGround) // (Input.GetAxis("Pike1") > 0) && !anim.GetBool("damage") && start && onGround
             {
                 if (!hasPike1) {
-                    SoundManagement.Instance.PlayNote("c", "ship2", true);
+                    SoundManagement.Instance.PlayNote("c", "ship1", true);
                 }
                 
                 anim.SetBool("defenseON", true);
@@ -201,7 +201,7 @@ public class Movement : MonoBehaviour
             }
             else if(Speed > 0.1f && (Input.GetAxis("Pike1") > 0) && boostAmount == 1.0f && !anim.GetBool("damage") && start && onGround)
             {
-                //StartCoroutine(ChangeBoostOverTime(6.0f, 1.0f));
+                StartCoroutine(ChangeSpeedOverTime(20, 0.01f)); 
                 //Debug.Log("FIIIICCCCCKKKKKEEEEERRRR");
             }
             else
@@ -215,7 +215,7 @@ public class Movement : MonoBehaviour
 
         if (ship2)
         {
-            if (Input.GetButton("Gravity2") && GetComponent<Rigidbody2D>().gravityScale == 1 && onGround && start && hasTurnedAround && !anim.GetBool("damage"))  
+            if (Input.GetButton("Gravity2") && GetComponent<Rigidbody2D>().gravityScale == 1 && !hasPike2 && onGround && start && hasTurnedAround && !anim.GetBool("damage"))  
             {
                 //SoundManagement.Instance.PlayNote("c","ship2", true);
                 onGround = false;
@@ -232,7 +232,7 @@ public class Movement : MonoBehaviour
                 }
             }
 
-            if (Input.GetButton("Gravity2") && GetComponent<Rigidbody2D>().gravityScale == -1 && onGround && start && hasTurnedAround && !anim.GetBool("damage"))
+            if (Input.GetButton("Gravity2") && GetComponent<Rigidbody2D>().gravityScale == -1 && !hasPike2 && onGround && start && hasTurnedAround && !anim.GetBool("damage"))
             {
                 //SoundManagement.Instance.PlayNote("c","ship2", true);
                 onGround = false;
@@ -249,7 +249,7 @@ public class Movement : MonoBehaviour
             }
 
 
-            if ((Input.GetAxis("Direction_J2") < 0.1 && Input.GetAxis("Direction_J2") > -0.1) && (Input.GetAxis("Pike2") > 0) && !anim.GetBool("damage") && start && onGround) //(Input.GetAxis("Pike2") > 0)
+            if ((Input.GetAxis("Direction_J2") < 0.1f && Input.GetAxis("Direction_J2") > -0.1f) && (Input.GetButton("Pike2")) && !anim.GetBool("damage") && start && onGround) //(Input.GetAxis("Pike2") > 0)
             {
                 if (!hasPike2)
                 {
@@ -260,12 +260,19 @@ public class Movement : MonoBehaviour
                 MaxSpeed = 0.0f;
                 hasPike2 = true;
             }
+            else if (Speed > 0.1f && (Input.GetAxis("Pike2") > 0) && boostAmount == 1.0f && !anim.GetBool("damage") && start && onGround)
+            {
+                StartCoroutine(ChangeSpeedOverTime(20, 0.01f));
+                
+            }
             else
             {
                 anim.SetBool("defenseON", false);
                 MaxSpeed = 5;
                 hasPike2 = false;
             }
+
+            
         }
     }
 
@@ -517,6 +524,7 @@ public class Movement : MonoBehaviour
 
     IEnumerator ChangeSpeedOverTime(float newSpeed, float duration)
     {
+        
         float oldSpeed = MaxSpeed;
         while (duration > 0f)
         {
@@ -525,6 +533,8 @@ public class Movement : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         MaxSpeed -= (newSpeed - oldSpeed);
+        boostAmount = 0;
+        StartCoroutine(IncreaseValueOverTime());
     }
 
     IEnumerator ChangeBoostOverTime(float plusSpeed, float duration)
@@ -538,7 +548,7 @@ public class Movement : MonoBehaviour
             Debug.Log("Speed: "+Speed);
             Debug.Log(boostAmount);
             boostAmount += 0.1f;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(duration);
         }
         //streamParticles.Stop();
         Debug.Log("WUFFF");
@@ -669,6 +679,16 @@ public class Movement : MonoBehaviour
         SoundManagement.Instance.PlayPortalSound();
         Instantiate(portal, pos, Quaternion.identity);
         return null;
+    }
+    IEnumerator IncreaseValueOverTime()
+    {
+
+        while (boostAmount < 1f)
+        {
+            boostAmount += 0.05f;
+            yield return new WaitForSeconds(0.5f);
+        }
+        boostAmount = 1.0f;
     }
 
 

@@ -479,6 +479,7 @@ MonoBehaviour:
   goRight: {fileID: 125518357}
   decAmount: 3
   incAmount: 1
+  boostAmount: 0
 --- !u!50 &34427454
 Rigidbody2D:
   serializedVersion: 4
@@ -6306,7 +6307,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 766b80053cabe774f9a479aabde7f5d3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -6450,6 +6451,7 @@ MonoBehaviour:
   goRight: {fileID: 125518357}
   decAmount: 3
   incAmount: 1
+  boostAmount: 0
 --- !u!50 &861218478
 Rigidbody2D:
   serializedVersion: 4
@@ -13566,58 +13568,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1594857496644920, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114086739217787996, guid: 3ae219d04141d2f4b981cb1d75e79709,
-        type: 2}
-      propertyPath: yellow
-      value: 
-      objectReference: {fileID: 1634415434260522, guid: 51ea8ef4a1dff6646bae3c7a2b59fbd5,
-        type: 2}
-    - target: {fileID: 114738030626457090, guid: 3ae219d04141d2f4b981cb1d75e79709,
-        type: 2}
-      propertyPath: yellow
-      value: 
-      objectReference: {fileID: 1634415434260522, guid: 51ea8ef4a1dff6646bae3c7a2b59fbd5,
-        type: 2}
-    - target: {fileID: 114723838099074294, guid: 3ae219d04141d2f4b981cb1d75e79709,
-        type: 2}
-      propertyPath: yellow
-      value: 
-      objectReference: {fileID: 1634415434260522, guid: 51ea8ef4a1dff6646bae3c7a2b59fbd5,
-        type: 2}
-    - target: {fileID: 114509096020911066, guid: 3ae219d04141d2f4b981cb1d75e79709,
-        type: 2}
-      propertyPath: yellow
-      value: 
-      objectReference: {fileID: 1634415434260522, guid: 51ea8ef4a1dff6646bae3c7a2b59fbd5,
-        type: 2}
-    - target: {fileID: 114971602735477088, guid: 3ae219d04141d2f4b981cb1d75e79709,
-        type: 2}
-      propertyPath: yellow
-      value: 
-      objectReference: {fileID: 1634415434260522, guid: 51ea8ef4a1dff6646bae3c7a2b59fbd5,
-        type: 2}
-    - target: {fileID: 114298550095978628, guid: 3ae219d04141d2f4b981cb1d75e79709,
-        type: 2}
-      propertyPath: yellow
-      value: 
-      objectReference: {fileID: 1634415434260522, guid: 51ea8ef4a1dff6646bae3c7a2b59fbd5,
-        type: 2}
-    - target: {fileID: 114068175582080440, guid: 3ae219d04141d2f4b981cb1d75e79709,
-        type: 2}
-      propertyPath: yellow
-      value: 
-      objectReference: {fileID: 1634415434260522, guid: 51ea8ef4a1dff6646bae3c7a2b59fbd5,
-        type: 2}
-    - target: {fileID: 114351165120438790, guid: 3ae219d04141d2f4b981cb1d75e79709,
-        type: 2}
-      propertyPath: yellow
-      value: 
-      objectReference: {fileID: 1634415434260522, guid: 51ea8ef4a1dff6646bae3c7a2b59fbd5,
-        type: 2}
     - target: {fileID: 1594857496644920, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
       propertyPath: m_Name
       value: GroundTiles01

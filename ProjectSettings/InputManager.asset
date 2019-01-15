@@ -12,14 +12,14 @@ InputManager:
     negativeButton: 
     positiveButton: 
     altNegativeButton: 
-    altPositiveButton: 
-    gravity: 0
-    dead: 0.1
-    sensitivity: 1
+    altPositiveButton: joystick 1 button 1
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
     snap: 0
     invert: 0
-    type: 2
-    axis: 9
+    type: 0
+    axis: 0
     joyNum: 1
   - serializedVersion: 3
     m_Name: Pike2
@@ -28,14 +28,14 @@ InputManager:
     negativeButton: 
     positiveButton: 
     altNegativeButton: 
-    altPositiveButton: 
-    gravity: 0
-    dead: 0.1
-    sensitivity: 1
+    altPositiveButton: joystick 2 button 1
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
     snap: 0
     invert: 0
-    type: 2
-    axis: 9
+    type: 0
+    axis: 0
     joyNum: 2
   - serializedVersion: 3
     m_Name: Submit
@@ -137,10 +137,10 @@ InputManager:
     m_Name: Direction_J1
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: joystick button 8
-    positiveButton: joystick button 8
-    altNegativeButton: joystick button 8
-    altPositiveButton: joystick button 8
+    negativeButton: joystick 1 button 8
+    positiveButton: joystick 1 button 8
+    altNegativeButton: joystick 1 button 8
+    altPositiveButton: joystick 1 button 8
     gravity: 0
     dead: 0.2
     sensitivity: 1
@@ -153,10 +153,10 @@ InputManager:
     m_Name: Direction_J2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
-    altNegativeButton: joystick button 8
-    altPositiveButton: joystick button 8
+    negativeButton: joystick 2 button 8
+    positiveButton: joystick 2 button 8
+    altNegativeButton: joystick 2 button 8
+    altPositiveButton: joystick 2 button 8
     gravity: 0
     dead: 0.2
     sensitivity: 1
