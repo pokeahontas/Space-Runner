@@ -33,6 +33,8 @@ public class Movement : MonoBehaviour
 
     public int decAmount;
     public int incAmount;
+
+    public float boostAmount;
     
 
     void Start()
@@ -47,6 +49,7 @@ public class Movement : MonoBehaviour
         hasPike2 = false;
         facingRight = true;
         hasTurnedAround = true;
+        boostAmount = 1.0f;
         
 
     }
@@ -195,6 +198,11 @@ public class Movement : MonoBehaviour
                 anim.SetBool("defenseON", true);
                 MaxSpeed = 0.0f;
                 hasPike1 = true;
+            }
+            else if(Speed > 0.1f && (Input.GetAxis("Pike1") > 0) && boostAmount == 1.0f && !anim.GetBool("damage") && start && onGround)
+            {
+                //StartCoroutine(ChangeBoostOverTime(6.0f, 1.0f));
+                //Debug.Log("FIIIICCCCCKKKKKEEEEERRRR");
             }
             else
             {
@@ -521,15 +529,22 @@ public class Movement : MonoBehaviour
 
     IEnumerator ChangeBoostOverTime(float plusSpeed, float duration)
     {
+        boostAmount = 0.0f;
         //streamParticles.Play();
-        MaxSpeed += plusSpeed;
-        while (duration > 0f)
+        Debug.Log("MaxSpeed + plusSpeed: " + Speed + plusSpeed);
+        Speed += plusSpeed;
+        while (boostAmount < 1.0f)
         {
-            duration -= Time.deltaTime;
-            yield return new WaitForSeconds(0.2f);
+            Debug.Log("Speed: "+Speed);
+            Debug.Log(boostAmount);
+            boostAmount += 0.1f;
+            yield return new WaitForSeconds(0.5f);
         }
         //streamParticles.Stop();
-        MaxSpeed -= plusSpeed;
+        Debug.Log("WUFFF");
+        Debug.Log(MaxSpeed);
+        boostAmount = 1.0f;
+        Speed -= plusSpeed;
     }
 
     IEnumerator Speedboost(float duration)
@@ -544,6 +559,24 @@ public class Movement : MonoBehaviour
         //streamParticles.Stop();
         MaxSpeed -= 30;
     }
+
+    //IEnumerator DoBlinks(float duration, float blinkTime, GameObject go)
+    //{
+
+    //    while (duration > 0f)
+    //    {
+    //        duration -= Time.deltaTime;
+
+    //        //toggle renderer
+    //        go.GetComponent<Renderer>().enabled = !go.GetComponent<Renderer>().enabled;
+
+    //        //wait for a bit
+    //        yield return new WaitForSeconds(blinkTime);
+    //    }
+
+    //    //make sure renderer is enabled when we exit
+    //    go.GetComponent<Renderer>().enabled = true;
+    //}
 
     IEnumerator LerpOverTime(float duration, Vector3 targetScale)
     {
