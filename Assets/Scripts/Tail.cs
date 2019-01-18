@@ -11,9 +11,19 @@ public class Tail : MonoBehaviour {
     public GameObject dia3;
     public GameObject dia4;
     public GameObject dia5;
+    public ParticleSystem[] pSystems;
     public Material blue;
     public Material green;
     public Material yellow;
+
+     void Start()
+    {
+        pSystems[0].Stop();
+        pSystems[1].Stop();
+        pSystems[2].Stop();
+        pSystems[3].Stop();
+        pSystems[4].Stop();
+    }
 
     void Update () {
         transform.position = player.transform.position;
@@ -179,4 +189,15 @@ public class Tail : MonoBehaviour {
             }
         }
 	}
+
+    public void ActivateParticles(int pos, int amount)
+    {
+        Debug.Log("pos: " + pos + ", amount: " + amount);
+       
+            for (int i = pos; i > amount; i--)
+            {
+            Debug.Log("i=" + i);
+            pSystems[i].Emit(20);
+            }
+    }
 }

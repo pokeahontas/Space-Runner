@@ -930,7 +930,11 @@ public class LevelManagement : MonoBehaviour {
                 }
                 else //wenn er andere farbe als letztes mal einsammelt ODER ersten diamant einsammelt
                 {
-                    player1Diamonds.Clear();
+                    //Tail.ActivateParticles(4, 1); // alle Steine verschwinden
+                    if (player1Diamonds.Count > 0)
+                    {
+                        player1Diamonds.Clear();
+                    }
                     Debug.Log(player1Schieber.transform.localPosition.x+" - "+player1Fast + " mal ");
                     if (player1Diamonds.Count < 10)
                     {
@@ -1018,7 +1022,11 @@ public class LevelManagement : MonoBehaviour {
                 }
                 else
                 {
-                    player2Diamonds.Clear();
+                    if (player2Diamonds.Count > 0)
+                    {
+                        GameObject.Find("playerJoint2").GetComponent<Tail>().ActivateParticles(player2Fast - 1, 0); // alle Steine verschwinden bis auf neu eingesammelter
+                        player2Diamonds.Clear();
+                    }
                     Debug.Log(player2Schieber.transform.localPosition.x + " - " + player2Fast + " mal ");
                     player2Schieber.transform.localPosition = new Vector3((player2Schieber.transform.localPosition.x + (1.17f * player2Fast)), player2Schieber.transform.localPosition.y, player2Schieber.transform.localPosition.z);
                     player2Fast = 1;
