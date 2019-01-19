@@ -31,6 +31,7 @@ public class Tail : MonoBehaviour {
         //print(LevelManagement.Instance.GetPlayer1Fast());
         if(isP1)
         {
+            SetParticleSystemColor();
             if (LevelManagement.Instance.GetPlayer1Diamonds().Count > 0)
             {
                 if (LevelManagement.Instance.GetPlayer1Diamonds()[LevelManagement.Instance.GetPlayer1Diamonds().Count - 1] == 1) //blue
@@ -40,7 +41,7 @@ public class Tail : MonoBehaviour {
                     dia3.GetComponent<Renderer>().material = blue;
                     dia4.GetComponent<Renderer>().material = blue;
                     dia5.GetComponent<Renderer>().material = blue;
-                    SetParticleSystemColor();
+                    
                 }
                 else if (LevelManagement.Instance.GetPlayer1Diamonds()[LevelManagement.Instance.GetPlayer1Diamonds().Count - 1] == 2) //green
                 {
@@ -49,7 +50,6 @@ public class Tail : MonoBehaviour {
                     dia3.GetComponent<Renderer>().material = green;
                     dia4.GetComponent<Renderer>().material = green;
                     dia5.GetComponent<Renderer>().material = green;
-                    SetParticleSystemColor();
                 }
                 else if (LevelManagement.Instance.GetPlayer1Diamonds()[LevelManagement.Instance.GetPlayer1Diamonds().Count - 1] == 3) //yellow
                 {
@@ -58,7 +58,6 @@ public class Tail : MonoBehaviour {
                     dia3.GetComponent<Renderer>().material = yellow;
                     dia4.GetComponent<Renderer>().material = yellow;
                     dia5.GetComponent<Renderer>().material = yellow;
-                    SetParticleSystemColor();
                 }
             }
             List<int> p1Diamonds = LevelManagement.Instance.GetPlayer1Diamonds();
@@ -114,6 +113,7 @@ public class Tail : MonoBehaviour {
         }
         else
         {
+            SetParticleSystemColor();
             if (LevelManagement.Instance.GetPlayer2Diamonds().Count > 0)
             {
                 if (LevelManagement.Instance.GetPlayer2Diamonds()[LevelManagement.Instance.GetPlayer2Diamonds().Count - 1] == 1) //blue
@@ -123,7 +123,6 @@ public class Tail : MonoBehaviour {
                     dia3.GetComponent<Renderer>().material = blue;
                     dia4.GetComponent<Renderer>().material = blue;
                     dia5.GetComponent<Renderer>().material = blue;
-                    SetParticleSystemColor();
                 }
                 else if (LevelManagement.Instance.GetPlayer2Diamonds()[LevelManagement.Instance.GetPlayer2Diamonds().Count - 1] == 2) //green
                 {
@@ -132,7 +131,6 @@ public class Tail : MonoBehaviour {
                     dia3.GetComponent<Renderer>().material = green;
                     dia4.GetComponent<Renderer>().material = green;
                     dia5.GetComponent<Renderer>().material = green;
-                    SetParticleSystemColor();
                 }
                 else if (LevelManagement.Instance.GetPlayer2Diamonds()[LevelManagement.Instance.GetPlayer2Diamonds().Count - 1] == 3) //yellow
                 {
@@ -141,7 +139,6 @@ public class Tail : MonoBehaviour {
                     dia3.GetComponent<Renderer>().material = yellow;
                     dia4.GetComponent<Renderer>().material = yellow;
                     dia5.GetComponent<Renderer>().material = yellow;
-                    SetParticleSystemColor();
                 }
             }
 
@@ -247,5 +244,9 @@ public class Tail : MonoBehaviour {
     public void SetLastColor(int i)
     {
         lastColor = i;
+    }
+    public int GetLastColor()
+    {
+        return lastColor;
     }
 }

@@ -306,7 +306,6 @@ public class Movement : MonoBehaviour
         {
             onGround = true;
         }
-
         //Ship 2 jumps on Ship1 (with pike activated)
         else if (collision.gameObject.tag == "Ship1" && collision.gameObject.GetComponent<Movement>().hasPike1)
         {

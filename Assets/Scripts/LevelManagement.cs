@@ -949,6 +949,15 @@ public class LevelManagement : MonoBehaviour {
             //Wenn Wert abgezogen wird
             else
             {
+                Debug.Log("lastColor1: " + GameObject.Find("playerJoint1").GetComponent<Tail>().GetLastColor());
+
+                if (player1Diamonds.Count > 0)
+                {
+                    GameObject.Find("playerJoint1").GetComponent<Tail>().SetLastColor(player1Diamonds[player1Diamonds.Count - 1]);
+                }
+                Debug.Log("lastColor2: " + GameObject.Find("playerJoint1").GetComponent<Tail>().GetLastColor());
+                GameObject.Find("playerJoint1").GetComponent<Tail>().ActivateParticles(player1Fast - 1, player1Fast - 2); // statt 2 sollte eig value stehen wenn man abziehwert ändert
+                
                 //Wenn Abzugswert größer als vorhandene Diamanten
                 if (player1Diamonds.Count <= (value*(-1)))
                 {
@@ -1038,6 +1047,12 @@ public class LevelManagement : MonoBehaviour {
             }
             else
             {
+                
+                if (player2Diamonds.Count > 0)
+                {
+                    GameObject.Find("playerJoint2").GetComponent<Tail>().SetLastColor(player2Diamonds[player2Diamonds.Count - 1]);
+                }
+                GameObject.Find("playerJoint2").GetComponent<Tail>().ActivateParticles(player2Fast - 1, player2Fast - 2); // value sollte 1 sein
                 if (player2Diamonds.Count <= (value * (-1)))
                 {
                     for (int i = player2Diamonds.Count - 1; i >= 0; i--)
