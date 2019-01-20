@@ -197,7 +197,7 @@ public class Movement : MonoBehaviour
                 if (!hasPike1) {
                     SoundManagement.Instance.PlayNote("c", "ship1", true);
                 }
-                
+                boostBar.enabled = false;
                 anim.SetBool("defenseON", true);
                 MaxSpeed = 0.0f;
                 hasPike1 = true;
@@ -208,6 +208,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
+                boostBar.enabled = true;
                 anim.SetBool("defenseON", false);
                 MaxSpeed = 5;
                 hasPike1 = false;
@@ -257,6 +258,7 @@ public class Movement : MonoBehaviour
                 {
                     SoundManagement.Instance.PlayNote("c", "ship2", true);
                 }
+                boostBar.enabled = false;
                 anim.SetBool("defenseON", true);
                 //StartCoroutine(SetSpike(0.5f, 0.05f, 2));
                 MaxSpeed = 0.0f;
@@ -269,6 +271,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
+                boostBar.enabled = true;
                 anim.SetBool("defenseON", false);
                 MaxSpeed = 5;
                 hasPike2 = false;
