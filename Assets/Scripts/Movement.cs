@@ -35,6 +35,7 @@ public class Movement : MonoBehaviour
     public int incAmount;
 
     public float boostAmount;
+    public Image boostBar;
     
 
     void Start()
@@ -145,6 +146,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        boostBar.fillAmount = boostAmount;
+
         if (facingRight)
         {
             transform.Translate(Speed * Time.deltaTime, 0, 0, Space.World);
@@ -201,8 +204,7 @@ public class Movement : MonoBehaviour
             }
             else if(Speed > 0.1f && (Input.GetAxis("Pike1") > 0) && boostAmount == 1.0f && !anim.GetBool("damage") && start && onGround)
             {
-                StartCoroutine(ChangeSpeedOverTime(20, 0.01f)); 
-                //Debug.Log("FIIIICCCCCKKKKKEEEEERRRR");
+                StartCoroutine(ChangeSpeedOverTime(20, 0.01f));
             }
             else
             {
@@ -536,7 +538,7 @@ public class Movement : MonoBehaviour
         StartCoroutine(IncreaseValueOverTime());
     }
 
-    IEnumerator ChangeBoostOverTime(float plusSpeed, float duration)
+    IEnumerator ChangeBoostOverTime(float plusSpeed, float duration) // not used
     {
         boostAmount = 0.0f;
         //streamParticles.Play();
@@ -684,8 +686,8 @@ public class Movement : MonoBehaviour
 
         while (boostAmount < 1f)
         {
-            boostAmount += 0.05f;
-            yield return new WaitForSeconds(0.5f);
+            boostAmount += 0.01f; // 0.05f
+            yield return new WaitForSeconds(0.1f); // 0.5f
         }
         boostAmount = 1.0f;
     }
