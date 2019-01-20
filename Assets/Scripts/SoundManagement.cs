@@ -154,7 +154,7 @@ public class SoundManagement : MonoBehaviour {
 
     private AudioClip[] NoteStringsToClipArray(Stack<string> stackWithNotes)
     {
-        AudioClip[] clips = new AudioClip[50];
+        AudioClip[] clips = new AudioClip[100];
         string[] noteArray = stackWithNotes.GetValues();
         
             int count = 0;

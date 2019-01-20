@@ -198,7 +198,7 @@ public class Tail : MonoBehaviour {
     {
         Debug.Log("pos: " + pos + ", amount: " + amount);
        
-            for (int i = pos; i >= amount; i--)
+            for (int i = pos; i >= amount && i >= 0; i--)
             {
             Debug.Log("i=" + i);
             //pSystems[i].Emit(20);
