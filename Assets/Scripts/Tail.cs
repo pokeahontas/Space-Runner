@@ -196,11 +196,11 @@ public class Tail : MonoBehaviour {
 
     public void ActivateParticles(int pos, int amount)
     {
-        Debug.Log("pos: " + pos + ", amount: " + amount);
+        //Debug.Log("pos: " + pos + ", amount: " + amount);
        
             for (int i = pos; i >= amount && i >= 0; i--)
             {
-            Debug.Log("i=" + i);
+            //Debug.Log("i=" + i);
             //pSystems[i].Emit(20);
             StartCoroutine(ParticlesOverSeconds(0.4f,i));
             }
