@@ -352,7 +352,6 @@ public class Movement : MonoBehaviour
         //Ship 2 jumps on Ship1 (with pike activated)
         else if (collision.gameObject.tag == "Ship1" && collision.gameObject.GetComponent<Movement>().hasPike1)
         {
-            
             if (ship2 && !onGround && collision.gameObject.GetComponent<Movement>().onGround && !hasCollide)
             {
                 SoundManagement.Instance.PlayLosePointsSound();
@@ -687,7 +686,8 @@ public class Movement : MonoBehaviour
     {
         go.transform.position = new Vector3(go.transform.position.x - 1.0f, go.transform.position.y, go.transform.position.z);
         go.GetComponent<Movement>().anim.SetBool("damage", true);
-        
+        go.GetComponent<Movement>().boostBar.gameObject.SetActive(false);
+        Debug.Log("Futorsch: " + go.GetComponent<Movement>().boostBar.enabled);
         //go.transform.localScale -= new Vector3(0, 0.3f, 0);
         
         go.GetComponent<Movement>().hasCollide = true;
@@ -716,6 +716,7 @@ public class Movement : MonoBehaviour
         //go.transform.GetComponent<BoxCollider2D>().enabled = true;
         hasCollide = false;
         go.GetComponent<Movement>().hasCollide = false;
+        go.GetComponent<Movement>().boostBar.gameObject.SetActive(true);
         go.GetComponent<Movement>().anim.SetBool("damage", false);
 
     }
