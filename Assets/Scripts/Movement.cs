@@ -171,24 +171,43 @@ public class Movement : MonoBehaviour
                 GetComponent<Rigidbody2D>().gravityScale = -1;
                 if (facingRight)
                 {
+                    //print("unterschied" + Mathf.Abs(GetShip1().transform.localPosition.x - GetShip2().transform.localPosition.x));
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
+                    if (Mathf.Abs(GetShip1().transform.localPosition.x - GetShip2().transform.localPosition.x) < 1.2f)
+                    {
+                        GetComponent<SpriteRenderer>().transform.localPosition = Vector3.Slerp(transform.localPosition, new Vector3(GetShip2().transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), 50 * Time.deltaTime);
+                    }
                 } 
                 else
                 {
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1f, -1f, 1f);
+                    if (Mathf.Abs(GetShip1().transform.localPosition.x - GetShip2().transform.localPosition.x) < 1.2f)
+                    {
+                        GetComponent<SpriteRenderer>().transform.localPosition = Vector3.Slerp(transform.localPosition, new Vector3(GetShip2().transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), 50 * Time.deltaTime);
+                    }
                 }
             }
 
-            if (Input.GetButton("Gravity1") && GetComponent<Rigidbody2D>().gravityScale == -1 && !hasPike1 && onGround && start && hasTurnedAround && !anim.GetBool("damage"))
+            if (Input.GetButton("Gravity1") && GetComponent<Rigidbody2D>().gravityScale == -1 && !hasPike1 && onGround && start && hasTurnedAround && !anim.GetBool("damage")) 
             {
                 onGround = false;
                 GetComponent<Rigidbody2D>().gravityScale = 1;
                 if (facingRight) {
+
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
+                    if (Mathf.Abs(GetShip1().transform.localPosition.x - GetShip2().transform.localPosition.x) < 1.2f)
+                    {
+                        GetComponent<SpriteRenderer>().transform.localPosition = Vector3.Slerp(transform.localPosition, new Vector3(GetShip2().transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), 50 * Time.deltaTime);
+                    }
                 }
+
                 else
                 {
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1f, 1f, 1f);
+                    if (Mathf.Abs(GetShip1().transform.localPosition.x - GetShip2().transform.localPosition.x) < 1.2f)
+                    {
+                        GetComponent<SpriteRenderer>().transform.localPosition = Vector3.Slerp(transform.localPosition, new Vector3(GetShip2().transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), 50 * Time.deltaTime);
+                    }
                 }
             }
             
@@ -230,10 +249,18 @@ public class Movement : MonoBehaviour
                 if (facingRight)
                 {
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
+                    if (Mathf.Abs(GetShip1().transform.localPosition.x - GetShip2().transform.localPosition.x) < 1.2f)
+                    {
+                        GetComponent<SpriteRenderer>().transform.localPosition = Vector3.Slerp(transform.localPosition, new Vector3(GetShip1().transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), 50 * Time.deltaTime);
+                    }
                 } 
                 else
                 {
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1f, 1f, 1f);
+                    if (Mathf.Abs(GetShip1().transform.localPosition.x - GetShip2().transform.localPosition.x) < 1.2f)
+                    {
+                        GetComponent<SpriteRenderer>().transform.localPosition = Vector3.Slerp(transform.localPosition, new Vector3(GetShip1().transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), 50 * Time.deltaTime);
+                    }
                 }
             }
 
@@ -246,10 +273,18 @@ public class Movement : MonoBehaviour
                 //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, -0.5f, 1f);
                 if (facingRight) {
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
+                    if (Mathf.Abs(GetShip1().transform.localPosition.x - GetShip2().transform.localPosition.x) < 1.2f)
+                    {
+                        GetComponent<SpriteRenderer>().transform.localPosition = Vector3.Slerp(transform.localPosition, new Vector3(GetShip1().transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), 50 * Time.deltaTime);
+                    }
                 }
                 else
                 {
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1f, -1f, 1f);
+                    if (Mathf.Abs(GetShip1().transform.localPosition.x - GetShip2().transform.localPosition.x) < 1.2f)
+                    {
+                        GetComponent<SpriteRenderer>().transform.localPosition = Vector3.Slerp(transform.localPosition, new Vector3(GetShip1().transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), 50 * Time.deltaTime);
+                    }
                 }
             }
 

@@ -35096,6 +35096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5135820ffa882e044b0dd0df12447e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winner: 0
   tiles:
   - {fileID: 21300072, guid: 4236d88d1bfe404469a31fe72868abe8, type: 3}
   - {fileID: 21300274, guid: 4236d88d1bfe404469a31fe72868abe8, type: 3}
