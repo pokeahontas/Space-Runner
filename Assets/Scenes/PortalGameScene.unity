@@ -480,6 +480,8 @@ MonoBehaviour:
   hasPike2: 0
   facingRight: 0
   hasTurnedAround: 0
+  isDashing1: 0
+  isDashing2: 0
   colliderLeft: {fileID: 1843672546}
   goRight: {fileID: 125518357}
   decAmount: 1
@@ -7249,6 +7251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 314797635}
+  - component: {fileID: 314797636}
   m_Layer: 0
   m_Name: anzeige_2
   m_TagString: Untagged
@@ -7285,6 +7288,18 @@ Transform:
   m_Father: {fileID: 1427008847}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &314797636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 314797634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1a744d9197c8248bbe673d6891249f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ship1: 0
 --- !u!1001 &321018462
 Prefab:
   m_ObjectHideFlags: 0
@@ -29606,6 +29621,8 @@ MonoBehaviour:
   hasPike2: 0
   facingRight: 1
   hasTurnedAround: 0
+  isDashing1: 0
+  isDashing2: 0
   colliderLeft: {fileID: 1843672546}
   goRight: {fileID: 125518357}
   decAmount: 1
@@ -36668,6 +36685,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1310118357}
+  - component: {fileID: 1310118358}
   m_Layer: 0
   m_Name: anzeige_1
   m_TagString: Untagged
@@ -36704,6 +36722,18 @@ Transform:
   m_Father: {fileID: 296764170}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1310118358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1310118356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1a744d9197c8248bbe673d6891249f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ship1: 1
 --- !u!1 &1330076937
 GameObject:
   m_ObjectHideFlags: 0

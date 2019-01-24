@@ -14,6 +14,8 @@ public class LevelManagement : MonoBehaviour {
     int diamondGreen = 0;
     int diamondYellow = 0;
 
+    public int winner = 0;
+
     public Sprite[] tiles = new Sprite[4];
     public Sprite[] tiles2 = new Sprite[4];
     public Sprite[] tiles3 = new Sprite[4];
@@ -125,7 +127,6 @@ public class LevelManagement : MonoBehaviour {
 
     public void Update()
     {
-        DiamondDisplay();
 
         if ((hgWeit <= 2 || levelfarbe == 0) && !isInNeutralState)
         {
@@ -1115,7 +1116,8 @@ public class LevelManagement : MonoBehaviour {
             if (player1Fast >= 5) // player1Diamonds.Count >= 15 || player1Fast >= 5
             {
                 SoundManagement.Instance.PlayEndMelody("ship1");
-                SceneManager.LoadScene("P1Won");
+                winner = 1;
+                SceneManager.LoadScene("Won");
             }
         }
         else
@@ -1123,7 +1125,8 @@ public class LevelManagement : MonoBehaviour {
             if (player2Fast >= 5) // player2Diamonds.Count >= 15 || player2Fast >= 5
             {
                 SoundManagement.Instance.PlayEndMelody("ship2");
-                SceneManager.LoadScene("P2Won");
+                winner = 2;
+                SceneManager.LoadScene("Won");
             }
         }
 
@@ -1155,57 +1158,6 @@ public class LevelManagement : MonoBehaviour {
             print("Blue: " + diamondBlue + " Green: " + diamondGreen + " Yellow: " + diamondYellow + ", lvlfarbe=" + levelfarbe + " hgWeit=" + hgWeit + " hgBoden=" + hgBoden);
 
         }
-    }
-
-    public void DiamondDisplay()
-    {       
-
-        
-            for (int i = 0; i < 5; i++)    //int i = 0; i < 15; i++
-        {
-                if (player1Diamonds.Count > i)
-                {
-
-                    if (player1Diamonds[i] == 1)
-                    {
-                        player1DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[1];
-                    }
-                    else if (player1Diamonds[i] == 2)
-                    {
-                        player1DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[2];
-                    }
-                    else if (player1Diamonds[i] == 3)
-                    {
-                        player1DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[3];
-                    }
-                }
-                else
-                {
-                    player1DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[0];
-                }
-            if (player2Diamonds.Count > i)
-            {
-
-                if (player2Diamonds[i] == 1)
-                {
-                    player2DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[1];
-                }
-                else if (player2Diamonds[i] == 2)
-                {
-                    player2DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[2];
-                }
-                else if (player2Diamonds[i] == 3)
-                {
-                    player2DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[3];
-                }
-            }
-            else
-            {
-                player2DiamondsDisplay.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = diamonds[0];
-            }
-        }
-              
-        
     }
 
     public List<int> GetPlayer1Diamonds()
@@ -1258,5 +1210,4 @@ public class LevelManagement : MonoBehaviour {
         tmp.a = alphaValue;
         go.GetComponent<SpriteRenderer>().color = tmp;
     }
-    
 }

@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce77db062a193240beb16ed1078fc76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextScene: {fileID: 102900000, guid: 20d349cd11431734eb38e3194208761b, type: 3}
   p1readyText: {fileID: 959690843}
   p2readyText: {fileID: 871928117}
   p1pressText: {fileID: 1894842473}
