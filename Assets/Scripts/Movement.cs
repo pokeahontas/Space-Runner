@@ -27,7 +27,10 @@ public class Movement : MonoBehaviour
     public bool hasPike2;
     public bool facingRight;
     public bool hasTurnedAround;
-   
+
+    public bool isDashing1;
+    public bool isDashing2;
+
     public GameObject colliderLeft;
     public GameObject goRight;
 
@@ -51,7 +54,9 @@ public class Movement : MonoBehaviour
         facingRight = true;
         hasTurnedAround = true;
         boostAmount = 1.0f;
-        
+
+        isDashing1 = false;
+        isDashing2 = false;
 
     }
 
@@ -160,13 +165,10 @@ public class Movement : MonoBehaviour
         if (ship1)
         {
 
-            if (Input.GetButton("Gravity1") && GetComponent<Rigidbody2D>().gravityScale == 1 && !hasPike1 && onGround && start && hasTurnedAround && !anim.GetBool("damage")) // OR Input.GetButton("Boost1")
+            if (Input.GetButton("Gravity1") && GetComponent<Rigidbody2D>().gravityScale == 1 && !hasPike1 && onGround && start && hasTurnedAround && !anim.GetBool("damage"))
             {
-                //SoundManagement.Instance.PlayNote("c", "ship1", true);
                 onGround = false;
-                //Debug.Log("flipped gravity");
                 GetComponent<Rigidbody2D>().gravityScale = -1;
-                //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, -0.5f, 1f);
                 if (facingRight)
                 {
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, -1f, 1f);
@@ -179,10 +181,8 @@ public class Movement : MonoBehaviour
 
             if (Input.GetButton("Gravity1") && GetComponent<Rigidbody2D>().gravityScale == -1 && !hasPike1 && onGround && start && hasTurnedAround && !anim.GetBool("damage"))
             {
-                //SoundManagement.Instance.PlayNote("c","ship1", true);
                 onGround = false;
                 GetComponent<Rigidbody2D>().gravityScale = 1;
-                //GetComponent<SpriteRenderer>().transform.localScale = new Vector3(0.3f, 0.5f, 1f);
                 if (facingRight) {
                     GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
                 }
@@ -204,7 +204,9 @@ public class Movement : MonoBehaviour
             }
             else if(Speed > 0.1f && (Input.GetAxis("Pike1") > 0) && boostAmount == 1.0f && !anim.GetBool("damage") && start && onGround)
             {
+                isDashing1 = true;
                 StartCoroutine(ChangeSpeedOverTime(20, 0.01f));
+                
             }
             else
             {
@@ -311,102 +313,94 @@ public class Movement : MonoBehaviour
         {
             onGround = true;
         }
+
         //Ship 2 jumps on Ship1 (with pike activated)
         else if (collision.gameObject.tag == "Ship1" && collision.gameObject.GetComponent<Movement>().hasPike1)
         {
-            SoundManagement.Instance.PlayLosePointsSound();
-            print("ship2 hit pike");
-            if (ship2 && !onGround && collision.gameObject.GetComponent<Movement>().onGround)
+            
+            if (ship2 && !onGround && collision.gameObject.GetComponent<Movement>().onGround && !hasCollide)
             {
-                if (hasCollide == false)
-                {
-                    print("ship2 hit pike");
-                    hasCollide = true;
-                    //scoreP2.GetComponent<Score>().dec(decAmount);
-                    LevelManagement.Instance.updateDiamond(0, -decAmount, 2);
-                    StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
-                }
+                SoundManagement.Instance.PlayLosePointsSound();
+                hasCollide = true;
+                LevelManagement.Instance.updateDiamond(0, -decAmount, 2);
+                StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
             }
         }
-        //Ship 2 jumps on Ship1 (without pike)
+        
         else if (collision.gameObject.tag == "Ship1")
         {
-            SoundManagement.Instance.PlayLosePointsSound();
-            print("Top1");
-            if (ship2 && !onGround && collision.gameObject.GetComponent<Movement>().onGround)
+            //Ship 2 jumps on Ship1 (without pike)
+            if (ship2 && !onGround && collision.gameObject.GetComponent<Movement>().onGround && !hasCollide)
             {
-                if (hasCollide == false)
+                SoundManagement.Instance.PlayLosePointsSound();
+                hasCollide = true;
+                /*
+                int temp = LevelManagement.Instance.GetPlayer1Diamonds().Count;
+                if (temp < decAmount)
                 {
-                    print("Top1Inner");
-                    hasCollide = true;
-                    //int temp = scoreP1.GetComponent<Score>().score;
-                    int temp = LevelManagement.Instance.GetPlayer1Diamonds().Count;
-                    if (temp < decAmount)
-                    {
-                        Debug.Log("temp: " + temp);
-                        //scoreP2.GetComponent<Score>().inc(temp);
-                        //scoreP1.GetComponent<Score>().dec(temp);
-                        LevelManagement.Instance.updateDiamond(0, -temp, 1);
-                        // TODO  LevelManagement.Instance.updateDiamond(0, temp, 2);
-                    }
-                    else
-                    {
-                        Debug.Log("test2");
-                        //scoreP2.GetComponent<Score>().inc(decAmount);
-                        //scoreP1.GetComponent<Score>().dec(decAmount);
-                        LevelManagement.Instance.updateDiamond(0, -decAmount, 1);
-                        // TODO LevelManagement.Instance.updateDiamond(0, decAmount, 2);
-                    }
-                    StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.gameObject, true));
+                    LevelManagement.Instance.updateDiamond(0, -temp, 1);
                 }
+                else
+                {
+                    LevelManagement.Instance.updateDiamond(0, -decAmount, 1);
+                }
+                */
+                LevelManagement.Instance.updateDiamond(0, -decAmount, 1);
+                StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.gameObject, true));
+                
+            }
+            //Ship 2 is dashing into Ship1
+            else if (ship2 && onGround && isDashing2 && !hasCollide)
+            {
+                hasCollide = true;
+                LevelManagement.Instance.updateDiamond(0, -decAmount, 1);
+                StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.gameObject, true));
             }
         }
         //Ship 1 jumps on Ship2 (with pike activated)
         else if (collision.gameObject.tag == "Ship2" && collision.gameObject.GetComponent<Movement>().hasPike2)
         {
-            SoundManagement.Instance.PlayLosePointsSound();
-            print("ship1 hit pike");
-            if (ship1 && !onGround && collision.gameObject.GetComponent<Movement>().onGround)
+            
+            if (ship1 && !onGround && collision.gameObject.GetComponent<Movement>().onGround && !hasCollide)
             {
-                if (hasCollide == false)
-                {
-                    print("ship1 hit pike");
-                    hasCollide = true;
-                    //scoreP1.GetComponent<Score>().dec(decAmount);
-                    LevelManagement.Instance.updateDiamond(0, -decAmount, 1);
-                    StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
-                }
+                SoundManagement.Instance.PlayLosePointsSound();
+                print("ship1 hit pike");
+                hasCollide = true;
+                LevelManagement.Instance.updateDiamond(0, -decAmount, 1);
+                StartCoroutine(TopDamage(0.1f, 0.2f, gameObject, true));
+                
             }
         }
-        //Ship 1 jumps on Ship2 (without pike)
+        
         else if (collision.gameObject.tag == "Ship2")
         {
-            SoundManagement.Instance.PlayLosePointsSound();
-            print("Top2");
-            if (ship1 && !onGround && collision.gameObject.GetComponent<Movement>().onGround)
+
+            //Ship 1 jumps on Ship2 (without pike)
+            if (ship1 && !onGround && collision.gameObject.GetComponent<Movement>().onGround && !hasCollide)
             {
-                if (hasCollide == false)
+                SoundManagement.Instance.PlayLosePointsSound();
+                print("Top2Inner");
+                hasCollide = true;
+                /*
+                int temp = LevelManagement.Instance.GetPlayer2Diamonds().Count;
+                if (temp < decAmount)
                 {
-                    print("Top2Inner");
-                    hasCollide = true;
-                    //int temp = (int)scoreP2.GetComponent<Score>().score;
-                    int temp = LevelManagement.Instance.GetPlayer2Diamonds().Count;
-                    if (temp < decAmount)
-                    {
-                        //scoreP1.GetComponent<Score>().inc(temp);
-                        //scoreP2.GetComponent<Score>().dec(temp);
-                        LevelManagement.Instance.updateDiamond(0, -temp, 2);
-                        // TODO LevelManagement.Instance.updateDiamond(0, temp, 1);
-                    }
-                    else
-                    {
-                        //scoreP1.GetComponent<Score>().inc(decAmount);
-                        //scoreP2.GetComponent<Score>().dec(decAmount);
-                        LevelManagement.Instance.updateDiamond(0, -decAmount, 2);
-                        // TODO LevelManagement.Instance.updateDiamond(0, decAmount, 1);
-                    }
-                    StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.gameObject, true));
+                    LevelManagement.Instance.updateDiamond(0, -temp, 2);
                 }
+                else
+                {
+                    LevelManagement.Instance.updateDiamond(0, -decAmount, 2);
+                }
+                */
+                LevelManagement.Instance.updateDiamond(0, -decAmount, 2);
+                StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.gameObject, true));
+            }
+            //Ship 1 is dashing into Ship2
+            else if (ship1 && isDashing1 && onGround && !hasCollide)
+            {
+                hasCollide = true;
+                LevelManagement.Instance.updateDiamond(0, -decAmount, 2);
+                StartCoroutine(TopDamage(0.1f, 0.2f, collision.gameObject.transform.gameObject, true));
             }
         }
     }
@@ -526,6 +520,18 @@ public class Movement : MonoBehaviour
             }
     }
 
+    void endDashing()
+    {
+        if (ship1)
+        {
+            isDashing1 = false;
+        }
+        else
+        {
+            isDashing2 = false;
+        }
+    }
+
     IEnumerator ChangeSpeedOverTime(float newSpeed, float duration)
     {
         
@@ -538,6 +544,7 @@ public class Movement : MonoBehaviour
         }
         MaxSpeed -= (newSpeed - oldSpeed);
         boostAmount = 0;
+        endDashing();
         StartCoroutine(IncreaseValueOverTime());
     }
 
