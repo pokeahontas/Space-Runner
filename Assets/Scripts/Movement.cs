@@ -70,6 +70,19 @@ public class Movement : MonoBehaviour
 
         if(ship1)
         {
+            /* COMMENT IF BUG*/
+            if (isDashing1 && facingRight && (Input.GetAxis("Direction_J1") < -0.1f))
+            {
+                Debug.Log("Abort dash");
+                dashEffectsRightWalk.SetActive(false);
+            }
+            if (isDashing1 && !facingRight && (Input.GetAxis("Direction_J1") > 0.1f))
+            {
+                Debug.Log("Abort dash");
+                dashEffectsLeftWalk.SetActive(false);
+            }
+            /* COMMENT IF BUG*/
+
             if (Input.GetAxis("Direction_J1") < -0.1f && facingRight && onGround && !hasPike1 && !anim.GetBool("damage"))
             {
                 SoundManagement.Instance.PlayNote("g", "ship1", true);
@@ -109,6 +122,18 @@ public class Movement : MonoBehaviour
         }
         if(ship2)
         {
+            /* COMMENT IF BUG*/
+            if (isDashing2 && facingRight && (Input.GetAxis("Direction_J2") < -0.1f))
+            {
+                Debug.Log("Abort dash");
+                dashEffectsRightWalk.SetActive(false);
+            }
+            if (isDashing2 && !facingRight && (Input.GetAxis("Direction_J2") > 0.1f))
+            {
+                Debug.Log("Abort dash");
+                dashEffectsLeftWalk.SetActive(false);
+            }
+            /* COMMENT IF BUG*/
             if (Input.GetAxis("Direction_J2") < -0.1f && facingRight && onGround && !hasPike2 && !anim.GetBool("damage"))
             {
                 SoundManagement.Instance.PlayNote("g", "ship1", true);
@@ -229,13 +254,13 @@ public class Movement : MonoBehaviour
             else if(Speed > 0.1f && (Input.GetAxis("Pike1") > 0) && boostAmount == 1.0f && !anim.GetBool("damage") && start && onGround)
             {
                 isDashing1 = true;
-                if (facingRight)
-                {
-                    dashEffectsRightWalk.SetActive(true);
-                } else
-                {
-                    dashEffectsLeftWalk.SetActive(true);
-                }
+                //if (facingRight)
+                //{
+                //    dashEffectsRightWalk.SetActive(true);
+                //} else
+                //{
+                //    dashEffectsLeftWalk.SetActive(true);
+                //}
                 StartCoroutine(ChangeSpeedOverTime(25, 0.015f));
                 
             }
@@ -316,14 +341,7 @@ public class Movement : MonoBehaviour
             else if (Speed > 0.1f && (Input.GetAxis("Pike2") > 0) && boostAmount == 1.0f && !anim.GetBool("damage") && start && onGround)
             {
                 isDashing2 = true;
-                if (facingRight)
-                {
-                    dashEffectsRightWalk.SetActive(true);
-                }
-                else
-                {
-                    dashEffectsLeftWalk.SetActive(true);
-                }
+                
                 StartCoroutine(ChangeSpeedOverTime(25, 0.015f));
                 
             }
@@ -599,7 +617,14 @@ public class Movement : MonoBehaviour
     {
         
         float oldSpeed = MaxSpeed;
-
+        if (facingRight)
+        {
+            dashEffectsRightWalk.SetActive(true);
+        }
+        else
+        {
+            dashEffectsLeftWalk.SetActive(true);
+        }
         while (duration > 0f)
         {
             MaxSpeed = newSpeed;
