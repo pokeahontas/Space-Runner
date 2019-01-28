@@ -39,6 +39,9 @@ public class Movement : MonoBehaviour
 
     public float boostAmount;
     public Image boostBar;
+
+    public GameObject dashEffectsRightWalk;
+    public GameObject dashEffectsLeftWalk;
     
 
     void Start()
@@ -57,6 +60,8 @@ public class Movement : MonoBehaviour
 
         isDashing1 = false;
         isDashing2 = false;
+        dashEffectsRightWalk.SetActive(false);
+        dashEffectsLeftWalk.SetActive(false);
 
     }
 
@@ -224,6 +229,13 @@ public class Movement : MonoBehaviour
             else if(Speed > 0.1f && (Input.GetAxis("Pike1") > 0) && boostAmount == 1.0f && !anim.GetBool("damage") && start && onGround)
             {
                 isDashing1 = true;
+                if (facingRight)
+                {
+                    dashEffectsRightWalk.SetActive(true);
+                } else
+                {
+                    dashEffectsLeftWalk.SetActive(true);
+                }
                 StartCoroutine(ChangeSpeedOverTime(20, 0.01f));
                 
             }
@@ -303,6 +315,15 @@ public class Movement : MonoBehaviour
             }
             else if (Speed > 0.1f && (Input.GetAxis("Pike2") > 0) && boostAmount == 1.0f && !anim.GetBool("damage") && start && onGround)
             {
+                isDashing2 = true;
+                if (facingRight)
+                {
+                    dashEffectsRightWalk.SetActive(true);
+                }
+                else
+                {
+                    dashEffectsLeftWalk.SetActive(true);
+                }
                 StartCoroutine(ChangeSpeedOverTime(20, 0.01f));
                 
             }
@@ -570,6 +591,7 @@ public class Movement : MonoBehaviour
     {
         
         float oldSpeed = MaxSpeed;
+
         while (duration > 0f)
         {
             MaxSpeed = newSpeed;
@@ -579,6 +601,14 @@ public class Movement : MonoBehaviour
         MaxSpeed -= (newSpeed - oldSpeed);
         boostAmount = 0;
         endDashing();
+        if (facingRight)
+        {
+            dashEffectsRightWalk.SetActive(false);
+        }
+        else
+        {
+            dashEffectsLeftWalk.SetActive(false);
+        }
         StartCoroutine(IncreaseValueOverTime());
     }
 
@@ -687,7 +717,7 @@ public class Movement : MonoBehaviour
         go.transform.position = new Vector3(go.transform.position.x - 1.0f, go.transform.position.y, go.transform.position.z);
         go.GetComponent<Movement>().anim.SetBool("damage", true);
         go.GetComponent<Movement>().boostBar.gameObject.SetActive(false);
-        Debug.Log("Futorsch: " + go.GetComponent<Movement>().boostBar.enabled);
+
         //go.transform.localScale -= new Vector3(0, 0.3f, 0);
         
         go.GetComponent<Movement>().hasCollide = true;
@@ -729,7 +759,7 @@ public class Movement : MonoBehaviour
     }
     IEnumerator IncreaseValueOverTime()
     {
-
+        
         while (boostAmount < 1f)
         {
             boostAmount += 0.01f; // 0.05f
