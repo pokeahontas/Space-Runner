@@ -1115,7 +1115,7 @@ public class LevelManagement : MonoBehaviour {
         {
             if (player1Fast >= 5) // player1Diamonds.Count >= 15 || player1Fast >= 5
             {
-                SoundManagement.Instance.PlayEndMelody("ship1");
+                //SoundManagement.Instance.PlayEndMelody("ship1");
                 winner = 1;
                 SceneManager.LoadScene("Won");
             }
@@ -1124,7 +1124,7 @@ public class LevelManagement : MonoBehaviour {
         {
             if (player2Fast >= 5) // player2Diamonds.Count >= 15 || player2Fast >= 5
             {
-                SoundManagement.Instance.PlayEndMelody("ship2");
+                //SoundManagement.Instance.PlayEndMelody("ship2");
                 winner = 2;
                 SceneManager.LoadScene("Won");
             }

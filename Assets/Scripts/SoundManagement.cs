@@ -130,14 +130,14 @@ public class SoundManagement : MonoBehaviour {
         {
             clipsToPlay = NoteStringsToClipArray(ship1Melody);
             audioSource.clip = Combine(clipsToPlay);
-            audioSource.pitch = 2;
+            audioSource.pitch = 1;
             audioSource.Play();
         }
         else
         {
             clipsToPlay = NoteStringsToClipArray(ship2Melody);
             audioSource.clip = Combine(clipsToPlay);
-            audioSource.pitch = 2;
+            audioSource.pitch = 1;
             audioSource.Play();
         }
     }
