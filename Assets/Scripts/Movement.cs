@@ -537,8 +537,12 @@ public class Movement : MonoBehaviour
     {
         Vector3 spawnPos = new Vector3(goRight.transform.position.x-4.0f, goRight.transform.position.y, transform.position.z);
         Vector3 beforeSpawnPos = new Vector3(goRight.transform.position.x-4.0f + 2.0f, goRight.transform.position.y, transform.position.z);
+
+        Vector3 Pos2 = new Vector3(goRight.transform.position.x, goRight.transform.position.y+10.0f, transform.position.z);
+        Vector3 beforePos2 = new Vector3(goRight.transform.position.x, goRight.transform.position.y-10.0f, transform.position.z);
         //Vector3 beforeSpawnPos = new Vector3(goRight.transform.position.x - 4.0f, transform.position.y, transform.position.z);
         RaycastHit2D rayCastHit = Physics2D.Linecast(beforeSpawnPos, spawnPos);
+        RaycastHit2D rayCastHit2 = Physics2D.Linecast(beforePos2, Pos2);
 
         if (rayCastHit.collider != null)
         {
@@ -550,6 +554,10 @@ public class Movement : MonoBehaviour
             {
                 transform.position = new Vector3(goRight.transform.position.x + 1.0f, goRight.transform.position.y, transform.position.z);
             }
+        }
+        else if (rayCastHit2.collider.tag == "ColliderUp" || rayCastHit2.collider.tag == "ColliderDown")
+        {
+            transform.position = new Vector3(goRight.transform.position.x + 3.0f, goRight.transform.position.y, transform.position.z);
         }
         else
         {
