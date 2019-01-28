@@ -41,6 +41,6 @@ public class CameraFollow : MonoBehaviour
     void MoveCameraToTargetPos(Vector3 targetPos)
     {
         Vector3 velocity = Vector3.zero;
-        this.transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, 0.17f);
+        this.transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, 0.10f);
     }
 }

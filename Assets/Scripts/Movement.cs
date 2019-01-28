@@ -236,7 +236,7 @@ public class Movement : MonoBehaviour
                 {
                     dashEffectsLeftWalk.SetActive(true);
                 }
-                StartCoroutine(ChangeSpeedOverTime(20, 0.01f));
+                StartCoroutine(ChangeSpeedOverTime(25, 0.015f));
                 
             }
             else
@@ -324,7 +324,7 @@ public class Movement : MonoBehaviour
                 {
                     dashEffectsLeftWalk.SetActive(true);
                 }
-                StartCoroutine(ChangeSpeedOverTime(20, 0.01f));
+                StartCoroutine(ChangeSpeedOverTime(25, 0.015f));
                 
             }
             else
@@ -762,8 +762,8 @@ public class Movement : MonoBehaviour
         
         while (boostAmount < 1f)
         {
-            boostAmount += 0.01f; // 0.05f
-            yield return new WaitForSeconds(0.1f); // 0.5f
+            boostAmount += 0.0025f; // 0.05f
+            yield return new WaitForSeconds(0.25f); // 0.5f
         }
         boostAmount = 1.0f;
     }

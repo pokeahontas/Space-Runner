@@ -45205,6 +45205,52 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 415095af0de87bc48a5e61a2158682e5, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1001 &1110049959
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -10.161696
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -5.12098
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.29732975
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1594857496644920, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
+      propertyPath: m_Name
+      value: GroundTiles01
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1125305118
 GameObject:
   m_ObjectHideFlags: 0
@@ -46797,6 +46843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj:
   - {fileID: 1644716361261588, guid: 1728d9e33e9ce3741b196ba316efd65c, type: 2}
+  - {fileID: 1644716361261588, guid: a8b7f924591a0c745bf14ecdf499c035, type: 2}
   goal: {fileID: 1321789375524980, guid: 859377be31d7fd84b93b3f4fc1c07054, type: 2}
   portal: {fileID: 1115404514765902, guid: 3b05c4a696b060b40a68e8bd0ee4a010, type: 2}
   ship1: {fileID: 34427446}
@@ -78680,52 +78727,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &2081219252
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -10.161696
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -5.12098
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.29732975
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135343171824318, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1594857496644920, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
-      propertyPath: m_Name
-      value: GroundTiles01
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3ae219d04141d2f4b981cb1d75e79709, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &2114741206
 GameObject:
   m_ObjectHideFlags: 0
